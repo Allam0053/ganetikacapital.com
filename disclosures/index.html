@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disclosures | Ganetika Capital</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/jpeg" sizes="32x32" href="/favicon.jpg" />
+    <link rel="icon" type="image/x-icon" href="/favicon-2.ico" />
+    <link rel="apple-touch-icon" href="/favicon.jpg" />
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F9FA;
+        }
+        .text-gold { color: #C09553; }
+        .bg-gold { background-color: #C09553; }
+        .border-gold { border-color: #C09553; }
+        .bg-primary-dark { background-color: #1A2634; }
+        .text-primary-dark { color: #1A2634; }
+        
+        #main-header {
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid #e5e7eb;
+        }
+        #main-header .nav-link { color: #1A2634; }
+        #main-header .logo-text { color: #1A2634; }
+    </style>
+</head>
+<body class="text-gray-700 min-h-[100vh] flex flex-col">
+
+    <!-- Header -->
+    <header id="main-header" class="sticky top-0 left-0 right-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="/" class="text-xl md:text-2xl font-bold logo-text flex items-center gap-4">
+                    <div class="w-8 rounded-lg overflow-hidden">
+                        <img src="/favicon.jpg" alt="logo" class="object-cover">
+                    </div>
+                    <span>Ganetika Capital</span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="/#insights" class="nav-link font-medium hover:text-gold transition">Insights</a>
+                    <a href="/#strategies" class="nav-link font-medium hover:text-gold transition">Our Focus</a>
+                    <a href="/about" class="nav-link font-medium hover:text-gold transition">About Us</a>
+                    <a href="/contact" class="nav-link font-medium hover:text-gold transition">Contact</a>
+                </nav>
+
+                <!-- Header Controls -->
+                <div class="flex items-center space-x-4">
+                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 nav-link cursor-pointer hover:text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                     </svg>
+                    
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-button" class="md:hidden text-primary-dark focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white text-primary-dark">
+            <a href="/#insights" class="block py-3 px-6 hover:bg-gray-100">Insights</a>
+            <a href="/#strategies" class="block py-3 px-6 hover:bg-gray-100">Our Focus</a>
+            <a href="/about" class="block py-3 px-6 hover:bg-gray-100">About Us</a>
+            <a href="/contact" class="block py-3 px-6 hover:bg-gray-100">Contact</a>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- Page Title Header -->
+        <section class="bg-primary-dark text-white py-16">
+            <div class="container mx-auto px-6">
+                <h1 class="text-4xl md:text-5xl font-bold">
+                    <span class="lang-en">Regulatory Disclosures</span>
+                    <span class="lang-id hidden">Pernyataan Keterbukaan Regulasi</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-300 mt-2">
+                    <span class="lang-en">Legal structure, compliance definitions, and investment disclaimers.</span>
+                    <span class="lang-id hidden">Struktur hukum, definisi kepatuhan, dan pernyataan sangkalan investasi.</span>
+                </p>
+            </div>
+        </section>
+
+        <!-- Language Selector -->
+        <div class="max-w-3xl mx-auto px-6 pt-8 flex justify-end">
+            <div class="inline-flex rounded-md shadow-sm" role="group">
+                <button type="button" id="btn-en" class="px-4 py-2 text-sm font-semibold text-white bg-gold border border-gold rounded-l-lg focus:z-10 focus:outline-none transition duration-200">
+                    English
+                </button>
+                <button type="button" id="btn-id" class="px-4 py-2 text-sm font-semibold text-gray-700 bg-white border border-gray-200 rounded-r-lg hover:bg-gray-100 focus:z-10 focus:outline-none transition duration-200">
+                    Bahasa Indonesia
+                </button>
+            </div>
+        </div>
+
+        <!-- Disclosures Content Section -->
+        <section class="py-12 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="max-w-3xl mx-auto text-justify space-y-8 leading-relaxed">
+                    <p class="text-sm text-gray-500 italic">
+                        <span class="lang-en">Last Updated: July 14, 2026</span>
+                        <span class="lang-id hidden">Pembaruan Terakhir: 14 Juli 2026</span>
+                    </p>
+
+                    <div>
+                        <h2 class="text-2xl font-bold text-primary-dark mb-4">
+                            <span class="lang-en">1. Structure & Non-Fund Entity Definition</span>
+                            <span class="lang-id hidden">1. Struktur & Definisi Entitas Non-Reksa Dana</span>
+                        </h2>
+                        <p class="lang-en">
+                            Ganetika Capital Partners operates strictly as a private civil investment partnership under the laws of the Republic of Indonesia. <strong>It is not a mutual fund (<em>Reksa Dana</em>), a collective investment scheme (<em>Kontrak Investasi Kolektif</em> / KIK), a venture capital corporation (<em>Perusahaan Modal Ventura</em>), or a publicly offered financial product.</strong>
+                        </p>
+                        <p class="lang-en mt-4">
+                            Ganetika Capital Partners is a proprietary co-investment vehicle. It represents a closed private agreement among a limited, restricted circle of partners (consisting of one General Partner and four Limited Partners). The partnership operates in accordance with the Indonesian Civil Code (<em>Kitab Undang-Undang Hukum Perdata</em>) and standard corporate registrar filings.
+                        </p>
+                        <p class="lang-id hidden">
+                            Ganetika Capital Partners beroperasi secara eksklusif sebagai persekutuan perdata investasi swasta berdasarkan hukum Republik Indonesia. <strong>Ini bukan reksa dana (<em>Reksa Dana</em>), kontrak investasi kolektif (<em>Kontrak Investasi Kolektif</em> / KIK), perusahaan modal ventura (<em>Perusahaan Modal Ventura</em>), atau produk keuangan yang ditawarkan secara publik.</strong>
+                        </p>
+                        <p class="lang-id hidden mt-4">
+                            Ganetika Capital Partners adalah kendaraan investasi bersama yang bersifat pribadi. Kemitraan ini merupakan perjanjian tertutup antara lingkaran sekutu yang terbatas (terdiri dari satu Sekutu Pengurus / General Partner dan empat Sekutu Komanditer / Limited Partners). Kemitraan ini beroperasi sesuai dengan Kitab Undang-Undang Hukum Perdata Indonesia dan pendaftaran resmi pendaftar korporasi.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-bold text-primary-dark mb-4">
+                            <span class="lang-en">2. Regulatory Domicile & Lack of Licensing</span>
+                            <span class="lang-id hidden">2. Domisili Regulasi & Ketiadaan Lisensi</span>
+                        </h2>
+                        <div class="lang-en">
+                            <p class="mb-4">
+                                <strong>Ganetika Capital Partners does NOT hold an Investment Manager license (<em>Izin Usaha Manajer Investasi</em>) or an Investment Advisor license (<em>Penasihat Investasi</em>) from Otoritas Jasa Keuangan (OJK).</strong> It is not registered as a broker-dealer or a licensed securities firm in Indonesia or any other financial regulatory jurisdiction.
+                            </p>
+                            <p>
+                                Because the partnership does not manage public retail assets, solicit funds from third-party clients, or offer brokerage/advisory services to the general public, it operates outside the scope of licensed entity requirements. The partnership manages only the private, proprietary capital pooled by its partners under their mutual partnership agreement.
+                            </p>
+                        </div>
+                        <div class="lang-id hidden">
+                            <p class="mb-4">
+                                <strong>Ganetika Capital Partners TIDAK memiliki izin usaha Manajer Investasi atau izin usaha Penasihat Investasi dari Otoritas Jasa Keuangan (OJK).</strong> Perusahaan ini tidak terdaftar sebagai perantara pedagang efek atau perusahaan efek berlisensi di Indonesia atau yurisdiksi regulasi keuangan lainnya.
+                            </p>
+                            <p>
+                                Karena kemitraan tidak mengelola aset ritel publik, menghimpun dana dari klien pihak ketiga, atau menawarkan jasa broker/penasihat kepada masyarakat umum, kemitraan beroperasi di luar cakupan persyaratan entitas berlisensi. Kemitraan hanya mengelola modal pribadi milik para sekutu yang dikumpulkan berdasarkan perjanjian kemitraan mereka.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-bold text-primary-dark mb-4">
+                            <span class="lang-en">3. Absolute Prohibition of Public Offerings</span>
+                            <span class="lang-id hidden">3. Larangan Mutlak Penawaran Umum</span>
+                        </h2>
+                        <div class="lang-en">
+                            <p class="mb-4">
+                                No information or document on this Site constitutes a "Public Offering" (<em>Penawaran Umum</em>) of securities under Law No. 8 of 1995 on Capital Markets (<em>Undang-Undang Pasar Modal</em>) or subsequent OJK regulations.
+                            </p>
+                            <p>
+                                Ganetika Capital Partners does not publish offer brochures, issue public investment circulars, or solicit third-party capital. Any discussions with prospective partners are strictly private, conducted on a one-on-one basis, and are subject to stringent qualification criteria to ensure compliance with Indonesian private placement limitations.
+                            </p>
+                        </div>
+                        <div class="lang-id hidden">
+                            <p class="mb-4">
+                                Tidak ada informasi atau dokumen di Situs ini yang merupakan "Penawaran Umum" efek berdasarkan Undang-Undang Nomor 8 Tahun 1995 tentang Pasar Modal atau peraturan OJK berikutnya.
+                            </p>
+                            <p>
+                                Ganetika Capital Partners tidak menerbitkan brosur penawaran, mengedarkan sirkular investasi publik, atau menghimpun modal dari pihak ketiga secara umum. Setiap diskusi dengan calon mitra bersifat sangat pribadi, dilakukan secara individual, dan tunduk pada kriteria kualifikasi yang ketat guna memastikan kepatuhan terhadap batasan penawaran terbatas di Indonesia.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-bold text-primary-dark mb-4">
+                            <span class="lang-en">4. Investment Risk Warnings</span>
+                            <span class="lang-id hidden">4. Peringatan Risiko Investasi</span>
+                        </h2>
+                        <div class="lang-en">
+                            <p class="mb-4">
+                                Proprietary investments made by the partnership involve a high degree of risk. Equity markets, both within Indonesia (IDX) and globally, are subject to significant volatility. 
+                            </p>
+                            <p class="mb-4">
+                                <strong>No Guarantee of Capital Preservation:</strong> The value of the partnership's investments can decline, and partners may lose part or all of their invested capital.
+                            </p>
+                            <p>
+                                <strong>Past Performance is Not Indicative of Future Results:</strong> Any reference to historical investment metrics, compounding rates, or case studies on this website is for educational and historical illustration only and should not be relied upon as a guarantee of future performance.
+                            </p>
+                        </div>
+                        <div class="lang-id hidden">
+                            <p class="mb-4">
+                                Investasi yang dilakukan oleh kemitraan ini melibatkan tingkat risiko yang tinggi. Pasar ekuitas, baik di Indonesia (BEI) maupun global, dapat mengalami volatilitas yang signifikan.
+                            </p>
+                            <p class="mb-4">
+                                <strong>Tidak Ada Jaminan Perlindungan Modal:</strong> Nilai investasi kemitraan dapat turun, dan mitra dapat kehilangan sebagian atau seluruh modal yang diinvestasikan.
+                            </p>
+                            <p>
+                                <strong>Kinerja Masa Lalu Bukan Indikasi Hasil Masa Depan:</strong> Setiap referensi tentang metrik investasi historis, tingkat pertumbuhan majemuk, atau studi kasus di situs web ini adalah untuk tujuan edukasi dan ilustrasi historis saja dan tidak boleh diandalkan sebagai jaminan kinerja masa depan.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-bold text-primary-dark mb-4">
+                            <span class="lang-en">5. Disclaimer on Information Accuracy</span>
+                            <span class="lang-id hidden">5. Pernyataan Penyangkalan Keakuratan Informasi</span>
+                        </h2>
+                        <p class="lang-en">
+                            The investment letters, memos, blog posts, and articles published on this Site reflect the personal opinions of the General Partner and contributors at the time of writing. While we strive to ensure that all information sourced is accurate and reliable, we make no representations or warranties, express or implied, regarding its completeness or current validity. The material on this website is subject to change without notice.
+                        </p>
+                        <p class="lang-id hidden">
+                            Surat kemitraan, memo, posting blog, dan artikel yang diterbitkan di Situs ini mencerminkan pendapat pribadi Sekutu Pengurus dan kontributor pada saat penulisan. Meskipun kami berusaha memastikan bahwa semua informasi yang bersumber adalah akurat dan andal, kami tidak membuat pernyataan atau jaminan, baik tersurat maupun tersirat, mengenai kelengkapan atau validitasnya saat ini. Materi di situs web ini dapat berubah sewaktu-waktu tanpa pemberitahuan.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-primary-dark text-gray-300 pt-16 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12">
+                <div class="col-span-2 lg:col-span-1">
+                    <h3 class="text-xl font-bold text-white mb-4">Ganetika Capital</h3>
+                    <p class="text-sm text-gray-400">Investing as Owners. Growing as Partners.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4 uppercase tracking-wider text-sm">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/about" class="hover:text-gold transition text-sm">About Us</a></li>
+                        <li><a href="/#insights" class="hover:text-gold transition text-sm">Insights</a></li>
+                        <li><a href="/contact" class="hover:text-gold transition text-sm">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4 uppercase tracking-wider text-sm">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/terms" class="hover:text-gold transition text-sm">Terms of Use</a></li>
+                        <li><a href="/privacy" class="hover:text-gold transition text-sm">Privacy Policy</a></li>
+                        <li><a href="/disclosures" class="hover:text-gold transition text-sm">Disclosures</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4 uppercase tracking-wider text-sm">Access</h4>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm text-gray-500 mb-4 md:mb-0">&copy; 2025 Ganetika Capital. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu logic
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Language Switcher Logic
+            const btnEn = document.getElementById('btn-en');
+            const btnId = document.getElementById('btn-id');
+            const enElements = document.querySelectorAll('.lang-en');
+            const idElements = document.querySelectorAll('.lang-id');
+
+            btnEn.addEventListener('click', () => {
+                btnEn.classList.add('bg-gold', 'text-white', 'border-gold');
+                btnEn.classList.remove('bg-white', 'text-gray-700', 'border-gray-200', 'hover:bg-gray-100');
+                btnId.classList.remove('bg-gold', 'text-white', 'border-gold');
+                btnId.classList.add('bg-white', 'text-gray-700', 'border-gray-200', 'hover:bg-gray-100');
+                enElements.forEach(el => el.classList.remove('hidden'));
+                idElements.forEach(el => el.classList.add('hidden'));
+            });
+
+            btnId.addEventListener('click', () => {
+                btnId.classList.add('bg-gold', 'text-white', 'border-gold');
+                btnId.classList.remove('bg-white', 'text-gray-700', 'border-gray-200', 'hover:bg-gray-100');
+                btnEn.classList.remove('bg-gold', 'text-white', 'border-gold');
+                btnEn.classList.add('bg-white', 'text-gray-700', 'border-gray-200', 'hover:bg-gray-100');
+                idElements.forEach(el => el.classList.remove('hidden'));
+                enElements.forEach(el => el.classList.add('hidden'));
+            });
+        });
+    </script>
+</body>
+</html>
