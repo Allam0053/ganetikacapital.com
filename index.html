@@ -112,13 +112,8 @@
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 
-                <a href="#" class="text-xl md:text-2xl font-bold logo-text text-white flex items-center gap-4">
-                    <div class="w-8 rounded-lg overflow-hidden">
-                        <img src="favicon.jpg" alt="logo" class="object-cover">
-                    </div>
-                    <span>
-                        Ganetika Capital Partners
-                    </span>
+                <a href="#" class="flex items-center">
+                    <img id="header-logo" src="/logo-white.png" alt="Ganetika Capital Partners" class="h-8 md:h-10 object-contain">
                 </a>
 
                 
@@ -344,16 +339,23 @@
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             
+            const logo = document.getElementById('header-logo');
             const handleScroll = () => {
                 if (window.scrollY > 50) {
                     if (header) {
                         header.classList.add('scrolled', 'text-primary-dark');
                         header.classList.remove('text-white');
                     }
+                    if (logo) {
+                        logo.src = '/logo.png';
+                    }
                 } else {
                     if (header) {
                         header.classList.remove('scrolled', 'text-primary-dark');
                         header.classList.add('text-white');
+                    }
+                    if (logo) {
+                        logo.src = '/logo-white.png';
                     }
                 }
             };
