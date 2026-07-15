@@ -2,9 +2,6 @@
   "name": "ganetika-website",
   "version": "1.0.0",
   "scripts": {
-    "build": "tailwindcss -i ./src/input.css -o ./css/style.css --minify"
-  },
-  "dependencies": {
-    "tailwindcss": "^3.4.1"
+    "build": "echo 'Static deploy'"
   }
 }
