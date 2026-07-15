@@ -10,17 +10,17 @@
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ganetika.com/">
+    <meta property="og:url" content="https://ganetikacapital.com/">
     <meta property="og:title" content="Ganetika Capital Partners | Investing as Owners. Growing as Partners.">
     <meta property="og:description" content="A private civil investment partnership focused on the long-term ownership of high-quality businesses.">
-    <meta property="og:image" content="https://ganetika.com/preview.jpg">
+    <meta property="og:image" content="https://ganetikacapital.com/preview.jpg">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://ganetika.com/">
+    <meta property="twitter:url" content="https://ganetikacapital.com/">
     <meta property="twitter:title" content="Ganetika Capital Partners | Investing as Owners. Growing as Partners.">
     <meta property="twitter:description" content="A private civil investment partnership focused on the long-term ownership of high-quality businesses.">
-    <meta property="twitter:image" content="https://ganetika.com/preview.jpg">
+    <meta property="twitter:image" content="https://ganetikacapital.com/preview.jpg">
     
     <link rel="stylesheet" href="/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -122,6 +122,7 @@
                     <a href="#strategies" class="nav-link text-white font-medium hover:text-gold transition">Strategies</a>
                     <a href="/about" class="nav-link text-white font-medium hover:text-gold transition">About Us</a>
                     <a href="/contact" class="nav-link text-white font-medium hover:text-gold transition">Contact</a>
+                    <a href="/portal" class="nav-link text-white font-medium hover:text-gold transition">Partner Login</a>
                 </nav>
 
                 
@@ -144,6 +145,7 @@
             <a href="#strategies" class="block py-3 px-6 hover:bg-gray-100">Strategies</a>
             <a href="/about" class="block py-3 px-6 hover:bg-gray-100">About Us</a>
             <a href="/contact" class="block py-3 px-6 hover:bg-gray-100">Contact</a>
+            <a href="/portal" class="block py-3 px-6 hover:bg-gray-100">Partner Login</a>
         </div>
     </header>
 
@@ -320,6 +322,9 @@
                 
                 <!-- Access --><div>
                     <h4 class="font-semibold text-white mb-4 uppercase tracking-wider text-sm">Access</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/portal" class="hover:text-gold transition text-sm">Partner Portal</a></li>
+                    </ul>
                 </div>
             </div>
             <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
@@ -404,16 +409,28 @@
                 try {
                     // Fetch the 3 most recent posts
                     const { data, error } = await supabaseClient
-                        .from('content') // Make sure 'posts' is your table name
+                        .from('content')
                         .select('*')
-                        .order('created_at', { ascending: false });
+                        .order('created_at', { ascending: false })
+                        .limit(3);
 
                     if (error) {
                         throw error;
                     }
 
                     if (data.length === 0) {
-                        gridContainer.innerHTML = '<p class="text-gray-500">No insights found.</p>';
+                        gridContainer.innerHTML = `
+                        <div class="bg-white rounded-lg overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition duration-200 group flex flex-col h-full col-span-1 md:col-span-2 lg:col-span-3">
+                            <div class="p-8 md:p-12 text-center flex flex-col items-center justify-center">
+                                <span class="text-xs text-gold font-semibold uppercase tracking-wider mb-2">Partnership Memo</span>
+                                <h3 class="text-2xl font-bold text-primary-dark mb-4 max-w-lg">Our Investment Philosophy & Ethos</h3>
+                                <p class="text-gray-600 text-sm mb-6 max-w-md">Our public memos and insights on markets and long-term capital allocation principles are in preparation. In the meantime, explore our core values, alignment, and investment parameters.</p>
+                                <a href="/about" class="inline-flex items-center gap-1.5 py-2.5 px-6 rounded-lg bg-gold hover:bg-primary-dark text-white font-semibold text-sm transition duration-200 shadow-md">
+                                    <span>Read About Our Philosophy</span>
+                                </a>
+                            </div>
+                        </div>
+                        `;
                         return;
                     }
 
@@ -431,12 +448,10 @@
                                 <p class="text-sm text-gold font-semibold mb-2">${capitalize(firstTag)}</p>
                                 <h3 class="text-xl font-bold text-primary-dark mb-3">${post.title}</h3>
                                 <p class="text-gray-600 mb-4">${truncate(post.content, 120)}</p>
-                                <a href="#" class="font-semibold text-gold link-arrow">Read More</a>
+                                <a href="/articles/?id=${post.id}" class="font-semibold text-gold link-arrow">Read More</a>
                             </div>
                         </div>
                         `;
-                        // Note: The "Read More" link is '#' for now as this is a static page.
-                        // To make it dynamic, you would need another page like 'article.html?id=${post.id}'
 
                         gridContainer.innerHTML += postCardHtml;
                     });

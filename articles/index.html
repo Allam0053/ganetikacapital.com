@@ -9,17 +9,17 @@
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://ganetika.com/articles/">
+    <meta property="og:url" content="https://ganetikacapital.com/articles/">
     <meta property="og:title" content="Insights | Ganetika Capital Partners">
     <meta property="og:description" content="Read investment letters, research memos, and value-investing insights from the partners.">
-    <meta property="og:image" content="https://ganetika.com/preview.jpg">
+    <meta property="og:image" content="https://ganetikacapital.com/preview.jpg">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://ganetika.com/articles/">
+    <meta property="twitter:url" content="https://ganetikacapital.com/articles/">
     <meta property="twitter:title" content="Insights | Ganetika Capital Partners">
     <meta property="twitter:description" content="Read investment letters, research memos, and value-investing insights from the partners.">
-    <meta property="twitter:image" content="https://ganetika.com/preview.jpg">
+    <meta property="twitter:image" content="https://ganetikacapital.com/preview.jpg">
     
     <link rel="stylesheet" href="/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,7 +27,7 @@
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
 
 
-    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/jpeg" sizes="32x32" href="/favicon.jpg" />
     <link rel="icon" type="image/x-icon" href="/favicon-2.ico" />
@@ -108,6 +108,7 @@
                     <a href="/#strategies" class="nav-link font-medium hover:text-gold transition">Our Focus</a>
                     <a href="/about" class="nav-link font-medium hover:text-gold transition">About Us</a>
                     <a href="/contact" class="nav-link font-medium hover:text-gold transition">Contact</a>
+                    <a href="/portal" class="nav-link font-medium hover:text-gold transition">Partner Login</a>
                 </nav>
 
                 
@@ -133,68 +134,38 @@
             <a href="/#strategies" class="block py-3 px-6 hover:bg-gray-100">Our Focus</a>
             <a href="/about" class="block py-3 px-6 hover:bg-gray-100">About Us</a>
             <a href="/contact" class="block py-3 px-6 hover:bg-gray-100">Contact</a>
+            <a href="/portal" class="block py-3 px-6 hover:bg-gray-100">Partner Login</a>
         </div>
     </header>
 
-    <main>
+    <main class="flex-grow">
         
-        <!-- Article Content Section -->
-        <article class="py-20 bg-white">
+        <!-- ================= SINGLE ARTICLE VIEW ================= -->
+        <article id="single-article-view" class="py-20 bg-white hidden">
             <div class="container mx-auto px-6">
                 
                 <!-- Article Header -->
                 <header class="max-w-3xl mx-auto text-center">
-                    <p class="text-sm text-gold font-semibold uppercase tracking-wider">Market Commentary</p>
-                    <h1 class="text-4xl md:text-5xl font-bold text-primary-dark mt-2 mb-4">Navigating Market Volatility in 2025</h1>
+                    <p id="article-tag" class="text-sm text-gold font-semibold uppercase tracking-wider"></p>
+                    <h1 id="article-title" class="text-4xl md:text-5xl font-bold text-primary-dark mt-2 mb-4"></h1>
                     <div class="flex justify-center items-center space-x-4 text-gray-500">
-                        <span class="text-lg">By Gantan Etika Murty</span>
+                        <span id="article-author" class="text-lg">By Gantan Etika Murty</span>
                         <span>&bull;</span>
-                        <span>November 2, 2025</span>
+                        <span id="article-date"></span>
                     </div>
                 </header>
 
                 <!-- Optional Hero Image -->
                 <div class="max-w-4xl mx-auto my-12">
-                    <img src="https://placehold.co/1200x600/E2E8F0/1A2634?text=Article+Hero+Image" alt="Article hero image" class="w-full h-auto rounded-lg shadow-lg">
+                    <img id="article-image" src="" alt="Article hero image" class="w-full h-auto rounded-lg shadow-lg">
                 </div>
 
                 <!-- Article Body -->
-                <div class="max-w-3xl mx-auto text-lg text-gray-800 leading-relaxed space-y-6">
-                    
-                    <p>This is the first paragraph of your article. This text is styled for maximum readability, with a comfortable line height and font size. You can write your main introduction here, setting the stage for the analysis to come.</p>
-                    
-                    <p>You can add subsequent paragraphs by just using the `&lt;p&gt;` tag. The `space-y-6` class on the parent container will automatically add spacing between them, as well as between paragraphs and other elements like headings or blockquotes.</p>
+                <div id="article-body" class="max-w-3xl mx-auto text-lg text-gray-800 leading-relaxed space-y-6">
+                    <!-- Dynamically populated -->
+                </div>
 
-                    <h2 class="text-3xl font-bold text-primary-dark pt-6">A Section Heading</h2>
-                    <p>Use `&lt;h2&gt;` tags for your main section titles. They are styled to be large and bold, providing clear separation for your key ideas. This paragraph introduces the topic discussed under the new heading.</p>
-                    
-                    <blockquote class="border-l-4 border-gold bg-gray-50 pl-6 pr-4 py-4 italic text-gray-600">
-                        "This is a blockquote. It's perfect for emphasizing a key concept or quoting another investor, like Warren Buffett. The style is subtle but uses the brand's gold accent color."
-                    </blockquote>
-
-                    <p>You can continue writing your analysis here after the blockquote. Notice the clean spacing above and below it.</p>
-
-                    <h3 class="text-2xl font-bold text-primary-dark pt-4">A Subsection Heading</h3>
-                    <p>For ideas that fall under a main section, you can use an `&lt;h3&gt;` tag. It's slightly smaller than the `&lt;h2&gt;` but maintains the same professional, bold style.</p>
-
-                    <p>You can also easily add lists:</p>
-                    <ul class="list-disc list-outside ml-6 space-y-2">
-                        <li>This is an unordered list item.</li>
-                        <li>It's useful for bullet points.</li>
-                        <li>
-                            And they can even contain <a href="#" class="text-gold hover:underline">links</a>.
-                        </li>
-                    </ul>
-
-                    <p>Or, you can use numbered lists for sequential steps:</p>
-                    <ol class="list-decimal list-outside ml-6 space-y-2">
-                        <li>First, analyze the business fundamentals.</li>
-                        <li>Second, determine the intrinsic value.</li>
-                        <li>Third, buy only with a significant margin of safety.</li>
-                    </ol>
-
-                    <p>This template provides the foundation. You can copy this file, rename it (e.g., `memo-q4-2025.html`), and replace this placeholder text with your own content. Good luck writing!</p>
-
+                <div class="max-w-3xl mx-auto">
                     <hr class="my-12 border-gray-200">
 
                     <!-- Disclaimer -->
@@ -205,14 +176,50 @@
 
                     <!-- Back to Insights -->
                     <div class="pt-8">
-                        <a href="/#insights" class="font-semibold text-gold link-arrow-left">
-                            Back to All Insights
+                        <a href="/articles" class="font-semibold text-gold link-arrow-left">
+                            ← Back to All Insights
                         </a>
                     </div>
-
                 </div>
+
             </div>
         </article>
+
+        <!-- ================= ARTICLES LIST VIEW ================= -->
+        <section id="article-list-view" class="py-20 bg-white hidden">
+            <div class="container mx-auto px-6">
+                
+                <div class="max-w-3xl mx-auto text-center mb-16">
+                    <h1 class="text-4xl md:text-5xl font-bold text-primary-dark mb-4">Investment Insights & Memos</h1>
+                    <p class="text-lg text-gray-600">Our latest thinking on global markets, business ownership, and long-term capital allocation principles.</p>
+                </div>
+
+                <!-- Skeleton Loader -->
+                <div id="articles-loading" class="space-y-4 max-w-3xl mx-auto">
+                    <div class="h-16 animate-shimmer rounded-lg"></div>
+                    <div class="h-16 animate-shimmer rounded-lg"></div>
+                    <div class="h-16 animate-shimmer rounded-lg"></div>
+                </div>
+
+                <!-- Insights Grid -->
+                <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Dynamically populated -->
+                </div>
+
+                <!-- Empty State -->
+                <div id="articles-empty" class="hidden text-center py-16 max-w-xl mx-auto">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-300 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0a2 2 0 01-2 2H6a2 2 0 01-2-2m16 0V9a2 2 0 00-2-2H6a2 2 0 00-2 2v4.5m15 3.5v-2a2 2 0 00-2-2H5a2 2 0 00-2 2v2" />
+                    </svg>
+                    <h3 class="text-2xl font-bold text-primary-dark mb-2">No insights published yet</h3>
+                    <p class="text-gray-500 text-sm mb-6 leading-relaxed">Select public investment memos and partnership letters are currently in preparation. To learn more about our criteria, you can explore our team and investment philosophy.</p>
+                    <a href="/about" class="inline-flex items-center gap-1.5 py-2.5 px-6 rounded-lg bg-gold hover:bg-primary-dark text-white font-semibold text-sm transition duration-200 shadow-md">
+                        <span>Read About Our Philosophy</span>
+                    </a>
+                </div>
+
+            </div>
+        </section>
 
     </main>
 
@@ -251,6 +258,9 @@
                 <!-- Access Links -->
                 <div class="col-span-2 md:col-span-1">
                     <h4 class="font-semibold text-white mb-4 uppercase tracking-wider text-sm">Access</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/portal" class="hover:text-gold transition text-sm">Partner Portal</a></li>
+                    </ul>
                 </div>
             </div>
             <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
@@ -267,14 +277,194 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Mobile menu toggle
+            // --- Mobile Menu Toggle ---
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
-            
             if (mobileMenuButton && mobileMenu) {
                 mobileMenuButton.addEventListener('click', () => {
                     mobileMenu.classList.toggle('hidden');
                 });
+            }
+
+            // --- Supabase Integration ---
+            const SUPABASE_URL = 'https://yrlpnxyyoegmlaqknbfv.supabase.co';
+            const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlybHBueHl5b2VnbWxhcWtuYmZ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA5NzUxMTAsImV4cCI6MjA3NjU1MTExMH0.Kud2K-fkpQ9LI3thNUMA08_3Uh220_ty7i1ixgcJf1Q';
+            
+            let supabaseClient = null;
+
+            function initSupabase() {
+                if (window.supabase) {
+                    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                    routePage();
+                } else {
+                    setTimeout(initSupabase, 100);
+                }
+            }
+            initSupabase();
+
+            function routePage() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const postId = urlParams.get('id');
+
+                if (postId) {
+                    loadSingleArticle(postId);
+                } else {
+                    loadArticleList();
+                }
+            }
+
+            // --- Load Single Article View ---
+            async function loadSingleArticle(id) {
+                const singleView = document.getElementById('single-article-view');
+                if (!singleView) return;
+
+                singleView.classList.remove('hidden');
+
+                try {
+                    const { data: post, error } = await supabaseClient
+                        .from('content')
+                        .select('*')
+                        .eq('id', id)
+                        .single();
+
+                    if (error) throw error;
+                    if (!post) throw new Error("Article not found");
+
+                    // Set page metadata
+                    document.title = `${post.title} | Ganetika Capital Partners`;
+
+                    // Populate UI fields
+                    document.getElementById('article-tag').textContent = post.tag ? post.tag.split(',')[0] : 'Insight';
+                    document.getElementById('article-title').textContent = post.title;
+                    
+                    const date = new Date(post.created_at);
+                    document.getElementById('article-date').textContent = date.toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+
+                    // Set author (fallback if column not present)
+                    const authorSpan = document.getElementById('article-author');
+                    authorSpan.textContent = `By ${post.author || 'Gantan Etika Murty'}`;
+
+                    // Set hero image
+                    const imgEl = document.getElementById('article-image');
+                    const firstTag = post.tag ? post.tag.split(',')[0] : 'Insight';
+                    imgEl.src = `https://placehold.co/1200x600/E2E8F0/1A2634?text=${encodeURIComponent(firstTag)}`;
+                    imgEl.alt = post.title;
+
+                    // Format and render content body (basic Markdown-like parser)
+                    const bodyEl = document.getElementById('article-body');
+                    bodyEl.innerHTML = '';
+
+                    const paragraphs = post.content.split(/\n\s*\n/);
+                    paragraphs.forEach(para => {
+                        const trimmed = para.trim();
+                        if (!trimmed) return;
+
+                        if (trimmed.startsWith('### ')) {
+                            bodyEl.innerHTML += `<h3 class="text-2xl font-bold text-primary-dark pt-4 mb-3">${escapeHtml(trimmed.slice(4))}</h3>`;
+                        } else if (trimmed.startsWith('## ')) {
+                            bodyEl.innerHTML += `<h2 class="text-3xl font-bold text-primary-dark pt-6 mb-4">${escapeHtml(trimmed.slice(3))}</h2>`;
+                        } else if (trimmed.startsWith('> ')) {
+                            bodyEl.innerHTML += `<blockquote class="border-l-4 border-gold bg-gray-50 pl-6 pr-4 py-4 italic text-gray-600 mb-6">${escapeHtml(trimmed.slice(2))}</blockquote>`;
+                        } else {
+                            bodyEl.innerHTML += `<p class="mb-6">${escapeHtml(trimmed)}</p>`;
+                        }
+                    });
+
+                } catch (err) {
+                    console.error("Error loading article:", err.message);
+                    const bodyEl = document.getElementById('article-body');
+                    bodyEl.innerHTML = `
+                        <div class="text-center py-12">
+                            <h3 class="text-xl font-bold text-red-600 mb-2">Error Loading Article</h3>
+                            <p class="text-gray-500 mb-6">${err.message || 'Unable to retrieve article content.'}</p>
+                            <a href="/articles" class="py-2 px-4 bg-primary-dark text-white rounded-lg hover:bg-gold transition text-sm">Return to All Memos</a>
+                        </div>
+                    `;
+                }
+            }
+
+            // --- Load Articles List View ---
+            async function loadArticleList() {
+                const listView = document.getElementById('article-list-view');
+                const loadingLoader = document.getElementById('articles-loading');
+                const gridContainer = document.getElementById('articles-grid');
+                const emptyState = document.getElementById('articles-empty');
+
+                if (!listView) return;
+
+                listView.classList.remove('hidden');
+                loadingLoader.classList.remove('hidden');
+                gridContainer.classList.add('hidden');
+                emptyState.classList.add('hidden');
+
+                try {
+                    const { data: posts, error } = await supabaseClient
+                        .from('content')
+                        .select('*')
+                        .order('created_at', { ascending: false });
+
+                    if (error) throw error;
+
+                    loadingLoader.classList.add('hidden');
+
+                    if (!posts || posts.length === 0) {
+                        emptyState.classList.remove('hidden');
+                        return;
+                    }
+
+                    gridContainer.classList.remove('hidden');
+                    gridContainer.innerHTML = '';
+
+                    posts.forEach(post => {
+                        const firstTag = post.tag ? post.tag.split(',')[0] : 'Insight';
+                        
+                        const cardHtml = `
+                        <div class="bg-white rounded-lg overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition duration-200 group flex flex-col h-full">
+                            <img src="https://placehold.co/600x400/E2E8F0/1A2634?text=${capitalize(firstTag)}" alt="${escapeHtml(post.title)}" class="w-full h-48 object-cover group-hover:opacity-90 transition">
+                            <div class="p-6 flex flex-col flex-grow">
+                                <p class="text-xs text-gold font-semibold uppercase tracking-wider mb-2">${capitalize(firstTag)}</p>
+                                <h3 class="text-xl font-bold text-primary-dark mb-3 line-clamp-2">${escapeHtml(post.title)}</h3>
+                                <p class="text-gray-600 text-sm mb-6 line-clamp-3">${escapeHtml(truncate(post.content, 120))}</p>
+                                <a href="/articles/?id=${post.id}" class="mt-auto font-semibold text-gold text-sm link-arrow self-start">Read More</a>
+                            </div>
+                        </div>
+                        `;
+                        gridContainer.innerHTML += cardHtml;
+                    });
+
+                } catch (err) {
+                    console.error("Error loading article list:", err.message);
+                    loadingLoader.classList.add('hidden');
+                    emptyState.classList.remove('hidden');
+                    emptyState.querySelector('h3').textContent = "Failed to load insights";
+                    emptyState.querySelector('p').textContent = err.message || "An error occurred while fetching reports.";
+                }
+            }
+
+            // Helpers
+            function truncate(text, length) {
+                if (text.length <= length) return text;
+                return text.substring(0, length) + '...';
+            }
+
+            function capitalize(text) {
+                if (!text) return '';
+                return text.charAt(0).toUpperCase() + text.slice(1);
+            }
+
+            function escapeHtml(string) {
+                const map = {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#039;'
+                };
+                return String(string).replace(/[&<>"']/g, function(m) { return map[m]; });
             }
         });
     </script>
