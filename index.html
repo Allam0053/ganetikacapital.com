@@ -456,9 +456,20 @@
                         gridContainer.innerHTML += postCardHtml;
                     });
 
-                } catch (error) {
+                 } catch (error) {
                     console.error('Error fetching insights:', error.message);
-                    gridContainer.innerHTML = '<p class="text-red-500">Could not load insights.</p>';
+                    gridContainer.innerHTML = `
+                    <div class="bg-white rounded-lg overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition duration-200 group flex flex-col h-full col-span-1 md:col-span-2 lg:col-span-3">
+                        <div class="p-8 md:p-12 text-center flex flex-col items-center justify-center">
+                            <span class="text-xs text-gold font-semibold uppercase tracking-wider mb-2">Partnership Memo</span>
+                            <h3 class="text-2xl font-bold text-primary-dark mb-4 max-w-lg">Our Investment Philosophy & Ethos</h3>
+                            <p class="text-gray-600 text-sm mb-6 max-w-md">Our public memos and insights on markets and long-term capital allocation principles are in preparation. In the meantime, explore our core values, alignment, and investment parameters.</p>
+                            <a href="/about" class="inline-flex items-center gap-1.5 py-2.5 px-6 rounded-lg bg-gold hover:bg-primary-dark text-white font-semibold text-sm transition duration-200 shadow-md">
+                                <span>Read About Our Philosophy</span>
+                            </a>
+                        </div>
+                    </div>
+                    `;
                 }
             }
 

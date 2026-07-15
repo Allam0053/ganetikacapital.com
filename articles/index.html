@@ -440,8 +440,8 @@
                     console.error("Error loading article list:", err.message);
                     loadingLoader.classList.add('hidden');
                     emptyState.classList.remove('hidden');
-                    emptyState.querySelector('h3').textContent = "Failed to load insights";
-                    emptyState.querySelector('p').textContent = err.message || "An error occurred while fetching reports.";
+                    emptyState.querySelector('h3').textContent = "No insights published yet";
+                    emptyState.querySelector('p').textContent = "Select public investment memos and partnership letters are currently in preparation. To learn more about our criteria, you can explore our team and investment philosophy.";
                 }
             }
 
