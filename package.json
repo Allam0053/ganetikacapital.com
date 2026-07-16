@@ -2,6 +2,11 @@
   "name": "ganetika-website",
   "version": "1.0.0",
   "scripts": {
-    "build": "echo 'Static deploy'"
+    "build": "tailwindcss -i ./src/input.css -o ./css/style.css"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.4"
   }
 }
