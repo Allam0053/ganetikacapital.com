@@ -227,22 +227,29 @@
 
                         <!-- Middle Arrow Connector (Column span 2) -->
                         <div class="lg:col-span-2 flex flex-col items-center justify-center py-4 lg:py-0">
-                            <div class="hidden lg:flex flex-col items-center w-full">
+                            <div class="hidden lg:flex flex-col items-center w-full px-2">
                                 <span class="text-[11px] font-bold text-gold uppercase tracking-wider mb-2 text-center">Pooled Capital</span>
-                                <div class="w-full flex items-center justify-center">
-                                    <div class="h-[2px] bg-gradient-to-r from-gold via-primary-dark to-gold flex-grow"></div>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gold -ml-1 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                    </svg>
+                                <div class="w-full flex items-center justify-center relative py-3">
+                                    <div class="h-[1.5px] w-full" style="background: linear-gradient(to right, rgba(192, 149, 83, 0) 0%, rgba(192, 149, 83, 1) 50%, rgba(192, 149, 83, 0) 100%);"></div>
+                                    <div class="absolute inset-0 flex items-center justify-center">
+                                        <div class="bg-gray-50 px-2 py-0.5 rounded-full border flex items-center justify-center" style="border-color: rgba(192, 149, 83, 0.3);">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gold animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                            </svg>
+                                        </div>
+                                    </div>
                                 </div>
-                                <span class="text-[10px] text-gray-400 mt-1">Single Pool</span>
+                                <span class="text-[10px] text-gray-400 font-medium mt-1">Single Pool</span>
                             </div>
                             <!-- Mobile Down Arrow -->
-                            <div class="lg:hidden flex flex-col items-center my-2">
-                                <span class="text-xs font-bold text-gold uppercase tracking-wider mb-1">Pooled Capital</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gold animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                                </svg>
+                            <div class="lg:hidden flex flex-col items-center my-4">
+                                <span class="text-xs font-bold text-gold uppercase tracking-wider mb-2">Pooled Capital</span>
+                                <div class="h-10 w-[1.5px]" style="background: linear-gradient(to bottom, rgba(192, 149, 83, 0) 0%, rgba(192, 149, 83, 1) 50%, rgba(192, 149, 83, 0) 100%);"></div>
+                                <div class="my-1 bg-gray-50 p-1 rounded-full border flex items-center justify-center" style="border-color: rgba(192, 149, 83, 0.3);">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gold animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                                    </svg>
+                                </div>
                             </div>
                         </div>
 
