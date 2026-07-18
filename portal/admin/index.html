@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal | Ganetika Capital Partners</title>
+    <meta name="robots" content="noindex, nofollow">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/jpeg" sizes="32x32" href="/favicon.jpg" />
+    <link rel="icon" type="image/x-icon" href="/favicon-2.ico" />
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #F5F2EB;
+        }
+        h1, h2, h3, blockquote, .logo-text {
+            font-family: 'EB Garamond', serif;
+        }
+        
+        .bg-white {
+            background-color: #FAF8F5 !important;
+        }
+        .bg-gray-50 {
+            background-color: #F5F2EB !important;
+        }
+        .text-gold { color: #C09553; }
+        .bg-gold { background-color: #C09553; }
+        .border-gold { border-color: #C09553; }
+        .bg-primary-dark { background-color: #1A2634; }
+        .text-primary-dark { color: #1A2634; }
+        
+        #main-header {
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        /* Shimmer effect for skeleton loader */
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .animate-shimmer {
+            background: linear-gradient(90deg, #EAE5DB 25%, #F0ECE4 50%, #EAE5DB 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite linear;
+        }
+    </style>
+</head>
+<body class="text-gray-700 min-h-[100vh] flex flex-col">
+
+    <!-- Header -->
+    <header id="main-header" class="sticky top-0 left-0 right-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="/" class="flex items-center">
+                    <img src="/logo.png" alt="Ganetika Capital Partners" class="h-8 md:h-10 object-contain">
+                </a>
+                
+                <div class="flex items-center space-x-4">
+                    <a href="/portal" class="nav-link font-medium text-sm hover:text-gold transition">Return to Portal</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow flex items-center justify-center py-12 px-6">
+        
+        <!-- ================= INITIAL LOADING STATE ================= -->
+        <div id="auth-loading-section" class="flex flex-col items-center justify-center py-12">
+            <svg class="animate-spin h-8 w-8 text-gold mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <p class="text-gray-400 text-sm font-medium">Verifying administrator authorization...</p>
+        </div>
+
+        <!-- ================= LOGIN SCREEN ================= -->
+        <section id="login-section" class="hidden w-full max-w-md bg-white rounded-xl shadow-xl border border-gray-100 p-8 md:p-10 transition-opacity duration-300">
+            <div class="text-center mb-8">
+                <img src="/logo.png" alt="Ganetika Logo" class="h-10 mx-auto object-contain mb-4">
+                <h1 class="text-3xl font-bold text-primary-dark">Admin Portal</h1>
+                <p class="text-gray-500 text-sm mt-2">Ganetika Capital Partners upload dashboard</p>
+            </div>
+            
+            <div id="login-container" class="space-y-6">
+                <!-- Error Alert Box -->
+                <div id="login-error-container" class="hidden p-4 rounded-lg bg-red-50 border border-red-200 text-red-700 text-sm">
+                    <p id="login-error-text"></p>
+                </div>
+                
+                <div id="google-login-btn-container" class="flex justify-center w-full min-h-[44px]"></div>
+            </div>
+            
+            <div class="mt-8 border-t border-gray-100 pt-6 text-center">
+                <p class="text-xs text-gray-400 leading-relaxed">
+                    Access is strictly restricted to project administrators. If your account is unauthorized, contact the system manager.
+                </p>
+            </div>
+        </section>
+
+        <!-- ================= DASHBOARD SCREEN (HIDDEN BY DEFAULT) ================= -->
+        <section id="dashboard-section" class="hidden w-full max-w-6xl bg-white rounded-xl shadow-xl border border-gray-100 p-6 md:p-10 transition-opacity duration-300">
+            
+            <!-- Dashboard Header -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-gray-200 pb-6 mb-8 gap-4">
+                <div>
+                    <h1 class="text-4xl font-bold text-primary-dark">Admin Control Panel</h1>
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                        <p class="text-gray-500 text-sm">Signed in as Administrator: <span id="admin-email" class="font-semibold text-gray-700">admin@email.com</span></p>
+                    </div>
+                </div>
+                
+                <button id="logout-button" class="py-2.5 px-5 rounded-lg border border-gray-200 hover:bg-red-50 hover:text-red-600 transition flex items-center gap-2 text-sm font-medium cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                    </svg>
+                    <span>Sign Out</span>
+                </button>
+            </div>
+
+            <!-- Dashboard Split Layout -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                
+                <!-- Left: Upload Form -->
+                <div class="lg:col-span-5 bg-gray-50 p-6 rounded-xl border border-gray-100 h-fit">
+                    <h2 class="text-2xl font-bold text-primary-dark mb-6">Upload New Document</h2>
+                    
+                    <form id="upload-form" class="space-y-5">
+                        <div id="upload-status-container" class="hidden p-4 rounded-lg text-sm">
+                            <p id="upload-status-text"></p>
+                        </div>
+                        
+                        <div>
+                            <label for="doc-title" class="block text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2">Document Title</label>
+                            <input type="text" id="doc-title" required placeholder="e.g. June 2026 Performance Update"
+                                class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-gold bg-[#FAF8F5] transition text-sm">
+                        </div>
+                        
+                        <div>
+                            <label for="doc-category" class="block text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2">Category</label>
+                            <select id="doc-category" required
+                                class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-gold bg-[#FAF8F5] transition text-sm">
+                                <option value="Monthly Quick Report">Monthly Quick Report</option>
+                                <option value="Quarterly Letter">Quarterly Letter</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label for="doc-date" class="block text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2">Publish Date</label>
+                            <input type="date" id="doc-date" required
+                                class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-gold bg-[#FAF8F5] transition text-sm">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2">Select PDF File</label>
+                            <input type="file" id="doc-file" required accept="application/pdf"
+                                class="w-full text-sm text-gray-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-primary-dark file:text-white hover:file:bg-gold file:transition cursor-pointer">
+                        </div>
+                        
+                        <button type="submit" id="upload-submit"
+                            class="w-full py-3 px-6 rounded-lg bg-primary-dark hover:bg-gold text-white font-semibold transition duration-200 flex items-center justify-center text-sm shadow-md cursor-pointer">
+                            <span>Publish to Portal</span>
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Right: Document List / Management -->
+                <div class="lg:col-span-7">
+                    <h2 class="text-2xl font-bold text-primary-dark mb-6">Published Documents</h2>
+                    
+                    <div class="relative">
+                        <!-- Shimmer Loader -->
+                        <div id="admin-skeleton" class="hidden space-y-4">
+                            <div class="h-14 animate-shimmer rounded-lg"></div>
+                            <div class="h-14 animate-shimmer rounded-lg"></div>
+                            <div class="h-14 animate-shimmer rounded-lg"></div>
+                        </div>
+                        
+                        <!-- Table -->
+                        <div id="admin-documents-container" class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-100">
+                                <thead>
+                                    <tr class="text-left text-xs font-semibold uppercase tracking-wider text-gray-400">
+                                        <th class="pb-4">Title</th>
+                                        <th class="pb-4 hidden sm:table-cell">Category</th>
+                                        <th class="pb-4 text-right">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admin-document-list-body" class="divide-y divide-gray-100">
+                                    <!-- Dynamic content -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Empty State -->
+                        <div id="admin-empty-state" class="hidden text-center py-12">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-300 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            <h3 class="text-md font-semibold text-primary-dark mb-1">No documents uploaded</h3>
+                            <p class="text-xs text-gray-400">Add files using the upload panel.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-primary-dark text-gray-300 pt-10 pb-6 mt-auto">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-xs text-gray-500">&copy; 2025 Ganetika Capital Partners. Administrative Access Only.</p>
+        </div>
+    </footer>
+
+    <!-- Portal JavaScript logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Supabase Config ---
+            const SUPABASE_URL = 'https://whgsolhymmnraavyqvii.supabase.co';
+            const SUPABASE_ANON_KEY = 'sb_publishable_ZwPIGbPy_QVm5t31E-pC2A_qQh4EEnB';
+            const GOOGLE_CLIENT_ID = '181197815134-l2q43soslschfoac84gf5f8mludv4oju.apps.googleusercontent.com';
+            
+            let supabaseClient = null;
+            let documentCache = [];
+
+            // UI Sections
+            const authLoadingSection = document.getElementById('auth-loading-section');
+            const loginSection = document.getElementById('login-section');
+            const dashboardSection = document.getElementById('dashboard-section');
+            
+            const errorContainer = document.getElementById('login-error-container');
+            const errorText = document.getElementById('login-error-text');
+            const googleLoginBtnContainer = document.getElementById('google-login-btn-container');
+
+            const adminEmailSpan = document.getElementById('admin-email');
+            const logoutButton = document.getElementById('logout-button');
+            
+            // Upload Form fields
+            const uploadForm = document.getElementById('upload-form');
+            const uploadTitle = document.getElementById('doc-title');
+            const uploadCategory = document.getElementById('doc-category');
+            const uploadDate = document.getElementById('doc-date');
+            const uploadFile = document.getElementById('doc-file');
+            const uploadSubmit = document.getElementById('upload-submit');
+            const uploadStatusContainer = document.getElementById('upload-status-container');
+            const uploadStatusText = document.getElementById('upload-status-text');
+            
+            // Document List body
+            const adminSkeleton = document.getElementById('admin-skeleton');
+            const adminDocumentsContainer = document.getElementById('admin-documents-container');
+            const adminDocumentListBody = document.getElementById('admin-document-list-body');
+            const adminEmptyState = document.getElementById('admin-empty-state');
+
+            // Default the Date picker to today
+            if (uploadDate) {
+                const today = new Date().toISOString().split('T')[0];
+                uploadDate.value = today;
+            }
+
+            // Initialize Supabase Client
+            function initSupabase() {
+                if (window.supabase) {
+                    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                    setupAuthListener();
+                    initGoogleSignIn();
+                } else {
+                    setTimeout(initSupabase, 200);
+                }
+            }
+            initSupabase();
+
+            // Set up authorization listeners
+            function setupAuthListener() {
+                supabaseClient.auth.onAuthStateChange(async (event, session) => {
+                    if (session) {
+                        await verifyAndShowDashboard(session.user);
+                    } else {
+                        showLogin();
+                    }
+                });
+            }
+
+            // Initialize Google Sign-In SDK
+            function initGoogleSignIn() {
+                if (typeof google !== 'undefined' && google.accounts) {
+                    google.accounts.id.initialize({
+                        client_id: GOOGLE_CLIENT_ID,
+                        callback: handleGoogleCredentialResponse,
+                        auto_select: false,
+                    });
+                    google.accounts.id.renderButton(
+                        googleLoginBtnContainer,
+                        { 
+                            theme: "outline", 
+                            size: "large",
+                            width: "320",
+                            text: "signin_with",
+                            shape: "rectangular"
+                        }
+                    );
+                } else {
+                    setTimeout(initGoogleSignIn, 100);
+                }
+            }
+
+            // Handle Google Credential Callback
+            async function handleGoogleCredentialResponse(response) {
+                if (!supabaseClient) return;
+                
+                errorContainer.classList.add('hidden');
+                authLoadingSection.classList.remove('hidden');
+                loginSection.classList.add('hidden');
+
+                try {
+                    const { data, error } = await supabaseClient.auth.signInWithIdToken({
+                        provider: 'google',
+                        token: response.credential
+                    });
+
+                    if (error) throw error;
+                } catch (err) {
+                    console.error("Google Auth error:", err.message);
+                    errorText.textContent = err.message || "Failed to authenticate with Google.";
+                    errorContainer.classList.remove('hidden');
+                    authLoadingSection.classList.add('hidden');
+                    loginSection.classList.remove('hidden');
+                }
+            }
+
+            // Display views
+            function showLogin() {
+                authLoadingSection.classList.add('hidden');
+                dashboardSection.classList.add('hidden');
+                loginSection.classList.remove('hidden');
+            }
+
+            async function verifyAndShowDashboard(user) {
+                try {
+                    // Query the database to check if this user exists in approved_partners and is_admin is true
+                    const { data: approvedData, error: approvedError } = await supabaseClient
+                        .from('approved_partners')
+                        .select('email, is_admin')
+                        .eq('email', user.email)
+                        .maybeSingle();
+
+                    if (approvedError) throw approvedError;
+
+                    if (!approvedData || !approvedData.is_admin) {
+                        throw new Error("Access Denied: Your Google account is not registered as an administrator.");
+                    }
+
+                    // Approved Admin - show the dashboard
+                    authLoadingSection.classList.add('hidden');
+                    loginSection.classList.add('hidden');
+                    dashboardSection.classList.remove('hidden');
+                    adminEmailSpan.textContent = user.email;
+                    
+                    fetchDocuments();
+                } catch (err) {
+                    console.error("Verification error:", err.message);
+                    errorText.textContent = err.message || "Verification failed.";
+                    errorContainer.classList.remove('hidden');
+                    
+                    // Sign out the unapproved session to clear local storage
+                    await supabaseClient.auth.signOut();
+                    
+                    authLoadingSection.classList.add('hidden');
+                    loginSection.classList.remove('hidden');
+                }
+            }
+
+            // Handle Logout
+            if (logoutButton) {
+                logoutButton.addEventListener('click', async () => {
+                    if (!supabaseClient) return;
+                    authLoadingSection.classList.remove('hidden');
+                    dashboardSection.classList.add('hidden');
+                    await supabaseClient.auth.signOut();
+                });
+            }
+
+            // Fetch Documents List
+            async function fetchDocuments() {
+                if (!supabaseClient) return;
+                
+                adminSkeleton.classList.remove('hidden');
+                adminDocumentsContainer.classList.add('hidden');
+                adminEmptyState.classList.add('hidden');
+                adminDocumentListBody.innerHTML = '';
+                
+                try {
+                    const { data, error } = await supabaseClient
+                        .from('partner_documents')
+                        .select('*')
+                        .order('published_date', { ascending: false });
+
+                    if (error) throw error;
+                    
+                    documentCache = data || [];
+                    renderDocuments();
+                } catch (err) {
+                    console.error("Error loading partner files:", err.message);
+                    adminSkeleton.classList.add('hidden');
+                    adminEmptyState.classList.remove('hidden');
+                    adminEmptyState.querySelector('h3').textContent = "Failed to load reports";
+                    adminEmptyState.querySelector('p').textContent = err.message || "An error occurred while fetching reports.";
+                }
+            }
+
+            // Render Documents Table
+            function renderDocuments() {
+                adminSkeleton.classList.add('hidden');
+                adminDocumentListBody.innerHTML = '';
+                
+                if (documentCache.length === 0) {
+                    adminDocumentsContainer.classList.add('hidden');
+                    adminEmptyState.classList.remove('hidden');
+                    return;
+                }
+                
+                adminEmptyState.classList.add('hidden');
+                adminDocumentsContainer.classList.remove('hidden');
+
+                documentCache.forEach(doc => {
+                    const tr = document.createElement('tr');
+                    tr.className = "hover:bg-[#FAF8F5] transition";
+                    
+                    tr.innerHTML = `
+                        <td class="py-3.5 pr-4">
+                            <div class="font-semibold text-primary-dark text-sm">${escapeHtml(doc.title)}</div>
+                            <div class="text-[10px] text-gray-400 mt-0.5 sm:hidden">${escapeHtml(doc.category)}</div>
+                        </td>
+                        <td class="py-3.5 text-xs text-gray-500 hidden sm:table-cell">${escapeHtml(doc.category)}</td>
+                        <td class="py-3.5 text-right">
+                            <button data-id="${doc.id}" data-filepath="${escapeHtml(doc.file_path)}"
+                                class="delete-btn inline-flex items-center gap-1 py-1.5 px-3 rounded-lg border border-red-200 hover:bg-red-50 text-red-600 hover:border-red-300 font-medium text-xs transition duration-150 cursor-pointer">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                </svg>
+                                <span>Delete</span>
+                            </button>
+                        </td>
+                    `;
+                    adminDocumentListBody.appendChild(tr);
+                });
+
+                // Attach Delete Handlers
+                document.querySelectorAll('.delete-btn').forEach(btn => {
+                    btn.addEventListener('click', async (e) => {
+                        const target = e.currentTarget;
+                        const docId = target.getAttribute('data-id');
+                        const filepath = target.getAttribute('data-filepath');
+                        
+                        if (!confirm("Are you sure you want to delete this document? This will remove the file from both storage and the investor portal permanently.")) {
+                            return;
+                        }
+
+                        target.disabled = true;
+                        const span = target.querySelector('span');
+                        const oldText = span.textContent;
+                        span.textContent = "Deleting...";
+
+                        try {
+                            // 1. Remove file from storage
+                            const { error: storageError } = await supabaseClient
+                                .storage
+                                .from('partner-documents')
+                                .remove([filepath]);
+
+                            if (storageError) throw storageError;
+
+                            // 2. Remove row from database
+                            const { error: dbError } = await supabaseClient
+                                .from('partner_documents')
+                                .delete()
+                                .eq('id', docId);
+
+                            if (dbError) throw dbError;
+
+                            // Success - refresh list
+                            fetchDocuments();
+                            showUploadStatus("Document deleted successfully.", "green");
+                        } catch (err) {
+                            alert("Deletion Failed: " + (err.message || "An error occurred during deletion."));
+                            target.disabled = false;
+                            span.textContent = oldText;
+                        }
+                    });
+                });
+            }
+
+            // Handle Upload Form Submit
+            if (uploadForm) {
+                uploadForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    if (!supabaseClient) return;
+
+                    const title = uploadTitle.value.trim();
+                    const category = uploadCategory.value;
+                    const pubDate = uploadDate.value;
+                    const file = uploadFile.files[0];
+
+                    if (!title || !category || !pubDate || !file) {
+                        showUploadStatus("Please fill in all fields and select a file.", "red");
+                        return;
+                    }
+
+                    if (file.type !== "application/pdf") {
+                        showUploadStatus("Only PDF documents are allowed.", "red");
+                        return;
+                    }
+
+                    // Disable button & show loading state
+                    uploadSubmit.disabled = true;
+                    uploadSubmit.querySelector('span').textContent = 'Uploading assets...';
+                    showUploadStatus("Uploading file to secure storage...", "blue");
+
+                    try {
+                        // Generate unique file name
+                        const timestamp = Date.now();
+                        const sanitizedName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_');
+                        const filepath = `${timestamp}_${sanitizedName}`;
+
+                        // 1. Upload to storage
+                        const { data: storageData, error: storageError } = await supabaseClient
+                            .storage
+                            .from('partner-documents')
+                            .upload(filepath, file, {
+                                cacheControl: '3600',
+                                upsert: false
+                            });
+
+                        if (storageError) throw storageError;
+
+                        // 2. Insert into database
+                        showUploadStatus("Saving document details to database...", "blue");
+                        const { data: dbData, error: dbError } = await supabaseClient
+                            .from('partner_documents')
+                            .insert([
+                                {
+                                    title: title,
+                                    category: category,
+                                    file_path: filepath,
+                                    published_date: pubDate
+                                }
+                            ]);
+
+                        if (dbError) {
+                            // Rollback storage upload if DB insert fails
+                            await supabaseClient.storage.from('partner-documents').remove([filepath]);
+                            throw dbError;
+                        }
+
+                        // Success state
+                        showUploadStatus("Document published successfully!", "green");
+                        uploadForm.reset();
+                        
+                        // Default date to today again
+                        const today = new Date().toISOString().split('T')[0];
+                        uploadDate.value = today;
+                        
+                        // Refresh the documents list
+                        fetchDocuments();
+                    } catch (err) {
+                        console.error("Upload error:", err);
+                        showUploadStatus("Publish Failed: " + (err.message || "An unexpected error occurred."), "red");
+                    } finally {
+                        uploadSubmit.disabled = false;
+                        uploadSubmit.querySelector('span').textContent = 'Publish to Portal';
+                    }
+                });
+            }
+
+            // Status message Helper
+            function showUploadStatus(message, color) {
+                uploadStatusContainer.classList.remove('hidden', 'bg-red-50', 'text-red-700', 'border-red-200', 'bg-green-50', 'text-green-700', 'border-green-200', 'bg-blue-50', 'text-blue-700', 'border-blue-200');
+                uploadStatusContainer.classList.add('border');
+                
+                if (color === 'red') {
+                    uploadStatusContainer.classList.add('bg-red-50', 'text-red-700', 'border-red-200');
+                } else if (color === 'green') {
+                    uploadStatusContainer.classList.add('bg-green-50', 'text-green-700', 'border-green-200');
+                } else {
+                    uploadStatusContainer.classList.add('bg-blue-50', 'text-blue-700', 'border-blue-200');
+                }
+                
+                uploadStatusText.textContent = message;
+            }
+
+            // Simple HTML escape function to prevent XSS
+            function escapeHtml(string) {
+                const map = {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#039;'
+                };
+                return String(string).replace(/[&<>"']/g, function(m) { return map[m]; });
+            }
+        });
+    </script>
+</body>
+</html>
