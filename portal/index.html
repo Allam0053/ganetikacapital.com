@@ -33,6 +33,7 @@
     <link rel="apple-touch-icon" href="/favicon.jpg" />
     
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     
     <style>
         body {
@@ -125,41 +126,35 @@
 
     <main class="flex-grow flex items-center justify-center py-16 px-6">
         
+        <!-- ================= INITIAL LOADING STATE ================= -->
+        <div id="auth-loading-section" class="flex flex-col items-center justify-center py-12">
+            <svg class="animate-spin h-8 w-8 text-gold mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <p class="text-gray-400 text-sm font-medium">Verifying authorization...</p>
+        </div>
+
         <!-- ================= LOGIN SCREEN ================= -->
-        <section id="login-section" class="w-full max-w-md bg-white rounded-xl shadow-xl border border-gray-100 p-8 md:p-10 transition-opacity duration-300">
+        <section id="login-section" class="hidden w-full max-w-md bg-white rounded-xl shadow-xl border border-gray-100 p-8 md:p-10 transition-opacity duration-300">
             <div class="text-center mb-8">
                 <img src="/logo.png" alt="Ganetika Logo" class="h-10 mx-auto object-contain mb-4">
                 <h1 class="text-3xl font-bold text-primary-dark">Partner Portal</h1>
                 <p class="text-gray-500 text-sm mt-2">Private civil partnership communication</p>
             </div>
             
-            <form id="login-form" class="space-y-6">
+            <div id="login-container" class="space-y-6">
                 <!-- Error Alert Box -->
                 <div id="login-error-container" class="hidden p-4 rounded-lg bg-red-50 border border-red-200 text-red-700 text-sm">
                     <p id="login-error-text"></p>
                 </div>
                 
-                <div>
-                    <label for="email" class="block text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2">Institutional Email</label>
-                    <input type="email" id="email" required autocomplete="email" placeholder="partner@domain.com"
-                        class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-gold bg-[#FAF8F5] transition text-sm">
-                </div>
-                
-                <div>
-                    <label for="password" class="block text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2">Password</label>
-                    <input type="password" id="password" required autocomplete="current-password" placeholder="••••••••"
-                        class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-gold bg-[#FAF8F5] transition text-sm">
-                </div>
-                
-                <button type="submit" id="login-submit"
-                    class="w-full py-3 px-6 rounded-lg bg-primary-dark hover:bg-gold text-white font-semibold transition duration-200 flex items-center justify-center text-sm shadow-md">
-                    <span>Access Portal</span>
-                </button>
-            </form>
+                <div id="google-login-btn-container" class="flex justify-center w-full min-h-[44px]"></div>
+            </div>
             
             <div class="mt-8 border-t border-gray-100 pt-6 text-center">
                 <p class="text-xs text-gray-400 leading-relaxed">
-                    Access is restricted strictly to qualified, accredited partners. For credentials, please reach out to the General Partner.
+                    Access is restricted strictly to qualified, accredited partners. For authorized access requests, please reach out to the General Partner.
                 </p>
             </div>
         </section>
@@ -289,23 +284,22 @@
             }
 
             // --- Supabase Config ---
-            const SUPABASE_URL = 'https://yrlpnxyyoegmlaqknbfv.supabase.co';
-            const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlybHBueHl5b2VnbWxhcWtuYmZ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA5NzUxMTAsImV4cCI6MjA3NjU1MTExMH0.Kud2K-fkpQ9LI3thNUMA08_3Uh220_ty7i1ixgcJf1Q';
+            const SUPABASE_URL = 'https://whgsolhymmnraavyqvii.supabase.co';
+            const SUPABASE_ANON_KEY = 'sb_publishable_ZwPIGbPy_QVm5t31E-pC2A_qQh4EEnB';
+            const GOOGLE_CLIENT_ID = '181197815134-l2q43soslschfoac84gf5f8mludv4oju.apps.googleusercontent.com';
             
             let supabaseClient = null;
             let currentTab = 'Monthly Quick Report'; // Matches DB value
             let documentCache = [];
 
             // UI Sections
+            const authLoadingSection = document.getElementById('auth-loading-section');
             const loginSection = document.getElementById('login-section');
             const dashboardSection = document.getElementById('dashboard-section');
             
-            const loginForm = document.getElementById('login-form');
-            const loginEmail = document.getElementById('email');
-            const loginPassword = document.getElementById('password');
             const errorContainer = document.getElementById('login-error-container');
             const errorText = document.getElementById('login-error-text');
-            const loginSubmit = document.getElementById('login-submit');
+            const googleLoginBtnContainer = document.getElementById('google-login-btn-container');
 
             const partnerEmailSpan = document.getElementById('partner-email');
             const logoutButton = document.getElementById('logout-button');
@@ -322,7 +316,8 @@
             function initSupabase() {
                 if (window.supabase) {
                     supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-                    checkSession();
+                    setupAuthListener();
+                    initGoogleSignIn();
                 } else {
                     // Fail gracefully and retry
                     setTimeout(initSupabase, 200);
@@ -330,78 +325,114 @@
             }
             initSupabase();
 
-            // Check if user is already logged in
-            async function checkSession() {
-                if (!supabaseClient) return;
-                
-                try {
-                    const { data: { session } } = await supabaseClient.auth.getSession();
+            // Set up authorization listeners
+            function setupAuthListener() {
+                supabaseClient.auth.onAuthStateChange(async (event, session) => {
                     if (session) {
-                        showDashboard(session.user);
+                        await verifyAndShowDashboard(session.user);
                     } else {
                         showLogin();
                     }
-                } catch (e) {
-                    console.error("Session check error:", e);
-                    showLogin();
+                });
+            }
+
+            // Initialize Google Sign-In SDK
+            function initGoogleSignIn() {
+                if (typeof google !== 'undefined' && google.accounts) {
+                    google.accounts.id.initialize({
+                        client_id: GOOGLE_CLIENT_ID,
+                        callback: handleGoogleCredentialResponse,
+                        auto_select: false,
+                    });
+                    google.accounts.id.renderButton(
+                        googleLoginBtnContainer,
+                        { 
+                            theme: "outline", 
+                            size: "large",
+                            width: "320",
+                            text: "signin_with",
+                            shape: "rectangular"
+                        }
+                    );
+                } else {
+                    // Retry if script not loaded yet
+                    setTimeout(initGoogleSignIn, 100);
+                }
+            }
+
+            // Handle Google Credential Callback
+            async function handleGoogleCredentialResponse(response) {
+                if (!supabaseClient) return;
+                
+                errorContainer.classList.add('hidden');
+                authLoadingSection.classList.remove('hidden');
+                loginSection.classList.add('hidden');
+
+                try {
+                    const { data, error } = await supabaseClient.auth.signInWithIdToken({
+                        provider: 'google',
+                        token: response.credential
+                    });
+
+                    if (error) throw error;
+                } catch (err) {
+                    console.error("Google Auth error:", err.message);
+                    errorText.textContent = err.message || "Failed to authenticate with Google.";
+                    errorContainer.classList.remove('hidden');
+                    authLoadingSection.classList.add('hidden');
+                    loginSection.classList.remove('hidden');
                 }
             }
 
             // Display views
             function showLogin() {
+                authLoadingSection.classList.add('hidden');
                 dashboardSection.classList.add('hidden');
                 loginSection.classList.remove('hidden');
-                loginPassword.value = '';
             }
 
-            function showDashboard(user) {
-                loginSection.classList.add('hidden');
-                dashboardSection.classList.remove('hidden');
-                partnerEmailSpan.textContent = user.email;
-                fetchDocuments();
-            }
+            async function verifyAndShowDashboard(user) {
+                try {
+                    // Query the database to check if this user exists in approved_partners
+                    const { data: approvedData, error: approvedError } = await supabaseClient
+                        .from('approved_partners')
+                        .select('email')
+                        .eq('email', user.email)
+                        .maybeSingle();
 
-            // Handle Login Form Submission
-            if (loginForm) {
-                loginForm.addEventListener('submit', async (e) => {
-                    e.preventDefault();
-                    if (!supabaseClient) return;
-                    
-                    errorContainer.classList.add('hidden');
-                    loginSubmit.disabled = true;
-                    loginSubmit.querySelector('span').textContent = 'Authenticating...';
+                    if (approvedError) throw approvedError;
 
-                    const email = loginEmail.value.trim();
-                    const password = loginPassword.value;
-
-                    try {
-                        const { data, error } = await supabaseClient.auth.signInWithPassword({
-                            email: email,
-                            password: password
-                        });
-
-                        if (error) {
-                            throw error;
-                        }
-
-                        if (data.user) {
-                            showDashboard(data.user);
-                        }
-                    } catch (err) {
-                        errorText.textContent = err.message || "Failed to log in. Please check your credentials.";
-                        errorContainer.classList.remove('hidden');
-                        loginSubmit.disabled = false;
-                        loginSubmit.querySelector('span').textContent = 'Access Portal';
+                    if (!approvedData) {
+                        throw new Error("Access Denied: This Google account is not registered as an approved partner.");
                     }
-                });
+
+                    // Approved - show the dashboard
+                    authLoadingSection.classList.add('hidden');
+                    loginSection.classList.add('hidden');
+                    dashboardSection.classList.remove('hidden');
+                    partnerEmailSpan.textContent = user.email;
+                    
+                    fetchDocuments();
+                } catch (err) {
+                    console.error("Verification error:", err.message);
+                    errorText.textContent = err.message || "Verification failed.";
+                    errorContainer.classList.remove('hidden');
+                    
+                    // Sign out the unapproved session to clear local storage
+                    await supabaseClient.auth.signOut();
+                    
+                    authLoadingSection.classList.add('hidden');
+                    loginSection.classList.remove('hidden');
+                }
             }
 
             // Handle Logout
             if (logoutButton) {
                 logoutButton.addEventListener('click', async () => {
                     if (!supabaseClient) return;
+                    authLoadingSection.classList.remove('hidden');
+                    dashboardSection.classList.add('hidden');
                     await supabaseClient.auth.signOut();
-                    showLogin();
                 });
             }
 
