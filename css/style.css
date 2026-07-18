@@ -668,6 +668,10 @@ video {
   margin-bottom: 1rem;
 }
 
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+
 .mb-12 {
   margin-bottom: 3rem;
 }
@@ -722,6 +726,10 @@ video {
 
 .mt-4 {
   margin-top: 1rem;
+}
+
+.mt-6 {
+  margin-top: 1.5rem;
 }
 
 .mt-8 {
@@ -956,6 +964,10 @@ video {
   cursor: pointer;
 }
 
+.scroll-mt-20 {
+  scroll-margin-top: 5rem;
+}
+
 .list-outside {
   list-style-position: outside;
 }
@@ -1014,6 +1026,10 @@ video {
 
 .gap-2 {
   gap: 0.5rem;
+}
+
+.gap-4 {
+  gap: 1rem;
 }
 
 .gap-6 {
@@ -1611,6 +1627,12 @@ video {
 
 .group:hover .group-hover\:opacity-90 {
   opacity: 0.9;
+}
+
+@media (min-width: 640px) {
+  .sm\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (min-width: 768px) {
