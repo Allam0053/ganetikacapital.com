@@ -2,7 +2,7 @@
   "name": "ganetika-website",
   "version": "1.0.0",
   "scripts": {
-    "build": "tailwindcss -i ./src/input.css -o ./css/style.css"
+    "build": "tailwindcss -i ./src/input.css -o ./css/style.css --minify"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.19",

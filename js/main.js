@@ -22,6 +22,22 @@ document.addEventListener('DOMContentLoaded', function() {
         return text.charAt(0).toUpperCase() + text.slice(1);
     }
 
+    // Dynamic Supabase SDK Loader
+    function ensureSupabaseLoaded() {
+        return new Promise((resolve) => {
+            if (window.supabase) {
+                resolve();
+                return;
+            }
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+            script.onload = () => {
+                resolve();
+            };
+            document.head.appendChild(script);
+        });
+    }
+
     // Initialize Supabase Client
     function getSupabaseClient() {
         if (supabaseClient) return supabaseClient;
@@ -45,14 +61,14 @@ document.addEventListener('DOMContentLoaded', function() {
             header.classList.add('scrolled', 'text-primary-dark');
             header.classList.remove('text-white');
             if (logo && isHomeHeader) {
-                logo.src = '/logo.png';
+                logo.src = '/logo.webp';
             }
         } else {
             if (isHomeHeader) {
                 header.classList.remove('scrolled', 'text-primary-dark');
                 header.classList.add('text-white');
                 if (logo) {
-                    logo.src = '/logo-white.png';
+                    logo.src = '/logo-white.webp';
                 }
             }
         }
@@ -100,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (searchButton && searchModal) {
         // Show Search Modal
-        searchButton.addEventListener('click', (e) => {
+        searchButton.addEventListener('click', async (e) => {
             e.preventDefault();
             searchModal.classList.remove('hidden');
             if (searchInput) {
@@ -108,6 +124,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 searchInput.focus();
             }
             if (searchResults) searchResults.innerHTML = '';
+            
+            // Dynamic load Supabase if not present
+            try {
+                await ensureSupabaseLoaded();
+            } catch (err) {
+                console.error("Failed to load search provider:", err);
+            }
         });
 
         // Hide Search Modal helpers
@@ -148,6 +171,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 searchResults.innerHTML = '<div class="text-sm text-gray-400 py-3 text-center">Searching...</div>';
 
                 debounceTimer = setTimeout(async () => {
+                    try {
+                        await ensureSupabaseLoaded();
+                    } catch (err) {
+                        searchResults.innerHTML = '<div class="text-sm text-red-500 py-3 text-center">Failed to load search provider.</div>';
+                        return;
+                    }
                     const client = getSupabaseClient();
                     if (!client) {
                         searchResults.innerHTML = '<div class="text-sm text-red-500 py-3 text-center">Database client unavailable.</div>';
