@@ -613,7 +613,10 @@
                     tr.className = "hover:bg-[#FAF8F5] transition";
                     
                     tr.innerHTML = `
-                        <td style="text-align: left; padding: 12px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 14px; font-weight: 600; color: #1A2634; padding-right: 16px;">${escapeHtml(doc.title)}</td>
+                        <td style="text-align: left; padding: 12px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 14px; font-weight: 600; color: #1A2634; padding-right: 16px;">
+                            <div>${escapeHtml(doc.title)}</div>
+                            <div style="font-size: 10px; color: #9CA3AF; font-weight: normal; margin-top: 3px;">PDF • ${formatBytes(doc.file_size)}</div>
+                        </td>
                         <td style="text-align: left; padding: 12px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; color: #6B7280; padding-right: 16px;">${escapeHtml(doc.category)}</td>
                         <td style="text-align: left; padding: 12px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; color: #6B7280; padding-right: 16px;">${formattedDate}</td>
                         <td style="text-align: right; padding: 12px 0; white-space: nowrap;">
@@ -757,7 +760,8 @@
                                     title: title,
                                     category: category,
                                     file_path: filepath,
-                                    published_date: pubDate
+                                    published_date: pubDate,
+                                    file_size: file.size
                                 }
                             ]);
 
@@ -899,6 +903,15 @@
                     "'": '&#039;'
                 };
                 return String(string).replace(/[&<>"']/g, function(m) { return map[m]; });
+            }
+
+            function formatBytes(bytes) {
+                if (bytes === null || bytes === undefined) return 'Unknown Size';
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
             }
         });
     </script>

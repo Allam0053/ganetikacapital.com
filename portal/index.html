@@ -577,7 +577,10 @@
                     tr.className = "hover:bg-[#FAF8F5] transition";
                     
                     tr.innerHTML = `
-                        <td class="py-4 font-semibold text-primary-dark text-sm sm:text-base" style="text-align: left; padding: 16px 0;">${escapeHtml(doc.title)}</td>
+                        <td class="py-4 font-semibold text-primary-dark text-sm sm:text-base" style="text-align: left; padding: 16px 0;">
+                            <div>${escapeHtml(doc.title)}</div>
+                            <div style="font-size: 11px; color: #9CA3AF; font-weight: normal; margin-top: 4px;">PDF • ${formatBytes(doc.file_size)}</div>
+                        </td>
                         <td class="py-4 text-xs sm:text-sm text-gray-500" style="text-align: left; padding: 16px 0;">${formattedDate}</td>
                         <td class="py-4" style="text-align: right; padding: 16px 0;">
                             <button data-filepath="${escapeHtml(doc.file_path)}" data-title="${escapeHtml(doc.title)}"
@@ -641,6 +644,15 @@
                     "'": '&#039;'
                 };
                 return String(string).replace(/[&<>"']/g, function(m) { return map[m]; });
+            }
+
+            function formatBytes(bytes) {
+                if (bytes === null || bytes === undefined) return 'Unknown Size';
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
             }
         });
     </script>
