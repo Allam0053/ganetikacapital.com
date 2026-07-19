@@ -153,6 +153,41 @@
         .modal-overlay.active {
             display: flex !important; /* Show when active */
         }
+
+        /* Responsive Mobile Table Styles for Admin Dashboard */
+        @media (max-width: 640px) {
+            #admin-documents-container table, 
+            #admin-documents-container thead, 
+            #admin-documents-container tbody, 
+            #admin-documents-container th, 
+            #admin-documents-container td, 
+            #admin-documents-container tr {
+                display: block !important;
+                width: 100% !important;
+            }
+            #admin-documents-container thead tr {
+                position: absolute !important;
+                top: -9999px !important;
+                left: -9999px !important;
+            }
+            #admin-documents-container tr {
+                border-bottom: 1px solid #EAE5DB !important;
+                padding: 16px 0 !important;
+            }
+            #admin-documents-container tr:last-child {
+                border-bottom: none !important;
+            }
+            #admin-documents-container td {
+                border: none !important;
+                padding: 6px 0 !important;
+                text-align: left !important;
+                white-space: normal !important; /* Allow wrapping on mobile */
+            }
+            #admin-documents-container td:last-child {
+                text-align: left !important;
+                margin-top: 10px !important;
+            }
+        }
     </style>
 </head>
 <body class="text-gray-700 min-h-[100vh] flex flex-col">
@@ -240,13 +275,13 @@
                             <p id="upload-status-text"></p>
                         </div>
                         
-                        <div>
+                        <div style="margin-bottom: 20px;">
                             <label for="doc-title" class="block text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2">Document Title</label>
                             <input type="text" id="doc-title" required placeholder="e.g. June 2026 Performance Update"
                                 class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-gold bg-[#FAF8F5] transition text-sm">
                         </div>
                         
-                        <div>
+                        <div style="margin-bottom: 20px;">
                             <label for="doc-category" class="block text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2">Category</label>
                             <select id="doc-category" required
                                 class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-gold bg-[#FAF8F5] transition text-sm">
@@ -255,13 +290,13 @@
                             </select>
                         </div>
                         
-                        <div>
+                        <div style="margin-bottom: 20px;">
                             <label for="doc-date" class="block text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2">Publish Date</label>
                             <input type="date" id="doc-date" required
                                 class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-gold bg-[#FAF8F5] transition text-sm">
                         </div>
                         
-                        <div>
+                        <div style="margin-bottom: 20px;">
                             <label class="block text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2">Select PDF File</label>
                             <input type="file" id="doc-file" required accept="application/pdf"
                                 class="w-full text-sm text-gray-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-primary-dark file:text-white hover:file:bg-gold file:transition cursor-pointer">
@@ -335,13 +370,13 @@
                     
                     <input type="hidden" id="edit-doc-id">
                     
-                    <div>
+                    <div style="margin-bottom: 20px;">
                         <label for="edit-doc-title" class="block text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2">Document Title</label>
                         <input type="text" id="edit-doc-title" required placeholder="e.g. June 2026 Performance Update"
                             class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-gold bg-[#FAF8F5] transition text-sm">
                     </div>
                     
-                    <div>
+                    <div style="margin-bottom: 20px;">
                         <label for="edit-doc-category" class="block text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2">Category</label>
                         <select id="edit-doc-category" required
                             class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-gold bg-[#FAF8F5] transition text-sm">
@@ -350,7 +385,7 @@
                         </select>
                     </div>
                     
-                    <div>
+                    <div style="margin-bottom: 20px;">
                         <label for="edit-doc-date" class="block text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2">Publish Date</label>
                         <input type="date" id="edit-doc-date" required
                             class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-gold bg-[#FAF8F5] transition text-sm">

@@ -110,6 +110,40 @@
             stroke-width: 2px !important;
             flex-shrink: 0 !important;
         }
+
+        /* Responsive Mobile Table Styles */
+        @media (max-width: 640px) {
+            #documents-container table, 
+            #documents-container thead, 
+            #documents-container tbody, 
+            #documents-container th, 
+            #documents-container td, 
+            #documents-container tr {
+                display: block !important;
+                width: 100% !important;
+            }
+            #documents-container thead tr {
+                position: absolute !important;
+                top: -9999px !important;
+                left: -9999px !important;
+            }
+            #documents-container tr {
+                border-bottom: 1px solid #EAE5DB !important;
+                padding: 16px 0 !important;
+            }
+            #documents-container tr:last-child {
+                border-bottom: none !important;
+            }
+            #documents-container td {
+                border: none !important;
+                padding: 4px 0 !important;
+                text-align: left !important;
+            }
+            #documents-container td:last-child {
+                text-align: left !important;
+                margin-top: 8px !important;
+            }
+        }
     </style>
 </head>
 <body class="text-gray-700 min-h-[100vh] flex flex-col">
