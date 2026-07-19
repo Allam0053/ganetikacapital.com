@@ -151,7 +151,9 @@
 
     <main>
         
-        <!-- HERO SECTION --><section class="relative h-screen flex items-center justify-center text-white hero-abstract-bg">
+        <!-- HERO SECTION --><section class="relative h-screen overflow-hidden flex items-center justify-center text-white hero-abstract-bg">
+            <!-- DNA Helix Sketch Layer with Left Alignment, Parallax, Opacity, Shimmer Glow, and Fading Mask -->
+            <div id="hero-sketch" class="absolute inset-0" style="background-image: url('dna-sketch-outline.png'); background-repeat: no-repeat; background-position: center; background-size: cover; opacity: 0.85; filter: drop-shadow(0 0 10px rgba(192, 149, 83, 0.25)); pointer-events: none; transition: transform 0.1s ease-out;"></div>
             <div class="absolute inset-0 bg-slate-900/40"></div> <!-- Slightly darker overlay for text readability --><div class="relative z-10 text-center px-4">
                 <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-4">Investing as Owners. <br> Growing as Partners.</h1>
                 <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-200">
@@ -367,6 +369,15 @@
             
             window.addEventListener('scroll', handleScroll);
             handleScroll(); // Run on page load
+            
+            // --- Hero Parallax Logic ---
+            const heroSketch = document.getElementById('hero-sketch');
+            if (heroSketch) {
+                window.addEventListener('scroll', () => {
+                    const scrollValue = window.scrollY;
+                    heroSketch.style.transform = `translateY(${scrollValue * 0.3}px)`;
+                });
+            }
             
             // --- Mobile Menu Logic ---
             if (mobileMenuButton && mobileMenu) {
