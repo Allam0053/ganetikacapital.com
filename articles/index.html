@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Article Title | Ganetika Capital Partners</title>
+    <title>Investment Memos & Insights | Ganetika Capital Partners</title>
     <!-- SEO Meta Tags -->
     <meta name="description" content="Read investment letters, research memos, and value-investing insights from the partners of Ganetika Capital Partners.">
     
@@ -332,6 +332,23 @@
 
                     // Set page metadata
                     document.title = `${post.title} | Ganetika Capital Partners`;
+                    
+                    const postDesc = post.content ? truncate(post.content, 155) : 'Read value-investing insights from the partners.';
+                    
+                    const metaDesc = document.querySelector('meta[name="description"]');
+                    if (metaDesc) metaDesc.setAttribute('content', postDesc);
+                    
+                    const ogDesc = document.querySelector('meta[property="og:description"]');
+                    if (ogDesc) ogDesc.setAttribute('content', postDesc);
+                    
+                    const ogTitle = document.querySelector('meta[property="og:title"]');
+                    if (ogTitle) ogTitle.setAttribute('content', `${post.title} | Ganetika Capital Partners`);
+
+                    const twDesc = document.querySelector('meta[property="twitter:description"]');
+                    if (twDesc) twDesc.setAttribute('content', postDesc);
+                    
+                    const twTitle = document.querySelector('meta[property="twitter:title"]');
+                    if (twTitle) twTitle.setAttribute('content', `${post.title} | Ganetika Capital Partners`);
 
                     // Populate UI fields
                     document.getElementById('article-tag').textContent = post.tag ? post.tag.split(',')[0] : 'Insight';
@@ -395,6 +412,16 @@
                 const emptyState = document.getElementById('articles-empty');
 
                 if (!listView) return;
+
+                // Reset page metadata to list view defaults
+                document.title = "Investment Memos & Insights | Ganetika Capital Partners";
+                const defaultDesc = "Read investment letters, research memos, and value-investing insights from the partners of Ganetika Capital Partners.";
+                
+                const metaDesc = document.querySelector('meta[name="description"]');
+                if (metaDesc) metaDesc.setAttribute('content', defaultDesc);
+                
+                const ogDesc = document.querySelector('meta[property="og:description"]');
+                if (ogDesc) ogDesc.setAttribute('content', defaultDesc);
 
                 listView.classList.remove('hidden');
                 loadingLoader.classList.remove('hidden');
