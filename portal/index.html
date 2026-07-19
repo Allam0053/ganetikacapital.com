@@ -77,6 +77,39 @@
             background-size: 200% 100%;
             animation: shimmer 1.5s infinite linear;
         }
+
+        /* Fixed styles for download buttons to prevent CSS compile breaks */
+        .download-btn {
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 6px !important;
+            padding: 8px 16px !important;
+            border-radius: 6px !important;
+            background-color: #C09553 !important;
+            color: white !important;
+            font-family: 'Plus Jakarta Sans', sans-serif !important;
+            font-size: 12px !important;
+            font-weight: 600 !important;
+            border: none !important;
+            cursor: pointer !important;
+            transition: background-color 0.15s ease, transform 0.1s ease !important;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05) !important;
+            white-space: nowrap !important;
+        }
+        .download-btn:hover {
+            background-color: #1A2634 !important;
+        }
+        .download-btn:active {
+            transform: scale(0.98) !important;
+        }
+        .download-btn svg {
+            width: 14px !important;
+            height: 14px !important;
+            stroke: currentColor !important;
+            stroke-width: 2px !important;
+            flex-shrink: 0 !important;
+        }
     </style>
 </head>
 <body class="text-gray-700 min-h-[100vh] flex flex-col">
@@ -207,12 +240,16 @@
                 
                 <!-- Documents View -->
                 <div id="documents-container" class="overflow-x-auto">
-                    <table class="min-w-full divide-y divide-gray-100">
+                    <table class="min-w-full divide-y divide-gray-100" style="width: 100%;">
                         <thead>
                             <tr class="text-left text-xs font-semibold uppercase tracking-wider text-gray-400">
-                                <th class="pb-4">Report Description</th>
-                                <th class="pb-4 hidden sm:table-cell">Publish Date</th>
-                                <th class="pb-4 text-right">Action</th>
+                                <th class="pb-4" style="text-align: left; padding-bottom: 16px;">Report Description</th>
+                                <th id="header-date" class="pb-4 cursor-pointer hover:text-gold transition select-none" style="text-align: left; padding-bottom: 16px;">
+                                    <div class="inline-flex items-center gap-1">
+                                        Publish Date <span id="sort-arrow">↓</span>
+                                    </div>
+                                </th>
+                                <th class="pb-4" style="text-align: right; padding-bottom: 16px;">Action</th>
                             </tr>
                         </thead>
                         <tbody id="document-list-body" class="divide-y divide-gray-100">
@@ -291,6 +328,7 @@
             let supabaseClient = null;
             let currentTab = 'Monthly Quick Report'; // Matches DB value
             let documentCache = [];
+            let sortAscending = false; // default to newest first
 
             // UI Sections
             const authLoadingSection = document.getElementById('auth-loading-section');
@@ -448,6 +486,28 @@
                 });
             }
 
+            // Date Sorting click listener
+            const headerDate = document.getElementById('header-date');
+            if (headerDate) {
+                headerDate.addEventListener('click', () => {
+                    sortAscending = !sortAscending;
+                    const sortArrow = document.getElementById('sort-arrow');
+                    if (sortArrow) {
+                        sortArrow.textContent = sortAscending ? '↑' : '↓';
+                    }
+                    sortDocuments();
+                });
+            }
+
+            function sortDocuments() {
+                documentCache.sort((a, b) => {
+                    const dateA = new Date(a.published_date);
+                    const dateB = new Date(b.published_date);
+                    return sortAscending ? dateA - dateB : dateB - dateA;
+                });
+                renderDocuments();
+            }
+
             function setTab(category, activeBtn, inactiveBtn) {
                 currentTab = category;
                 
@@ -479,7 +539,7 @@
                     if (error) throw error;
                     
                     documentCache = data || [];
-                    renderDocuments();
+                    sortDocuments();
                 } catch (err) {
                     console.error("Error loading partner files:", err.message);
                     portalSkeleton.classList.add('hidden');
@@ -517,12 +577,12 @@
                     tr.className = "hover:bg-[#FAF8F5] transition";
                     
                     tr.innerHTML = `
-                        <td class="py-4 font-semibold text-primary-dark">${escapeHtml(doc.title)}</td>
-                        <td class="py-4 text-sm text-gray-500 hidden sm:table-cell">${formattedDate}</td>
-                        <td class="py-4 text-right">
+                        <td class="py-4 font-semibold text-primary-dark text-sm sm:text-base" style="text-align: left; padding: 16px 0;">${escapeHtml(doc.title)}</td>
+                        <td class="py-4 text-xs sm:text-sm text-gray-500" style="text-align: left; padding: 16px 0;">${formattedDate}</td>
+                        <td class="py-4" style="text-align: right; padding: 16px 0;">
                             <button data-filepath="${escapeHtml(doc.file_path)}" data-title="${escapeHtml(doc.title)}"
-                                class="download-btn inline-flex items-center gap-1.5 py-1.5 px-3.5 rounded-lg bg-gold hover:bg-primary-dark text-white font-medium text-xs transition duration-150">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                class="download-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                                 </svg>
                                 <span>Download</span>
