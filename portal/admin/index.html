@@ -102,6 +102,54 @@
             stroke-width: 2px !important;
             flex-shrink: 0 !important;
         }
+        /* Fixed edit button styles */
+        .edit-btn {
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 6px !important;
+            padding: 8px 14px !important;
+            border-radius: 6px !important;
+            background-color: #FAF8F5 !important;
+            color: #C09553 !important;
+            border: 1px solid #EAE5DB !important;
+            font-family: 'Plus Jakarta Sans', sans-serif !important;
+            font-size: 12px !important;
+            font-weight: 600 !important;
+            cursor: pointer !important;
+            transition: all 0.15s ease, transform 0.1s ease !important;
+            white-space: nowrap !important;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02) !important;
+            margin-right: 6px !important;
+        }
+        .edit-btn:hover {
+            background-color: #FAF8F5 !important;
+            border-color: #C09553 !important;
+        }
+        .edit-btn:active {
+            transform: scale(0.98) !important;
+        }
+        .edit-btn svg {
+            width: 14px !important;
+            height: 14px !important;
+            stroke: currentColor !important;
+            stroke-width: 2px !important;
+            flex-shrink: 0 !important;
+        }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            background-color: rgba(0, 0, 0, 0.4) !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            z-index: 1000 !important;
+        }
     </style>
 </head>
 <body class="text-gray-700 min-h-[100vh] flex flex-col">
@@ -240,9 +288,10 @@
                             <table class="min-w-full divide-y divide-gray-100" style="width: 100%; table-layout: fixed;">
                                 <thead>
                                     <tr class="text-left text-xs font-semibold uppercase tracking-wider text-gray-400" style="border-bottom: 1px solid #e5e7eb;">
-                                        <th class="pb-4" style="width: 50%; text-align: left; padding-bottom: 16px;">Title</th>
-                                        <th class="pb-4" style="width: 32%; text-align: left; padding-bottom: 16px;">Category</th>
-                                        <th class="pb-4" style="width: 18%; text-align: right; padding-bottom: 16px;">Action</th>
+                                        <th class="pb-4" style="width: 38%; text-align: left; padding-bottom: 16px;">Title</th>
+                                        <th class="pb-4" style="width: 22%; text-align: left; padding-bottom: 16px;">Category</th>
+                                        <th class="pb-4" style="width: 20%; text-align: left; padding-bottom: 16px;">Publish Date</th>
+                                        <th class="pb-4" style="width: 20%; text-align: right; padding-bottom: 16px;">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody id="admin-document-list-body" class="divide-y divide-gray-100">
@@ -264,6 +313,59 @@
             </div>
         </section>
         
+        <!-- ================= EDIT MODAL OVERLAY ================= -->
+        <div id="edit-modal" class="modal-overlay hidden">
+            <div class="bg-white rounded-xl shadow-2xl border border-gray-100 p-8 w-full max-w-md mx-6 transition-all duration-300 transform scale-95" style="border-radius: 12px;">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-bold text-primary-dark" style="font-size: 20px;">Edit Document Details</h3>
+                    <button id="edit-modal-close" class="text-gray-400 hover:text-gray-600 focus:outline-none cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 20px; height: 20px;">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                
+                <form id="edit-form" class="space-y-5">
+                    <div id="edit-status-container" class="hidden p-4 rounded-lg text-sm">
+                        <p id="edit-status-text"></p>
+                    </div>
+                    
+                    <input type="hidden" id="edit-doc-id">
+                    
+                    <div>
+                        <label for="edit-doc-title" class="block text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2">Document Title</label>
+                        <input type="text" id="edit-doc-title" required placeholder="e.g. June 2026 Performance Update"
+                            class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-gold bg-[#FAF8F5] transition text-sm">
+                    </div>
+                    
+                    <div>
+                        <label for="edit-doc-category" class="block text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2">Category</label>
+                        <select id="edit-doc-category" required
+                            class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-gold bg-[#FAF8F5] transition text-sm">
+                            <option value="Monthly Quick Report">Monthly Quick Report</option>
+                            <option value="Quarterly Letter">Quarterly Letter</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="edit-doc-date" class="block text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2">Publish Date</label>
+                        <input type="date" id="edit-doc-date" required
+                            class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-gold bg-[#FAF8F5] transition text-sm">
+                    </div>
+                    
+                    <div class="flex gap-4 pt-2">
+                        <button type="button" id="edit-cancel"
+                            class="w-1/2 py-3 px-6 rounded-lg border border-gray-200 hover:bg-gray-50 text-gray-700 font-semibold transition duration-200 text-sm cursor-pointer text-center">
+                            Cancel
+                        </button>
+                        <button type="submit" id="edit-submit"
+                            class="w-1/2 py-3 px-6 rounded-lg bg-primary-dark hover:bg-gold text-white font-semibold transition duration-200 flex items-center justify-center text-sm shadow-md cursor-pointer">
+                            <span>Save Changes</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </main>
 
     <!-- Footer -->
@@ -311,6 +413,19 @@
             const adminDocumentsContainer = document.getElementById('admin-documents-container');
             const adminDocumentListBody = document.getElementById('admin-document-list-body');
             const adminEmptyState = document.getElementById('admin-empty-state');
+
+            // Edit Modal fields
+            const editModal = document.getElementById('edit-modal');
+            const editModalClose = document.getElementById('edit-modal-close');
+            const editForm = document.getElementById('edit-form');
+            const editDocId = document.getElementById('edit-doc-id');
+            const editTitle = document.getElementById('edit-doc-title');
+            const editCategory = document.getElementById('edit-doc-category');
+            const editDate = document.getElementById('edit-doc-date');
+            const editCancel = document.getElementById('edit-cancel');
+            const editSubmit = document.getElementById('edit-submit');
+            const editStatusContainer = document.getElementById('edit-status-container');
+            const editStatusText = document.getElementById('edit-status-text');
 
             // Default the Date picker to today
             if (uploadDate) {
@@ -483,13 +598,29 @@
                 adminDocumentsContainer.classList.remove('hidden');
 
                 documentCache.forEach(doc => {
+                    const pubDate = new Date(doc.published_date);
+                    const formattedDate = pubDate.toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric'
+                    });
+                    const rawDateStr = doc.published_date.split('T')[0];
+
                     const tr = document.createElement('tr');
                     tr.className = "hover:bg-[#FAF8F5] transition";
                     
                     tr.innerHTML = `
                         <td style="text-align: left; padding: 12px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 14px; font-weight: 600; color: #1A2634; padding-right: 16px;">${escapeHtml(doc.title)}</td>
                         <td style="text-align: left; padding: 12px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; color: #6B7280; padding-right: 16px;">${escapeHtml(doc.category)}</td>
-                        <td style="text-align: right; padding: 12px 0;">
+                        <td style="text-align: left; padding: 12px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; color: #6B7280; padding-right: 16px;">${formattedDate}</td>
+                        <td style="text-align: right; padding: 12px 0; white-space: nowrap;">
+                            <button data-id="${doc.id}" data-title="${escapeHtml(doc.title)}" data-category="${escapeHtml(doc.category)}" data-rawdate="${rawDateStr}"
+                                class="edit-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                </svg>
+                                <span>Edit</span>
+                            </button>
                             <button data-id="${doc.id}" data-filepath="${escapeHtml(doc.file_path)}"
                                 class="delete-btn">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -500,6 +631,30 @@
                         </td>
                     `;
                     adminDocumentListBody.appendChild(tr);
+                });
+
+                // Attach Edit Handlers
+                document.querySelectorAll('.edit-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const target = e.currentTarget;
+                        const docId = target.getAttribute('data-id');
+                        const title = target.getAttribute('data-title');
+                        const category = target.getAttribute('data-category');
+                        const rawdate = target.getAttribute('data-rawdate');
+                        
+                        // Populate modal inputs
+                        editDocId.value = docId;
+                        editTitle.value = title;
+                        editCategory.value = category;
+                        editDate.value = rawdate;
+                        
+                        editStatusContainer.classList.add('hidden');
+                        editSubmit.disabled = false;
+                        editSubmit.querySelector('span').textContent = 'Save Changes';
+                        
+                        // Open modal
+                        editModal.classList.remove('hidden');
+                    });
                 });
 
                 // Attach Delete Handlers
@@ -643,6 +798,92 @@
                 }
                 
                 uploadStatusText.textContent = message;
+            }
+
+            // Close Edit Modal
+            function closeEditModal() {
+                editModal.classList.add('hidden');
+                editForm.reset();
+            }
+
+            if (editModalClose) {
+                editModalClose.addEventListener('click', closeEditModal);
+            }
+            if (editCancel) {
+                editCancel.addEventListener('click', closeEditModal);
+            }
+            
+            // Also close if clicked outside the modal card
+            if (editModal) {
+                editModal.addEventListener('click', (e) => {
+                    if (e.target === editModal) {
+                        closeEditModal();
+                    }
+                });
+            }
+
+            // Handle Edit Form Submit
+            if (editForm) {
+                editForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    if (!supabaseClient) return;
+
+                    const id = editDocId.value;
+                    const title = editTitle.value.trim();
+                    const category = editCategory.value;
+                    const dateVal = editDate.value;
+
+                    if (!id || !title || !category || !dateVal) {
+                        showEditStatus("Please fill in all fields.", "red");
+                        return;
+                    }
+
+                    editSubmit.disabled = true;
+                    editSubmit.querySelector('span').textContent = 'Saving changes...';
+                    showEditStatus("Saving updates to database...", "blue");
+
+                    try {
+                        const { error } = await supabaseClient
+                            .from('partner_documents')
+                            .update({
+                                title: title,
+                                category: category,
+                                published_date: dateVal
+                            })
+                            .eq('id', id);
+
+                        if (error) throw error;
+
+                        showEditStatus("Changes saved successfully!", "green");
+                        
+                        setTimeout(() => {
+                            closeEditModal();
+                            fetchDocuments();
+                        }, 600);
+
+                    } catch (err) {
+                        console.error("Edit error:", err);
+                        showEditStatus("Save Failed: " + (err.message || "An unexpected error occurred."), "red");
+                        editSubmit.disabled = false;
+                        editSubmit.querySelector('span').textContent = 'Save Changes';
+                    }
+                });
+            }
+
+            // Edit status helper
+            function showEditStatus(message, color) {
+                editStatusContainer.classList.remove('hidden', 'bg-red-50', 'text-red-700', 'border-red-200', 'bg-green-50', 'text-green-700', 'border-green-200', 'bg-blue-50', 'text-blue-700', 'border-blue-200');
+                editStatusContainer.classList.add('border');
+                
+                if (color === 'red') {
+                    editStatusContainer.classList.add('bg-red-50', 'text-red-700', 'border-red-200');
+                } else if (color === 'green') {
+                    editStatusContainer.classList.add('bg-green-50', 'text-green-700', 'border-green-200');
+                } else {
+                    editStatusContainer.classList.add('bg-blue-50', 'text-blue-700', 'border-blue-200');
+                }
+                
+                editStatusText.textContent = message;
             }
 
             // Simple HTML escape function to prevent XSS
