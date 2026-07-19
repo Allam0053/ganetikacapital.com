@@ -145,10 +145,13 @@
             right: 0 !important;
             bottom: 0 !important;
             background-color: rgba(0, 0, 0, 0.4) !important;
-            display: flex !important;
+            display: none !important; /* Hide by default */
             align-items: center !important;
             justify-content: center !important;
             z-index: 1000 !important;
+        }
+        .modal-overlay.active {
+            display: flex !important; /* Show when active */
         }
     </style>
 </head>
@@ -314,7 +317,7 @@
         </section>
         
         <!-- ================= EDIT MODAL OVERLAY ================= -->
-        <div id="edit-modal" class="modal-overlay hidden">
+        <div id="edit-modal" class="modal-overlay">
             <div class="bg-white rounded-xl shadow-2xl border border-gray-100 p-8 w-full max-w-md mx-6 transition-all duration-300 transform scale-95" style="border-radius: 12px;">
                 <div class="flex justify-between items-center mb-6">
                     <h3 class="text-2xl font-bold text-primary-dark" style="font-size: 20px;">Edit Document Details</h3>
@@ -653,7 +656,7 @@
                         editSubmit.querySelector('span').textContent = 'Save Changes';
                         
                         // Open modal
-                        editModal.classList.remove('hidden');
+                        editModal.classList.add('active');
                     });
                 });
 
@@ -802,7 +805,7 @@
 
             // Close Edit Modal
             function closeEditModal() {
-                editModal.classList.add('hidden');
+                editModal.classList.remove('active');
                 editForm.reset();
             }
 
