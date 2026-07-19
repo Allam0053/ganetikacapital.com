@@ -274,16 +274,16 @@
                 
                 <!-- Documents View -->
                 <div id="documents-container" class="overflow-x-auto">
-                    <table class="min-w-full divide-y divide-gray-100" style="width: 100%;">
+                    <table class="min-w-full divide-y divide-gray-100" style="width: 100%; table-layout: fixed;">
                         <thead>
                             <tr class="text-left text-xs font-semibold uppercase tracking-wider text-gray-400">
                                 <th class="pb-4" style="text-align: left; padding-bottom: 16px;">Report Description</th>
-                                <th id="header-date" class="pb-4 cursor-pointer hover:text-gold transition select-none" style="text-align: left; padding-bottom: 16px;">
+                                <th id="header-date" class="pb-4 cursor-pointer hover:text-gold transition select-none" style="width: 25%; text-align: left; padding-bottom: 16px;">
                                     <div class="inline-flex items-center gap-1">
                                         Publish Date <span id="sort-arrow">↓</span>
                                     </div>
                                 </th>
-                                <th class="pb-4" style="text-align: right; padding-bottom: 16px;">Action</th>
+                                <th class="pb-4" style="width: 140px; text-align: right; padding-bottom: 16px;">Action</th>
                             </tr>
                         </thead>
                         <tbody id="document-list-body" class="divide-y divide-gray-100">
