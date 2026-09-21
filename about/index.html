@@ -430,24 +430,24 @@
                         <!-- Main Data Table Container (Compact & Colored Background for High Visibility) -->
                         <div class="bg-[#FAF8F5] rounded-xl border border-gray-200/90 shadow-md overflow-hidden mb-6">
                             <div class="overflow-x-auto">
-                                <table class="w-full text-left border-collapse">
+                                <table class="w-full text-left border-collapse min-w-[640px]">
                                     <thead>
                                         <tr class="bg-primary-dark text-white text-xs uppercase tracking-wider border-b border-primary-dark">
                                             <th scope="col" class="py-3.5 px-4 font-bold whitespace-nowrap">Year</th>
                                             <th scope="col" class="py-3.5 px-4 text-right font-bold text-gold whitespace-nowrap">Portfolio A</th>
                                             <th scope="col" class="py-3.5 px-4 text-right font-bold text-gold whitespace-nowrap">Portfolio B</th>
                                             <th scope="col" class="py-3.5 px-4 text-right font-bold whitespace-nowrap">S&P 500 TR (SPXTR)</th>
-                                            <th scope="col" class="py-3.5 px-4 font-bold whitespace-nowrap min-w-[240px]">Note</th>
+                                            <th scope="col" class="py-3.5 px-4 font-bold whitespace-nowrap min-w-[260px]">Note</th>
                                         </tr>
                                     </thead>
                                     <tbody class="divide-y divide-gray-200/80 text-sm text-primary-dark">
                                         <!-- 2021 -->
                                         <tr class="hover:bg-white/80 transition">
-                                            <td class="py-3 px-4 font-bold text-primary-dark whitespace-nowrap">2021 (from 12 Jul)</td>
-                                            <td class="py-3 px-4 text-right font-mono font-bold text-primary-dark whitespace-nowrap">+38.90%</td>
+                                            <td class="py-3 px-4 font-bold text-primary-dark whitespace-nowrap">2021</td>
+                                            <td class="py-3 px-4 text-right font-mono font-bold text-primary-dark whitespace-nowrap">+38.90%<sup>†</sup></td>
                                             <td class="py-3 px-4 text-right font-mono text-gray-400 whitespace-nowrap">—</td>
                                             <td class="py-3 px-4 text-right font-mono font-medium text-gray-700 whitespace-nowrap">+28.70%</td>
-                                            <td class="py-3 px-4 text-xs text-gray-500 font-light leading-relaxed">Portfolio A partial year (12 Jul–31 Dec). SPXTR full year shown; SPXTR over the same partial period: +9.40% (≈ +9.5%).</td>
+                                            <td class="py-3 px-4 text-xs text-gray-500 font-light leading-relaxed"><sup>†</sup> Portfolio A commenced on 12 Jul 2021. Its 2021 return covers 12 Jul–31 Dec 2021, while the SPXTR column shows the full calendar-year return. SPXTR over the same partial period returned +9.40%.</td>
                                         </tr>
                                         <!-- 2022 -->
                                         <tr class="hover:bg-white/80 transition">
@@ -469,9 +469,9 @@
                                         <tr class="hover:bg-white/80 transition">
                                             <td class="py-3 px-4 font-bold text-primary-dark whitespace-nowrap">2024</td>
                                             <td class="py-3 px-4 text-right font-mono font-bold text-primary-dark whitespace-nowrap">+25.10%</td>
-                                            <td class="py-3 px-4 text-right font-mono font-bold text-primary-dark whitespace-nowrap">-16.26%<sup>†</sup></td>
+                                            <td class="py-3 px-4 text-right font-mono font-bold text-primary-dark whitespace-nowrap">-16.26%<sup>‡</sup></td>
                                             <td class="py-3 px-4 text-right font-mono font-medium text-gray-700 whitespace-nowrap">+25.00%</td>
-                                            <td class="py-3 px-4 text-xs text-gray-500 font-light leading-relaxed"><sup>†</sup>Portfolio B partial year (23 Feb–31 Dec). SPXTR full year shown; SPXTR over the same partial period: +16.93% (≈ +17%).</td>
+                                            <td class="py-3 px-4 text-xs text-gray-500 font-light leading-relaxed"><sup>‡</sup> Portfolio B commenced on 23 Feb 2024. Its 2024 return covers 23 Feb–31 Dec 2024, while the SPXTR column shows the full calendar-year return. SPXTR over the same partial period returned +16.93%.</td>
                                         </tr>
                                         <!-- 2025 -->
                                         <tr class="hover:bg-white/80 transition">
@@ -483,45 +483,163 @@
                                         </tr>
                                         <!-- 2026 YTD -->
                                         <tr class="hover:bg-white/80 transition">
-                                            <td class="py-3 px-4 font-bold text-primary-dark whitespace-nowrap">2026 (YTD July)</td>
+                                            <td class="py-3 px-4 font-bold text-primary-dark whitespace-nowrap">
+                                                2026 YTD <span class="text-xs font-normal text-gray-400 block sm:inline sm:ml-1">(to 31 Jul)</span>
+                                            </td>
                                             <td class="py-3 px-4 text-right font-mono font-bold text-primary-dark whitespace-nowrap">+14.40%</td>
                                             <td class="py-3 px-4 text-right font-mono font-bold text-primary-dark whitespace-nowrap">+19.76%</td>
                                             <td class="py-3 px-4 text-right font-mono font-medium text-gray-700 whitespace-nowrap">+10.10%</td>
-                                            <td class="py-3 px-4 text-xs text-gray-500 font-light">As of 31 July 2026.</td>
+                                            <td class="py-3 px-4 text-xs text-gray-500 font-light leading-relaxed">Through 31 July 2026. Benchmark covers same 1 Jan–31 Jul 2026 period.</td>
                                         </tr>
                                     </tbody>
                                     <!-- Highlighted Summary Rows -->
                                     <tfoot class="border-t-2 border-primary-dark/20 bg-[#F5F2EB] font-bold text-primary-dark">
                                         <tr class="border-b border-gray-200">
-                                            <td class="py-3.5 px-4 whitespace-nowrap">Since Inception (Cumulative)</td>
+                                            <td class="py-3.5 px-4 whitespace-nowrap">Cumulative Return</td>
                                             <td class="py-3.5 px-4 text-right font-mono text-base font-extrabold text-primary-dark whitespace-nowrap">+327.92%</td>
                                             <td class="py-3.5 px-4 text-right font-mono text-base font-extrabold text-primary-dark whitespace-nowrap">+96.52%</td>
-                                            <td class="py-3.5 px-4 text-right font-mono text-base font-extrabold text-primary-dark whitespace-nowrap">+116.01%</td>
-                                            <td class="py-3.5 px-4 text-xs font-normal text-gray-500">SPXTR — calendar years 2021–YTD Jul 2026</td>
+                                            <td class="py-3.5 px-4 text-right font-mono text-base font-extrabold text-primary-dark whitespace-nowrap">+116.01%*</td>
+                                            <td rowspan="2" class="py-3.5 px-4 text-xs font-normal text-gray-500 leading-relaxed align-middle">
+                                                * SPXTR market reference covers 1 Jan 2021–31 Jul 2026 and therefore does not share the portfolios’ respective inception dates. See matched-period comparison below.
+                                            </td>
                                         </tr>
-                                        <tr class="border-b border-gray-200">
-                                            <td class="py-3.5 px-4 whitespace-nowrap">Annualised (CAGR)</td>
+                                        <tr>
+                                            <td class="py-3.5 px-4 whitespace-nowrap">Annualised Return</td>
                                             <td class="py-3.5 px-4 text-right font-mono text-base font-extrabold text-primary-dark whitespace-nowrap">33.35%</td>
                                             <td class="py-3.5 px-4 text-right font-mono text-base font-extrabold text-primary-dark whitespace-nowrap">31.97%</td>
-                                            <td class="py-3.5 px-4 text-right font-mono text-base font-extrabold text-primary-dark whitespace-nowrap">14.79%</td>
-                                            <td class="py-3.5 px-4 text-xs font-normal text-gray-500">SPXTR — calendar years 2021–YTD Jul 2026</td>
-                                        </tr>
-                                        <tr class="border-b border-gray-200/60 bg-[#F2EDE2]">
-                                            <td class="py-2.5 px-4 text-xs font-medium text-gray-700 whitespace-nowrap">SPXTR — same period as Portfolio A (12 Jul 2021 – 31 Jul 2026)</td>
-                                            <td class="py-2.5 px-4 text-right font-mono text-xs text-gray-400 whitespace-nowrap">—</td>
-                                            <td class="py-2.5 px-4 text-right font-mono text-xs text-gray-400 whitespace-nowrap">—</td>
-                                            <td class="py-2.5 px-4 text-right font-mono text-sm font-semibold text-primary-dark whitespace-nowrap">+83.64%</td>
-                                            <td class="py-2.5 px-4 text-xs font-normal text-gray-500">Cumulative (CAGR: 12.79%)</td>
-                                        </tr>
-                                        <tr class="bg-[#F2EDE2]">
-                                            <td class="py-2.5 px-4 text-xs font-medium text-gray-700 whitespace-nowrap">SPXTR — same period as Portfolio B (23 Feb 2024 – 31 Jul 2026)</td>
-                                            <td class="py-2.5 px-4 text-right font-mono text-xs text-gray-400 whitespace-nowrap">—</td>
-                                            <td class="py-2.5 px-4 text-right font-mono text-xs text-gray-400 whitespace-nowrap">—</td>
-                                            <td class="py-2.5 px-4 text-right font-mono text-sm font-semibold text-primary-dark whitespace-nowrap">+51.82%</td>
-                                            <td class="py-2.5 px-4 text-xs font-normal text-gray-500">Cumulative (CAGR: 18.71%)</td>
+                                            <td class="py-3.5 px-4 text-right font-mono text-base font-extrabold text-primary-dark whitespace-nowrap">14.79%*</td>
                                         </tr>
                                     </tfoot>
                                 </table>
+                            </div>
+                        </div>
+
+                        <!-- Matched-Period Benchmark Comparison -->
+                        <div class="mt-8 mb-8">
+                            <div class="mb-4">
+                                <h4 class="text-xs font-bold uppercase tracking-wider text-primary-dark flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-gold inline-block"></span>
+                                    Matched-Period Benchmark Comparison
+                                </h4>
+                                <p class="text-xs text-gray-500 font-light mt-1">
+                                    Each portfolio compared with the S&amp;P 500 Total Return Index over the exact same investment period.
+                                </p>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <!-- Card 1: Portfolio A -->
+                                <div class="bg-[#FAF8F5] rounded-xl border border-gray-200/90 shadow-sm p-5 sm:p-6 flex flex-col justify-between">
+                                    <div>
+                                        <!-- Header -->
+                                        <div class="flex items-center justify-between border-b border-gray-200/80 pb-3 mb-4">
+                                            <div>
+                                                <span class="text-[10px] uppercase font-bold text-gold tracking-wider">Inception: 12 Jul 2021</span>
+                                                <h5 class="text-lg font-bold text-primary-dark tracking-tight">Portfolio A</h5>
+                                            </div>
+                                            <span class="text-xs font-mono text-gray-600 bg-white px-2.5 py-1 rounded border border-gray-200/90 shadow-xs">
+                                                12 Jul 2021 – 31 Jul 2026
+                                            </span>
+                                        </div>
+
+                                        <!-- Comparison Metrics -->
+                                        <div class="space-y-3.5">
+                                            <!-- Annualised -->
+                                            <div class="bg-white rounded-lg p-3.5 border border-gray-200/80">
+                                                <div class="text-[10px] uppercase font-bold tracking-wider text-gray-400 mb-1.5">Annualised Return (CAGR)</div>
+                                                <div class="flex items-baseline justify-between">
+                                                    <div>
+                                                        <div class="text-2xl sm:text-3xl font-extrabold font-mono text-primary-dark">33.35%</div>
+                                                        <div class="text-[11px] font-medium text-gold mt-0.5">Portfolio A</div>
+                                                    </div>
+                                                    <div class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-2">vs</div>
+                                                    <div class="text-right">
+                                                        <div class="text-xl sm:text-2xl font-bold font-mono text-gray-600">12.79%</div>
+                                                        <div class="text-[11px] font-medium text-gray-400 mt-0.5">SPXTR Benchmark</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Cumulative -->
+                                            <div class="bg-white rounded-lg p-3.5 border border-gray-200/80">
+                                                <div class="text-[10px] uppercase font-bold tracking-wider text-gray-400 mb-1.5">Cumulative Return</div>
+                                                <div class="flex items-baseline justify-between">
+                                                    <div>
+                                                        <div class="text-2xl sm:text-3xl font-extrabold font-mono text-primary-dark">+327.92%</div>
+                                                        <div class="text-[11px] font-medium text-gold mt-0.5">Portfolio A</div>
+                                                    </div>
+                                                    <div class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-2">vs</div>
+                                                    <div class="text-right">
+                                                        <div class="text-xl sm:text-2xl font-bold font-mono text-gray-600">+83.64%</div>
+                                                        <div class="text-[11px] font-medium text-gray-400 mt-0.5">SPXTR Benchmark</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Footer info -->
+                                    <div class="mt-4 pt-3 border-t border-gray-200/60 flex items-center justify-between text-[11px] text-gray-400">
+                                        <span>Matched duration: 1,845 days (5.05 years)</span>
+                                        <span class="font-mono text-gray-500">ACT/365.25</span>
+                                    </div>
+                                </div>
+
+                                <!-- Card 2: Portfolio B -->
+                                <div class="bg-[#FAF8F5] rounded-xl border border-gray-200/90 shadow-sm p-5 sm:p-6 flex flex-col justify-between">
+                                    <div>
+                                        <!-- Header -->
+                                        <div class="flex items-center justify-between border-b border-gray-200/80 pb-3 mb-4">
+                                            <div>
+                                                <span class="text-[10px] uppercase font-bold text-gold tracking-wider">Inception: 23 Feb 2024</span>
+                                                <h5 class="text-lg font-bold text-primary-dark tracking-tight">Portfolio B</h5>
+                                            </div>
+                                            <span class="text-xs font-mono text-gray-600 bg-white px-2.5 py-1 rounded border border-gray-200/90 shadow-xs">
+                                                23 Feb 2024 – 31 Jul 2026
+                                            </span>
+                                        </div>
+
+                                        <!-- Comparison Metrics -->
+                                        <div class="space-y-3.5">
+                                            <!-- Annualised -->
+                                            <div class="bg-white rounded-lg p-3.5 border border-gray-200/80">
+                                                <div class="text-[10px] uppercase font-bold tracking-wider text-gray-400 mb-1.5">Annualised Return (CAGR)</div>
+                                                <div class="flex items-baseline justify-between">
+                                                    <div>
+                                                        <div class="text-2xl sm:text-3xl font-extrabold font-mono text-primary-dark">31.97%</div>
+                                                        <div class="text-[11px] font-medium text-gold mt-0.5">Portfolio B</div>
+                                                    </div>
+                                                    <div class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-2">vs</div>
+                                                    <div class="text-right">
+                                                        <div class="text-xl sm:text-2xl font-bold font-mono text-gray-600">18.71%</div>
+                                                        <div class="text-[11px] font-medium text-gray-400 mt-0.5">SPXTR Benchmark</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Cumulative -->
+                                            <div class="bg-white rounded-lg p-3.5 border border-gray-200/80">
+                                                <div class="text-[10px] uppercase font-bold tracking-wider text-gray-400 mb-1.5">Cumulative Return</div>
+                                                <div class="flex items-baseline justify-between">
+                                                    <div>
+                                                        <div class="text-2xl sm:text-3xl font-extrabold font-mono text-primary-dark">+96.52%</div>
+                                                        <div class="text-[11px] font-medium text-gold mt-0.5">Portfolio B</div>
+                                                    </div>
+                                                    <div class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-2">vs</div>
+                                                    <div class="text-right">
+                                                        <div class="text-xl sm:text-2xl font-bold font-mono text-gray-600">+51.82%</div>
+                                                        <div class="text-[11px] font-medium text-gray-400 mt-0.5">SPXTR Benchmark</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Footer info -->
+                                    <div class="mt-4 pt-3 border-t border-gray-200/60 flex items-center justify-between text-[11px] text-gray-400">
+                                        <span>Matched duration: 889 days (2.43 years)</span>
+                                        <span class="font-mono text-gray-500">ACT/365.25</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -534,12 +652,12 @@
                             2. Portfolio B:
                                - Compounded yearly returns: (1-0.1626)*(1+0.9596)*(1+0.1976) - 1 = +96.52%
                                - Days: 23 Feb 2024 to 31 Jul 2026 = 889 days. Years = 889 / 365.25 = 2.433949
-                               - CAGR: 31.97% (or 31.99% under ACT/365.25)
+                               - CAGR: 31.97%
                             3. SPXTR Benchmark:
-                               - Calendar compounding: (1+0.287)*(1-0.181)*(1+0.263)*(1+0.25)*(1+0.179)*(1+0.101) - 1 = +116.01%
+                               - Calendar compounding (1 Jan 2021 - 31 Jul 2026): (1+0.287)*(1-0.181)*(1+0.263)*(1+0.25)*(1+0.179)*(1+0.101) - 1 = +116.01%
                                - Calendar CAGR (5.5833 yrs): (1+1.1601)^(1/5.5833) - 1 = 14.79%
-                               - Partial 2021 (12 Jul - 31 Dec 2021): 9986.70 / 9128.22 - 1 = +9.40% (approx +9.5%)
-                               - Partial 2024 (23 Feb - 31 Dec 2024): 12911.82 / 11041.90 - 1 = +16.93% (approx +17%)
+                               - Partial 2021 (12 Jul - 31 Dec 2021): 9986.70 / 9128.22 - 1 = +9.40%
+                               - Partial 2024 (23 Feb - 31 Dec 2024): 12911.82 / 11041.90 - 1 = +16.93%
                                - Matched Portfolio A (12 Jul 2021 - 31 Jul 2026): 16763.42 / 9128.22 - 1 = +83.64%, CAGR: 12.79%
                                - Matched Portfolio B (23 Feb 2024 - 31 Jul 2026): 16763.42 / 11041.90 - 1 = +51.82%, CAGR: 18.71%
                         -->
@@ -558,13 +676,15 @@
                                 </svg>
                             </summary>
                             <div class="px-6 pb-5 text-xs text-gray-600 border-t border-gray-200/60 pt-4 leading-relaxed">
-                                <ul class="space-y-2 list-disc list-inside text-gray-600 font-light">
-                                    <li><strong class="font-medium text-gray-800">Time-Weighted Return (TWR):</strong> Performance figures are calculated on a Time-Weighted Return basis to neutralize the impact of capital additions and withdrawals.</li>
-                                    <li><strong class="font-medium text-gray-800">Inception Periods:</strong> Portfolio A inception 12 July 2021; Portfolio B inception 23 February 2024. First-year portfolio figures are partial periods. Yearly SPXTR figures are full calendar years for reference; like-for-like comparison uses the matched-period benchmark rows.</li>
-                                    <li><strong class="font-medium text-gray-800">Annualisation:</strong> CAGR is calculated from cumulative TWR using an actual/365.25 day count from each portfolio's inception date to 31 July 2026.</li>
-                                    <li><strong class="font-medium text-gray-800">Benchmark:</strong> Comparative index shown is the S&P 500 Total Return Index (<code class="bg-gray-200/60 text-gray-800 px-1 py-0.5 rounded font-mono">SPXTR</code>), which incorporates gross dividend reinvestment.</li>
-                                    <li><strong class="font-medium text-gray-800">Fees & Audit:</strong> Returns are gross of management and performance fees and have not been independently audited or verified.</li>
-                                    <li><strong class="font-medium text-gray-800">Proprietary Capital Disclaimer:</strong> The returns presented above reflect personal proprietary account management by the founder prior to and alongside formal partnership operations. Historical personal performance is provided for track record transparency and does not guarantee future strategy returns.</li>
+                                <ul class="space-y-2.5 list-disc list-inside text-gray-600 font-light">
+                                    <li><strong class="font-medium text-gray-800">Time-Weighted Return (TWR):</strong> Performance figures are calculated on a Time-Weighted Return basis to neutralise the impact of capital additions and withdrawals.</li>
+                                    <li><strong class="font-medium text-gray-800">Inception Periods:</strong> Portfolio A commenced on 12 July 2021. Portfolio B commenced on 23 February 2024. First-year portfolio figures therefore represent partial-year performance.</li>
+                                    <li><strong class="font-medium text-gray-800">Calendar-Year Benchmark:</strong> Annual SPXTR figures in the main table represent full calendar-year returns for market context, except 2026 YTD. For inception years, matched partial-period benchmark returns are disclosed separately.</li>
+                                    <li><strong class="font-medium text-gray-800">Annualisation:</strong> Annualised returns are calculated from cumulative TWR using an actual/365.25 day-count convention from each portfolio’s inception date through 31 July 2026.</li>
+                                    <li><strong class="font-medium text-gray-800">Benchmark:</strong> The comparative index is the S&P 500 Total Return Index (<code class="bg-gray-200/60 text-gray-800 px-1 py-0.5 rounded font-mono">SPXTR</code>), which incorporates gross dividend reinvestment.</li>
+                                    <li><strong class="font-medium text-gray-800">Matched-Period Comparison:</strong> The dedicated comparison section uses SPXTR returns calculated over the exact same dates as each respective portfolio.</li>
+                                    <li><strong class="font-medium text-gray-800">Audit Status:</strong> Performance figures have not been independently audited or verified.</li>
+                                    <li><strong class="font-medium text-gray-800">Proprietary Capital Disclaimer:</strong> The returns shown reflect the founder’s personal proprietary account management prior to and alongside formal partnership operations. These portfolios were not fee-charging investment mandates. Historical personal performance is provided for track-record transparency and does not guarantee future strategy results.</li>
                                 </ul>
                             </div>
                         </details>
