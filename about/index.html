@@ -433,11 +433,11 @@
                                 <table class="w-full text-left border-collapse min-w-[640px]">
                                     <thead>
                                         <tr class="bg-primary-dark text-white text-xs uppercase tracking-wider border-b border-primary-dark">
-                                            <th scope="col" class="py-3.5 px-4 font-bold whitespace-nowrap">Year</th>
-                                            <th scope="col" class="py-3.5 px-4 text-right font-bold text-gold whitespace-nowrap">Portfolio A</th>
-                                            <th scope="col" class="py-3.5 px-4 text-right font-bold text-gold whitespace-nowrap">Portfolio B</th>
-                                            <th scope="col" class="py-3.5 px-4 text-right font-bold whitespace-nowrap">S&P 500 TR (SPXTR)</th>
-                                            <th scope="col" class="py-3.5 px-4 font-bold whitespace-nowrap min-w-[260px]">Note</th>
+                                            <th scope="col" class="py-3.5 px-4 font-bold text-center whitespace-nowrap">Year</th>
+                                            <th scope="col" class="py-3.5 px-4 font-bold text-center text-gold whitespace-nowrap">Portfolio A</th>
+                                            <th scope="col" class="py-3.5 px-4 font-bold text-center text-gold whitespace-nowrap">Portfolio B</th>
+                                            <th scope="col" class="py-3.5 px-4 font-bold text-center whitespace-nowrap">S&P 500 TR (SPXTR)</th>
+                                            <th scope="col" class="py-3.5 px-4 font-bold text-center whitespace-nowrap min-w-[260px]">Note</th>
                                         </tr>
                                     </thead>
                                     <tbody class="divide-y divide-gray-200/80 text-sm text-primary-dark">
@@ -514,130 +514,102 @@
                             </div>
                         </div>
 
-                        <!-- Matched-Period Benchmark Comparison -->
-                        <div class="mt-8 mb-8">
-                            <div class="mb-4">
+                        <!-- Matched-Period Benchmark Comparison (Compact) -->
+                        <div class="mt-6 mb-6">
+                            <div class="mb-3">
                                 <h4 class="text-xs font-bold uppercase tracking-wider text-primary-dark flex items-center gap-2">
-                                    <span class="w-2 h-2 rounded-full bg-gold inline-block"></span>
+                                    <span class="w-1.5 h-1.5 rounded-full bg-gold inline-block"></span>
                                     Matched-Period Benchmark Comparison
                                 </h4>
-                                <p class="text-xs text-gray-500 font-light mt-1">
+                                <p class="text-[11px] text-gray-500 font-light mt-0.5">
                                     Each portfolio compared with the S&amp;P 500 Total Return Index over the exact same investment period.
                                 </p>
                             </div>
 
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <!-- Card 1: Portfolio A -->
-                                <div class="bg-[#FAF8F5] rounded-xl border border-gray-200/90 shadow-sm p-5 sm:p-6 flex flex-col justify-between">
-                                    <div>
-                                        <!-- Header -->
-                                        <div class="flex items-center justify-between border-b border-gray-200/80 pb-3 mb-4">
-                                            <div>
-                                                <span class="text-[10px] uppercase font-bold text-gold tracking-wider">Inception: 12 Jul 2021</span>
-                                                <h5 class="text-lg font-bold text-primary-dark tracking-tight">Portfolio A</h5>
+                                <div class="bg-[#FAF8F5] rounded-xl border border-gray-200/90 shadow-sm p-4">
+                                    <!-- Card Header -->
+                                    <div class="flex items-center justify-between border-b border-gray-200/80 pb-2.5 mb-3">
+                                        <div class="flex items-center space-x-2">
+                                            <span class="w-2 h-2 rounded-full bg-gold"></span>
+                                            <h5 class="text-sm font-bold text-primary-dark tracking-tight">Portfolio A</h5>
+                                        </div>
+                                        <span class="text-[11px] font-mono text-gray-500 bg-white px-2.5 py-0.5 rounded border border-gray-200/80 shadow-2xs">
+                                            12 Jul 2021 – 31 Jul 2026
+                                        </span>
+                                    </div>
+
+                                    <!-- Comparison Rows -->
+                                    <div class="space-y-2 text-xs">
+                                        <!-- Row 1: Annualised Return -->
+                                        <div class="flex items-center justify-between bg-white px-3 py-2 rounded-lg border border-gray-200/70">
+                                            <span class="text-gray-500 font-medium text-[11px]">Annualised (CAGR)</span>
+                                            <div class="flex items-center space-x-2.5 font-mono">
+                                                <span class="font-bold text-sm text-primary-dark">33.35%</span>
+                                                <span class="text-[10px] text-gray-400 uppercase font-sans">vs</span>
+                                                <span class="text-xs text-gray-500">12.79% <span class="text-[10px] text-gray-400 font-sans">SPXTR</span></span>
                                             </div>
-                                            <span class="text-xs font-mono text-gray-600 bg-white px-2.5 py-1 rounded border border-gray-200/90 shadow-xs">
-                                                12 Jul 2021 – 31 Jul 2026
-                                            </span>
                                         </div>
 
-                                        <!-- Comparison Metrics -->
-                                        <div class="space-y-3.5">
-                                            <!-- Annualised -->
-                                            <div class="bg-white rounded-lg p-3.5 border border-gray-200/80">
-                                                <div class="text-[10px] uppercase font-bold tracking-wider text-gray-400 mb-1.5">Annualised Return (CAGR)</div>
-                                                <div class="flex items-baseline justify-between">
-                                                    <div>
-                                                        <div class="text-2xl sm:text-3xl font-extrabold font-mono text-primary-dark">33.35%</div>
-                                                        <div class="text-[11px] font-medium text-gold mt-0.5">Portfolio A</div>
-                                                    </div>
-                                                    <div class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-2">vs</div>
-                                                    <div class="text-right">
-                                                        <div class="text-xl sm:text-2xl font-bold font-mono text-gray-600">12.79%</div>
-                                                        <div class="text-[11px] font-medium text-gray-400 mt-0.5">SPXTR Benchmark</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Cumulative -->
-                                            <div class="bg-white rounded-lg p-3.5 border border-gray-200/80">
-                                                <div class="text-[10px] uppercase font-bold tracking-wider text-gray-400 mb-1.5">Cumulative Return</div>
-                                                <div class="flex items-baseline justify-between">
-                                                    <div>
-                                                        <div class="text-2xl sm:text-3xl font-extrabold font-mono text-primary-dark">+327.92%</div>
-                                                        <div class="text-[11px] font-medium text-gold mt-0.5">Portfolio A</div>
-                                                    </div>
-                                                    <div class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-2">vs</div>
-                                                    <div class="text-right">
-                                                        <div class="text-xl sm:text-2xl font-bold font-mono text-gray-600">+83.64%</div>
-                                                        <div class="text-[11px] font-medium text-gray-400 mt-0.5">SPXTR Benchmark</div>
-                                                    </div>
-                                                </div>
+                                        <!-- Row 2: Cumulative Return -->
+                                        <div class="flex items-center justify-between bg-white px-3 py-2 rounded-lg border border-gray-200/70">
+                                            <span class="text-gray-500 font-medium text-[11px]">Cumulative Return</span>
+                                            <div class="flex items-center space-x-2.5 font-mono">
+                                                <span class="font-bold text-sm text-primary-dark">+327.92%</span>
+                                                <span class="text-[10px] text-gray-400 uppercase font-sans">vs</span>
+                                                <span class="text-xs text-gray-500">+83.64% <span class="text-[10px] text-gray-400 font-sans">SPXTR</span></span>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <!-- Footer info -->
-                                    <div class="mt-4 pt-3 border-t border-gray-200/60 flex items-center justify-between text-[11px] text-gray-400">
-                                        <span>Matched duration: 1,845 days (5.05 years)</span>
-                                        <span class="font-mono text-gray-500">ACT/365.25</span>
+                                    <!-- Card Footer -->
+                                    <div class="mt-2.5 pt-2 border-t border-gray-200/60 flex items-center justify-between text-[10px] text-gray-400">
+                                        <span>Matched window: 1,845 days (5.05 yrs)</span>
+                                        <span class="font-mono text-gray-400">ACT/365.25</span>
                                     </div>
                                 </div>
 
                                 <!-- Card 2: Portfolio B -->
-                                <div class="bg-[#FAF8F5] rounded-xl border border-gray-200/90 shadow-sm p-5 sm:p-6 flex flex-col justify-between">
-                                    <div>
-                                        <!-- Header -->
-                                        <div class="flex items-center justify-between border-b border-gray-200/80 pb-3 mb-4">
-                                            <div>
-                                                <span class="text-[10px] uppercase font-bold text-gold tracking-wider">Inception: 23 Feb 2024</span>
-                                                <h5 class="text-lg font-bold text-primary-dark tracking-tight">Portfolio B</h5>
+                                <div class="bg-[#FAF8F5] rounded-xl border border-gray-200/90 shadow-sm p-4">
+                                    <!-- Card Header -->
+                                    <div class="flex items-center justify-between border-b border-gray-200/80 pb-2.5 mb-3">
+                                        <div class="flex items-center space-x-2">
+                                            <span class="w-2 h-2 rounded-full bg-gold"></span>
+                                            <h5 class="text-sm font-bold text-primary-dark tracking-tight">Portfolio B</h5>
+                                        </div>
+                                        <span class="text-[11px] font-mono text-gray-500 bg-white px-2.5 py-0.5 rounded border border-gray-200/80 shadow-2xs">
+                                            23 Feb 2024 – 31 Jul 2026
+                                        </span>
+                                    </div>
+
+                                    <!-- Comparison Rows -->
+                                    <div class="space-y-2 text-xs">
+                                        <!-- Row 1: Annualised Return -->
+                                        <div class="flex items-center justify-between bg-white px-3 py-2 rounded-lg border border-gray-200/70">
+                                            <span class="text-gray-500 font-medium text-[11px]">Annualised (CAGR)</span>
+                                            <div class="flex items-center space-x-2.5 font-mono">
+                                                <span class="font-bold text-sm text-primary-dark">31.97%</span>
+                                                <span class="text-[10px] text-gray-400 uppercase font-sans">vs</span>
+                                                <span class="text-xs text-gray-500">18.71% <span class="text-[10px] text-gray-400 font-sans">SPXTR</span></span>
                                             </div>
-                                            <span class="text-xs font-mono text-gray-600 bg-white px-2.5 py-1 rounded border border-gray-200/90 shadow-xs">
-                                                23 Feb 2024 – 31 Jul 2026
-                                            </span>
                                         </div>
 
-                                        <!-- Comparison Metrics -->
-                                        <div class="space-y-3.5">
-                                            <!-- Annualised -->
-                                            <div class="bg-white rounded-lg p-3.5 border border-gray-200/80">
-                                                <div class="text-[10px] uppercase font-bold tracking-wider text-gray-400 mb-1.5">Annualised Return (CAGR)</div>
-                                                <div class="flex items-baseline justify-between">
-                                                    <div>
-                                                        <div class="text-2xl sm:text-3xl font-extrabold font-mono text-primary-dark">31.97%</div>
-                                                        <div class="text-[11px] font-medium text-gold mt-0.5">Portfolio B</div>
-                                                    </div>
-                                                    <div class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-2">vs</div>
-                                                    <div class="text-right">
-                                                        <div class="text-xl sm:text-2xl font-bold font-mono text-gray-600">18.71%</div>
-                                                        <div class="text-[11px] font-medium text-gray-400 mt-0.5">SPXTR Benchmark</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Cumulative -->
-                                            <div class="bg-white rounded-lg p-3.5 border border-gray-200/80">
-                                                <div class="text-[10px] uppercase font-bold tracking-wider text-gray-400 mb-1.5">Cumulative Return</div>
-                                                <div class="flex items-baseline justify-between">
-                                                    <div>
-                                                        <div class="text-2xl sm:text-3xl font-extrabold font-mono text-primary-dark">+96.52%</div>
-                                                        <div class="text-[11px] font-medium text-gold mt-0.5">Portfolio B</div>
-                                                    </div>
-                                                    <div class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-2">vs</div>
-                                                    <div class="text-right">
-                                                        <div class="text-xl sm:text-2xl font-bold font-mono text-gray-600">+51.82%</div>
-                                                        <div class="text-[11px] font-medium text-gray-400 mt-0.5">SPXTR Benchmark</div>
-                                                    </div>
-                                                </div>
+                                        <!-- Row 2: Cumulative Return -->
+                                        <div class="flex items-center justify-between bg-white px-3 py-2 rounded-lg border border-gray-200/70">
+                                            <span class="text-gray-500 font-medium text-[11px]">Cumulative Return</span>
+                                            <div class="flex items-center space-x-2.5 font-mono">
+                                                <span class="font-bold text-sm text-primary-dark">+96.52%</span>
+                                                <span class="text-[10px] text-gray-400 uppercase font-sans">vs</span>
+                                                <span class="text-xs text-gray-500">+51.82% <span class="text-[10px] text-gray-400 font-sans">SPXTR</span></span>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <!-- Footer info -->
-                                    <div class="mt-4 pt-3 border-t border-gray-200/60 flex items-center justify-between text-[11px] text-gray-400">
-                                        <span>Matched duration: 889 days (2.43 years)</span>
-                                        <span class="font-mono text-gray-500">ACT/365.25</span>
+                                    <!-- Card Footer -->
+                                    <div class="mt-2.5 pt-2 border-t border-gray-200/60 flex items-center justify-between text-[10px] text-gray-400">
+                                        <span>Matched window: 889 days (2.43 yrs)</span>
+                                        <span class="font-mono text-gray-400">ACT/365.25</span>
                                     </div>
                                 </div>
                             </div>
