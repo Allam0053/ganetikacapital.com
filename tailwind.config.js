@@ -13,6 +13,10 @@ module.exports = {
   theme: {
     extend: {
       // Ganetika Style Guide v1.4 design tokens
+      fontFamily: {
+        serif: ['"EB Garamond"', 'serif'],
+        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+      },
       colors: {
         'primary-dark': '#0E233D', // Navy Deep
         navy: '#10263E',

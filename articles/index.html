@@ -43,7 +43,7 @@
         #main-header {
             background-color: #FAF8F5;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            border-bottom: 1px solid #DDDAD5;
+            border-bottom: 1px solid rgba(196, 152, 79, 0.55); /* thin gold line */
         }
         #main-header .nav-link { color: #0E233D; }
         #main-header .logo-text { color: #0E233D; }
@@ -170,7 +170,7 @@
             <div class="container mx-auto px-6">
                 
                 <div class="max-w-3xl mx-auto text-center mb-16">
-                    <h1 class="text-4xl md:text-5xl font-bold text-primary-dark mb-4">Investment Insights & Memos</h1>
+                    <h1 class="text-4xl md:text-5xl font-bold text-primary-dark mb-4">Investment insights &amp; <em class="not-italic text-gold">memos</em></h1>
                     <p class="text-lg text-gray-600">Our latest thinking on global markets, business ownership, and long-term capital allocation principles.</p>
                 </div>
 
@@ -211,7 +211,7 @@
                 
                 <!-- Footer Logo -->
                 <div class="col-span-2 lg:col-span-1">
-                    <h3 class="text-xl font-bold text-white mb-4">Ganetika Capital Partners</h3>
+                    <img src="/logo-stacked-white.webp" srcset="/logo-stacked-white.webp 1x, /logo-stacked-white@2x.png 2x" alt="Ganetika Capital Partners" class="h-24 w-auto mb-4" loading="lazy">
                     <p class="text-sm text-gray-400">To Own the World, Even Just a Little</p>
                 </div>
                 
@@ -341,8 +341,8 @@
                     // Set hero image
                     const imgEl = document.getElementById('article-image');
                     const firstTag = post.tag ? post.tag.split(',')[0] : 'Insight';
-                    imgEl.src = `https://placehold.co/1200x600/E2E8F0/1A2634?text=${encodeURIComponent(firstTag)}`;
-                    imgEl.alt = post.title;
+                    imgEl.src = '/insight-plate.svg';
+                    imgEl.alt = '';
 
                     // Format and render content body (basic Markdown-like parser)
                     const bodyEl = document.getElementById('article-body');
@@ -369,7 +369,7 @@
                     const bodyEl = document.getElementById('article-body');
                     bodyEl.innerHTML = `
                         <div class="text-center py-12">
-                            <h3 class="text-xl font-bold text-red-600 mb-2">Error Loading Article</h3>
+                            <h3 class="text-xl font-bold text-red-600 mb-2">Error loading article</h3>
                             <p class="text-gray-500 mb-6">${err.message || 'Unable to retrieve article content.'}</p>
                             <a href="/articles" class="py-2 px-4 bg-primary-dark text-white rounded-lg hover:bg-gold transition text-sm">Return to All Memos</a>
                         </div>
@@ -424,7 +424,7 @@
                         
                         const cardHtml = `
                         <div class="bg-white rounded-lg overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition duration-200 group flex flex-col h-full">
-                            <img src="https://placehold.co/600x400/E2E8F0/1A2634?text=${capitalize(firstTag)}" alt="${escapeHtml(post.title)}" class="w-full h-48 object-cover group-hover:opacity-90 transition">
+                            <img src="/insight-plate.svg" alt="" class="w-full h-48 object-cover group-hover:opacity-90 transition">
                             <div class="p-6 flex flex-col flex-grow">
                                 <p class="text-xs text-gold font-semibold uppercase tracking-wider mb-2">${capitalize(firstTag)}</p>
                                 <h3 class="text-xl font-bold text-primary-dark mb-3 line-clamp-2">${escapeHtml(post.title)}</h3>

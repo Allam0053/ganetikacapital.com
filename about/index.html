@@ -43,7 +43,7 @@
         #main-header {
             background-color: #FAF8F5;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            border-bottom: 1px solid #DDDAD5;
+            border-bottom: 1px solid rgba(196, 152, 79, 0.55); /* thin gold line */
         }
         #main-header .nav-link { color: #0E233D; }
         #main-header .logo-text { color: #0E233D; }
@@ -96,7 +96,7 @@
         
         <!-- Page Title Header --><section class="bg-primary-dark text-white py-16">
             <div class="container mx-auto px-6">
-                <h1 class="text-4xl md:text-5xl font-bold">About Us</h1>
+                <h1 class="text-4xl md:text-5xl font-bold">About us</h1>
                 <p class="text-lg md:text-xl text-gray-300 mt-2">Our philosophy, our principles, and our partnership.</p>
             </div>
         </section>
@@ -107,7 +107,7 @@
                 <div class="max-w-3xl mx-auto">
                     <h2 class="text-3xl md:text-4xl font-bold text-primary-dark mb-6">Ganetika Capital Partners</h2>
                     <div class="text-lg text-gray-700 space-y-6 leading-relaxed">
-                        <p class="text-justify">
+                        <p class="text-left md:text-justify">
                             Ganetika Capital Partners is a private investment partnership focused on the long-term ownership of high-quality businesses. The partnership invests in both Indonesian and global markets, seeking opportunities where price and value diverge. Our approach is rooted in sound business judgment, disciplined capital allocation, and a genuine partnership ethos. Ganetika Capital Partners currently consists of one General Partner and four Limited Partners.
                         </p>
                     </div>
@@ -121,7 +121,7 @@
                 
                 <div class="max-w-3xl mx-auto text-center mb-16">
                     <p class="text-sm text-gold font-semibold uppercase tracking-wider mb-2">Structural Alignment</p>
-                    <h2 class="text-3xl md:text-4xl font-bold text-primary-dark mb-4">The Partnership Structure</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary-dark mb-4">The partnership <em class="not-italic text-gold">structure</em></h2>
                     <p class="text-lg text-gray-600 leading-relaxed">Unlike traditional fund managers who separate their own wealth from their clients, Ganetika is structured so that the General Partner and our four Limited Partners invest side-by-side in the exact same fund.</p>
                 </div>
 
@@ -304,19 +304,18 @@
         
         <!-- Core Principles Section (from homepage) --><section class="bg-primary-dark text-white py-20">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold text-center mb-4">Our Core Principles</h2>
+                <h2 class="text-3xl font-bold text-center mb-4">Our core <em class="not-italic text-gold-light">principles</em></h2>
                 <p class="text-center text-base md:text-lg text-gray-300 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
                     Instead of treating stocks as paper tickers, we see shares as fractional ownership of real businesses across geographies and industries—positioned to harvest the long-term growth of global capitalism.
                 </p>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
                     
                     <!-- Principle 1: Disciplined Approach (Magnifying Glass) --><div class="text-center">
-                        <div class="flex justify-center mb-4">
-                            <svg class="h-10 w-10 text-gold" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                            </svg>
+                        <div class="flex flex-col items-center mb-5" aria-hidden="true">
+                            <span class="font-serif text-4xl text-gold leading-none">I</span>
+                            <span class="block w-10 h-px bg-gold/60 mt-4"></span>
                         </div>
-                        <div class="h-16"> <!-- Fixed height container for title --><h3 class="text-xl font-bold text-gold mb-3">Disciplined Approach</h3>
+                        <div class="h-16"> <!-- Fixed height container for title --><h3 class="text-xl font-bold text-gold mb-3">Disciplined approach</h3>
                         </div>
                         <p class="text-gray-300 text-sm">
                             We invest with a focus on intrinsic value and a clear margin of safety. Every decision is guided by business fundamentals, sound reasoning, and an insistence on rational capital allocation.
@@ -324,12 +323,11 @@
                     </div>
 
                     <!-- Principle 2: Long-Term Horizon (Growing Stock Price Graph) --><div class="text-center">
-                        <div class="flex justify-center mb-4">
-                            <svg class="h-10 w-10 text-gold" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" />
-                            </svg>
+                        <div class="flex flex-col items-center mb-5" aria-hidden="true">
+                            <span class="font-serif text-4xl text-gold leading-none">II</span>
+                            <span class="block w-10 h-px bg-gold/60 mt-4"></span>
                         </div>
-                        <div class="h-16"> <!-- Fixed height container for title --><h3 class="text-xl font-bold text-gold mb-3">Long-Term Horizon</h3>
+                        <div class="h-16"> <!-- Fixed height container for title --><h3 class="text-xl font-bold text-gold mb-3">Long-term horizon</h3>
                         </div>
                         <p class="text-gray-300 text-sm">
                             We think like business owners, not traders. Our goal is to hold outstanding companies that can compound value for decades, allowing time and quality to do the heavy lifting.
@@ -337,12 +335,11 @@
                     </div>
 
                     <!-- Principle 3: Partnership Mindset (Three People) --><div class="text-center">
-                        <div class="flex justify-center mb-4">
-                            <svg class="h-10 w-10 text-gold" fill="currentColor" stroke-width="5px" style="stroke-width: 5; stroke: currentColor;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
-                                <path d="M250.73,109.69l-25.53-51a12,12,0,0,0-16.1-5.37L182.88,66.38,129,52.14a3.92,3.92,0,0,0-2,0L73.12,66.38,46.9,53.27a12,12,0,0,0-16.1,5.37L5.27,109.69a12,12,0,0,0,5.37,16.1l27.29,13.65,55.75,39.82a3.87,3.87,0,0,0,1.35.62l64,16a4,4,0,0,0,3.8-1l55.54-55.54,27-13.5a12,12,0,0,0,5.37-16.1Zm-51,36.95-37.2-29.8a4,4,0,0,0-5.34.3c-19.49,19.64-41.34,17.11-55.29,8.2a4.07,4.07,0,0,1-1.85-3,3.91,3.91,0,0,1,1.11-3.21L145.62,76h35.91l29.6,59.21ZM12.21,116.32a4,4,0,0,1,.22-3L38,62.22h0A4,4,0,0,1,41.54,60a4,4,0,0,1,1.78.43l24,12L38.21,130.64l-24-12A4,4,0,0,1,12.21,116.32Zm146.56,71.25L97.71,172.3l-52.6-37.57L75.45,74,128,60.14,157.72,68H144a4,4,0,0,0-2.79,1.13l-45.7,44.33a12,12,0,0,0,2.06,18.62c19.88,12.71,44.13,10,62.66-6.81L194,152.33Zm85-71.25a4,4,0,0,1-2,2.32l-24,12L188.68,72.43l24-12A4,4,0,0,1,218,62.22l25.53,51.05A4,4,0,0,1,243.79,116.32ZM127.94,217a4,4,0,0,1-3.88,3,4.09,4.09,0,0,1-1-.12L81.38,209.45a4,4,0,0,1-1.36-.62L53.68,190a4,4,0,0,1,4.65-6.51l25.72,18.37,41,10.25A4,4,0,0,1,127.94,217Z"></path>
-                            </svg>
+                        <div class="flex flex-col items-center mb-5" aria-hidden="true">
+                            <span class="font-serif text-4xl text-gold leading-none">III</span>
+                            <span class="block w-10 h-px bg-gold/60 mt-4"></span>
                         </div>
-                        <div class="h-16"> <!-- Fixed height container for title --><h3 class="text-xl font-bold text-gold mb-3">Partnership Mindset</h3>
+                        <div class="h-16"> <!-- Fixed height container for title --><h3 class="text-xl font-bold text-gold mb-3">Partnership mindset</h3>
                         </div>
                         <p class="text-gray-300 text-sm">
                             We treat our partners’ capital as our own. The General Partner invests alongside the Limited Partners, ensuring alignment of interests and a shared commitment to long-term results.
@@ -350,14 +347,11 @@
                     </div>
 
                     <!-- Principle 4: Local and Global (Globe) --><div class="text-center">
-                        <div class="flex justify-center mb-4">
-                            <svg class="h-10 w-10 text-gold" fill="currentColor" style="stroke-width: .5; stroke: currentColor;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <g id="Globe">
-                                    <path d="M14.645,2.428a8.1,8.1,0,0,0-1.61-.3,9.332,9.332,0,0,0-3.6.28l-.07.02a9.928,9.928,0,0,0,.01,19.15,9.091,9.091,0,0,0,2.36.34,1.274,1.274,0,0,0,.27.02,9.65,9.65,0,0,0,2.63-.36,9.931,9.931,0,0,0,.01-19.15Zm-.27.96a8.943,8.943,0,0,1,5.84,5.11h-4.26a13.778,13.778,0,0,0-2.74-5.35A8.254,8.254,0,0,1,14.375,3.388Zm-2.37-.09a12.78,12.78,0,0,1,2.91,5.2H9.075A12.545,12.545,0,0,1,12.005,3.3Zm3.16,6.2a13.193,13.193,0,0,1,0,5.01H8.845a12.185,12.185,0,0,1-.25-2.5,12.353,12.353,0,0,1,.25-2.51Zm-5.6-6.09.07-.02a9.152,9.152,0,0,1,1.16-.23A13.618,13.618,0,0,0,8.045,8.5H3.8A9,9,0,0,1,9.565,3.408Zm-6.5,8.6a8.71,8.71,0,0,1,.37-2.51h4.39a13.95,13.95,0,0,0-.23,2.51,13.757,13.757,0,0,0,.23,2.5H3.435A8.591,8.591,0,0,1,3.065,12.008Zm6.57,8.61a8.9,8.9,0,0,1-5.84-5.11h4.24a13.632,13.632,0,0,0,2.77,5.35A8.1,8.1,0,0,1,9.635,20.618Zm-.56-5.11h5.84a12.638,12.638,0,0,1-2.91,5.21A12.872,12.872,0,0,1,9.075,15.508Zm5.3,5.11a11.551,11.551,0,0,1-1.17.24,13.8,13.8,0,0,0,2.75-5.35h4.26A8.924,8.924,0,0,1,14.375,20.618Zm1.8-6.11a13.611,13.611,0,0,0,0-5.01h4.39a8.379,8.379,0,0,1,.37,2.51,8.687,8.687,0,0,1-.36,2.5Z"></path>
-                                </g>
-                            </svg>
+                        <div class="flex flex-col items-center mb-5" aria-hidden="true">
+                            <span class="font-serif text-4xl text-gold leading-none">IV</span>
+                            <span class="block w-10 h-px bg-gold/60 mt-4"></span>
                         </div>
-                        <div class="h-16"> <!-- Fixed height container for title --><h3 class="text-xl font-bold text-gold mb-3">Local and Global</h3>
+                        <div class="h-16"> <!-- Fixed height container for title --><h3 class="text-xl font-bold text-gold mb-3">Local and global</h3>
                         </div>
                         <p class="text-gray-300 text-sm">
                             While based in Indonesia, our search for value knows no borders. We invest where enduring businesses and sensible prices meet—whether at home or abroad.
@@ -374,12 +368,12 @@
                         <img src="/GantanEtikaMurty.webp" alt="Gantan Etika Murty, General Partner" class="rounded-lg shadow-xl w-full">
                     </div>
                     <!-- GP Bio --><div class="md:col-span-2">
-                        <h2 class="text-3xl md:text-4xl font-bold text-primary-dark mb-4">About the General Partner</h2>
+                        <h2 class="text-3xl md:text-4xl font-bold text-primary-dark mb-4">About the <em class="not-italic text-gold">General Partner</em></h2>
                         
                         <h3 class="text-2xl font-semibold text-primary-dark">Gantan Etika Murty</h3>
                         <p class="text-lg text-gold font-medium mb-6">Founder & General Partner</p>
 
-                        <p class="text-lg text-gray-700 leading-relaxed text-justify">
+                        <p class="text-lg text-gray-700 leading-relaxed text-left md:text-justify">
                             Gantan holds an Honours degree in Electrical-Mechatronics Engineering from UTM and a Master’s in Management from Imperial College London. He began investing in 2021, guided by a long-term, fundamentals-focused philosophy shaped by the teachings of disciplined investors such as Warren Buffett, Charlie Munger, Philip Fisher, Howard Marks, Peter Lynch, Joel Greenblatt, Seth Klarman, and Li Lu.
                         </p>
                         <div class="mt-6 pt-6 border-t border-gray-200 grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -399,7 +393,7 @@
                 <div id="founders-track-record" class="mt-16 pt-16 border-t border-gray-200">
                     <div class="max-w-6xl mx-auto text-left mb-8">
                         <p class="text-xs text-gold font-bold uppercase tracking-widest mb-1">Proprietary Performance</p>
-                        <h3 class="text-3xl md:text-4xl font-bold text-primary-dark mb-3">Founder’s Track Record</h3>
+                        <h3 class="text-3xl md:text-4xl font-bold text-primary-dark mb-3">Founder’s track <em class="not-italic text-gold">record</em></h3>
                         <p class="text-gray-600 text-base md:text-lg leading-relaxed font-light">
                             Historical performance of personally managed proprietary capital prior to and alongside fund operations.
                         </p>
@@ -651,7 +645,7 @@
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12">
                 
                 <!-- Logo --><div class="col-span-2 lg:col-span-1">
-                    <h3 class="text-xl font-bold text-white mb-4">Ganetika Capital Partners</h3>
+                    <img src="/logo-stacked-white.webp" srcset="/logo-stacked-white.webp 1x, /logo-stacked-white@2x.png 2x" alt="Ganetika Capital Partners" class="h-24 w-auto mb-4" loading="lazy">
                     <p class="text-sm text-gray-400">To Own the World, Even Just a Little</p>
                 </div>
                 

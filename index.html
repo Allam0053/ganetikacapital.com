@@ -74,7 +74,7 @@
         #main-header.scrolled {
             background-color: #FAF8F5;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            border-bottom: 1px solid #DDDAD5;
+            border-bottom: 1px solid rgba(196, 152, 79, 0.55); /* thin gold line */
         }
         #main-header.scrolled .nav-link {
             color: #0E233D;
@@ -82,12 +82,22 @@
         #main-header.scrolled .logo-text {
             color: #0E233D;
         }
-        /* New abstract background style */
-        .hero-abstract-bg {
-            background: linear-gradient(135deg, #0E233D 0%, #0E233D 50%, #C4984F 100%); /* Blue to gold gradient */
-        }
+        /* Hero illustration: gouache helix, Navy Deep tint <= 40%.
+           Phones: helix climbs along the bottom, clear of the headline.
+           Desktop: helix stands in the right third. */
         #hero-sketch {
-            background-position: left center;
+            background: url('/hero-helix-gouache-mobile.webp') center bottom / cover no-repeat;
+            animation: hero-fade 1.6s ease-out both;
+        }
+        @media (min-width: 768px) {
+            #hero-sketch {
+                background-image: url('/hero-helix-gouache.webp');
+                background-position: right center;
+            }
+        }
+        @keyframes hero-fade {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
@@ -137,13 +147,14 @@
 
     <main>
         
-        <!-- HERO SECTION --><section class="relative h-screen min-h-[650px] py-16 overflow-hidden flex items-center justify-center text-white hero-abstract-bg px-6">
-            <!-- DNA Helix Sketch Layer with Left Alignment, Parallax, Opacity, Shimmer Glow, and Fading Mask -->
-            <div id="hero-sketch" class="absolute inset-0" style="background-image: url('/dna-sketch-outline.webp'); background-repeat: no-repeat; background-size: cover; background-position: left center; opacity: 0.85; filter: drop-shadow(0 0 10px rgba(196, 152, 79, 0.25)); pointer-events: none; transition: transform 0.1s ease-out;"></div>
-            <div class="absolute inset-0 bg-slate-900/40"></div>
+        <!-- HERO SECTION --><section class="relative h-screen min-h-[650px] py-16 overflow-hidden flex items-center justify-center text-white bg-primary-dark px-6">
+            <!-- Gouache helix at dusk (editorial gouache, Style Guide v1.4) -->
+            <div id="hero-sketch" class="absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+            <div class="absolute inset-0 bg-primary-dark/40 md:bg-primary-dark/30"></div>
             
             <div class="relative z-10 text-center max-w-4xl mx-auto my-auto pt-12">
-                <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6">To Own the World, <br> Even Just a Little</h1>
+                <h1 class="text-4xl md:text-6xl font-bold leading-tight">To Own the World, <br> Even Just a Little</h1>
+                <span class="block w-[120px] h-[3px] bg-gold mx-auto mt-8 mb-7" aria-hidden="true"></span>
                 <p class="text-base md:text-xl font-light text-gray-200 leading-relaxed max-w-2xl mx-auto">
                     A private investment partnership allocating patient capital as long-term fractional owners of outstanding businesses across global markets.
                 </p>
@@ -152,7 +163,7 @@
 
                 <!-- CORE PRINCIPLES --><section class="bg-primary-dark text-white py-20">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold text-center mb-4">Our Core Principles</h2>
+                <h2 class="text-3xl font-bold text-center mb-4">Our core <em class="not-italic text-gold-light">principles</em></h2>
                 <p class="text-center text-base md:text-lg text-gray-300 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
                     Instead of treating stocks as paper tickers, we see shares as fractional ownership of real businesses across geographies and industries—positioned to harvest the long-term growth of global capitalism.
                 </p>
@@ -160,13 +171,12 @@
                     
                     <!-- Principle 1: Disciplined Approach -->
                     <div class="text-center">
-                        <div class="flex justify-center mb-4">
-                            <svg class="h-10 w-10 text-gold" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                            </svg>
+                        <div class="flex flex-col items-center mb-5" aria-hidden="true">
+                            <span class="font-serif text-4xl text-gold leading-none">I</span>
+                            <span class="block w-10 h-px bg-gold/60 mt-4"></span>
                         </div>
                         <div class="h-16"> <!-- Fixed height container for title -->
-                            <h3 class="text-xl font-bold text-gold mb-3">Disciplined Approach</h3>
+                            <h3 class="text-xl font-bold text-gold mb-3">Disciplined approach</h3>
                         </div>
                         <p class="text-gray-300 text-sm">
                             We invest with a focus on intrinsic value and a clear margin of safety. Every decision is guided by business fundamentals, sound reasoning, and an insistence on rational capital allocation.
@@ -175,13 +185,12 @@
 
                     <!-- Principle 2: Long-Term Horizon -->
                     <div class="text-center">
-                        <div class="flex justify-center mb-4">
-                            <svg class="h-10 w-10 text-gold" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" />
-                            </svg>
+                        <div class="flex flex-col items-center mb-5" aria-hidden="true">
+                            <span class="font-serif text-4xl text-gold leading-none">II</span>
+                            <span class="block w-10 h-px bg-gold/60 mt-4"></span>
                         </div>
                         <div class="h-16"> <!-- Fixed height container for title -->
-                            <h3 class="text-xl font-bold text-gold mb-3">Long-Term Horizon</h3>
+                            <h3 class="text-xl font-bold text-gold mb-3">Long-term horizon</h3>
                         </div>
                         <p class="text-gray-300 text-sm">
                             We think like business owners, not traders. Our goal is to hold outstanding companies that can compound value for decades, allowing time and quality to do the heavy lifting.
@@ -190,13 +199,12 @@
 
                     <!-- Principle 3: Partnership Mindset -->
                     <div class="text-center">
-                        <div class="flex justify-center mb-4">
-                             <svg class="h-10 w-10 text-gold" fill="currentColor" stroke-width="5px" style="stroke-width: 5; stroke: currentColor;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
-                                <path d="M250.73,109.69l-25.53-51a12,12,0,0,0-16.1-5.37L182.88,66.38,129,52.14a3.92,3.92,0,0,0-2,0L73.12,66.38,46.9,53.27a12,12,0,0,0-16.1,5.37L5.27,109.69a12,12,0,0,0,5.37,16.1l27.29,13.65,55.75,39.82a3.87,3.87,0,0,0,1.35.62l64,16a4,4,0,0,0,3.8-1l55.54-55.54,27-13.5a12,12,0,0,0,5.37-16.1Zm-51,36.95-37.2-29.8a4,4,0,0,0-5.34.3c-19.49,19.64-41.34,17.11-55.29,8.2a4.07,4.07,0,0,1-1.85-3,3.91,3.91,0,0,1,1.11-3.21L145.62,76h35.91l29.6,59.21ZM12.21,116.32a4,4,0,0,1,.22-3L38,62.22h0A4,4,0,0,1,41.54,60a4,4,0,0,1,1.78.43l24,12L38.21,130.64l-24-12A4,4,0,0,1,12.21,116.32Zm146.56,71.25L97.71,172.3l-52.6-37.57L75.45,74,128,60.14,157.72,68H144a4,4,0,0,0-2.79,1.13l-45.7,44.33a12,12,0,0,0,2.06,18.62c19.88,12.71,44.13,10,62.66-6.81L194,152.33Zm85-71.25a4,4,0,0,1-2,2.32l-24,12L188.68,72.43l24-12A4,4,0,0,1,218,62.22l25.53,51.05A4,4,0,0,1,243.79,116.32ZM127.94,217a4,4,0,0,1-3.88,3,4.09,4.09,0,0,1-1-.12L81.38,209.45a4,4,0,0,1-1.36-.62L53.68,190a4,4,0,0,1,4.65-6.51l25.72,18.37,41,10.25A4,4,0,0,1,127.94,217Z"></path>
-                             </svg>
+                        <div class="flex flex-col items-center mb-5" aria-hidden="true">
+                            <span class="font-serif text-4xl text-gold leading-none">III</span>
+                            <span class="block w-10 h-px bg-gold/60 mt-4"></span>
                         </div>
                         <div class="h-16"> <!-- Fixed height container for title -->
-                            <h3 class="text-xl font-bold text-gold mb-3">Partnership Mindset</h3>
+                            <h3 class="text-xl font-bold text-gold mb-3">Partnership mindset</h3>
                         </div>
                         <p class="text-gray-300 text-sm">
                             We treat our partners’ capital as our own. The General Partner invests alongside the Limited Partners, ensuring alignment of interests and a shared commitment to long-term results.
@@ -205,15 +213,12 @@
 
                     <!-- Principle 4: Local and Global -->
                     <div class="text-center">
-                        <div class="flex justify-center mb-4">
-                            <svg class="h-10 w-10 text-gold" fill="currentColor" style="stroke-width: .5; stroke: currentColor;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <g id="Globe">
-                                    <path d="M14.645,2.428a8.1,8.1,0,0,0-1.61-.3,9.332,9.332,0,0,0-3.6.28l-.07.02a9.928,9.928,0,0,0,.01,19.15,9.091,9.091,0,0,0,2.36.34,1.274,1.274,0,0,0,.27.02,9.65,9.65,0,0,0,2.63-.36,9.931,9.931,0,0,0,.01-19.15Zm-.27.96a8.943,8.943,0,0,1,5.84,5.11h-4.26a13.778,13.778,0,0,0-2.74-5.35A8.254,8.254,0,0,1,14.375,3.388Zm-2.37-.09a12.78,12.78,0,0,1,2.91,5.2H9.075A12.545,12.545,0,0,1,12.005,3.3Zm3.16,6.2a13.193,13.193,0,0,1,0,5.01H8.845a12.185,12.185,0,0,1-.25-2.5,12.353,12.353,0,0,1,.25-2.51Zm-5.6-6.09.07-.02a9.152,9.152,0,0,1,1.16-.23A13.618,13.618,0,0,0,8.045,8.5H3.8A9,9,0,0,1,9.565,3.408Zm-6.5,8.6a8.71,8.71,0,0,1,.37-2.51h4.39a13.95,13.95,0,0,0-.23,2.51,13.757,13.757,0,0,0,.23,2.5H3.435A8.591,8.591,0,0,1,3.065,12.008Zm6.57,8.61a8.9,8.9,0,0,1-5.84-5.11h4.24a13.632,13.632,0,0,0,2.77,5.35A8.1,8.1,0,0,1,9.635,20.618Zm-.56-5.11h5.84a12.638,12.638,0,0,1-2.91,5.21A12.872,12.872,0,0,1,9.075,15.508Zm5.3,5.11a11.551,11.551,0,0,1-1.17.24,13.8,13.8,0,0,0,2.75-5.35h4.26A8.924,8.924,0,0,1,14.375,20.618Zm1.8-6.11a13.611,13.611,0,0,0,0-5.01h4.39a8.379,8.379,0,0,1,.37,2.51,8.687,8.687,0,0,1-.36,2.5Z"></path>
-                                </g>
-                            </svg>
+                        <div class="flex flex-col items-center mb-5" aria-hidden="true">
+                            <span class="font-serif text-4xl text-gold leading-none">IV</span>
+                            <span class="block w-10 h-px bg-gold/60 mt-4"></span>
                         </div>
                         <div class="h-16"> <!-- Fixed height container for title -->
-                            <h3 class="text-xl font-bold text-gold mb-3">Local and Global</h3>
+                            <h3 class="text-xl font-bold text-gold mb-3">Local and global</h3>
                         </div>
                         <p class="text-gray-300 text-sm">
                             While based in Indonesia, our search for value knows no borders. We invest where enduring businesses and sensible prices meet—whether at home or abroad.
@@ -227,15 +232,15 @@
         <!-- STRATEGIES -->
         <section id="strategies" class="py-20 bg-white scroll-mt-20">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-primary-dark text-center mb-4">Our Investment Focus</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-primary-dark text-center mb-4">Our investment <em class="not-italic text-gold">focus</em></h2>
                 <p class="text-center text-lg text-gray-600 mb-12 max-w-2xl mx-auto">Concentrated capital allocation focused on business quality, moat strength, and margin of safety.</p>
                 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-3 max-w-5xl mx-auto border-y border-rule md:border-y-0 divide-y md:divide-y-0 md:divide-x divide-rule">
                     <!-- Pillar 1 -->
-                    <div class="p-8 rounded-xl bg-gray-50 border border-gray-100 flex flex-col justify-between">
+                    <div class="py-8 md:py-2 md:px-10 md:first:pl-0 md:last:pr-0 flex flex-col">
                         <div>
-                            <span class="text-gold font-bold text-lg mb-2 block">01</span>
-                            <h3 class="text-xl font-bold text-primary-dark mb-3">Exceptional Businesses</h3>
+                            <span class="font-serif text-3xl text-gold leading-none mb-4 block">01</span>
+                            <h3 class="text-xl font-bold text-primary-dark mb-3">Exceptional businesses</h3>
                             <p class="text-gray-600 text-sm leading-relaxed">
                                 Publicly-listed companies with enduring competitive moats, honest leadership, and proven compounding ability held for the long term.
                             </p>
@@ -243,10 +248,10 @@
                     </div>
 
                     <!-- Pillar 2 -->
-                    <div class="p-8 rounded-xl bg-gray-50 border border-gray-100 flex flex-col justify-between">
+                    <div class="py-8 md:py-2 md:px-10 md:first:pl-0 md:last:pr-0 flex flex-col">
                         <div>
-                            <span class="text-gold font-bold text-lg mb-2 block">02</span>
-                            <h3 class="text-xl font-bold text-primary-dark mb-3">Margin of Safety</h3>
+                            <span class="font-serif text-3xl text-gold leading-none mb-4 block">02</span>
+                            <h3 class="text-xl font-bold text-primary-dark mb-3">Margin of safety</h3>
                             <p class="text-gray-600 text-sm leading-relaxed">
                                 We insist on buying only when the market offers shares at a significant discount to intrinsic value, protecting downside first.
                             </p>
@@ -254,10 +259,10 @@
                     </div>
 
                     <!-- Pillar 3 -->
-                    <div class="p-8 rounded-xl bg-gray-50 border border-gray-100 flex flex-col justify-between">
+                    <div class="py-8 md:py-2 md:px-10 md:first:pl-0 md:last:pr-0 flex flex-col">
                         <div>
-                            <span class="text-gold font-bold text-lg mb-2 block">03</span>
-                            <h3 class="text-xl font-bold text-primary-dark mb-3">Special Situations</h3>
+                            <span class="font-serif text-3xl text-gold leading-none mb-4 block">03</span>
+                            <h3 class="text-xl font-bold text-primary-dark mb-3">Special situations</h3>
                             <p class="text-gray-600 text-sm leading-relaxed">
                                 Opportunistically acquiring fair businesses at wonderful prices when extraordinary mispricings offer outsized returns.
                             </p>
@@ -271,7 +276,7 @@
         <!-- FEATURED INSIGHTS -->
         <section id="insights" class="py-20 bg-gray-50 scroll-mt-20">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-primary-dark text-center mb-4">Featured Insights</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-primary-dark text-center mb-4">Featured <em class="not-italic text-gold">insights</em></h2>
                 <p class="text-center text-lg text-gray-600 mb-12 max-w-2xl mx-auto">Explore our latest thinking on markets, strategies, and the global economic landscape.</p>
                 
                 <div id="insights-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -279,7 +284,7 @@
                 </div>
                 
                 <div class="mt-20 text-center max-w-xl mx-auto">
-                    <h3 class="text-2xl font-bold text-primary-dark mb-3">Subscribe to Our Memos</h3>
+                    <h3 class="text-2xl font-bold text-primary-dark mb-3">Subscribe to our memos</h3>
                     <p class="text-gray-600 mb-6">Receive our latest investment memos and partnership letters directly in your inbox.</p>
                     <div class="flex justify-center w-full max-w-[480px] mx-auto overflow-hidden">
                         <iframe src="https://ganetikacapital.substack.com/embed" class="w-full h-[320px]" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no" loading="lazy"></iframe>
@@ -292,7 +297,7 @@
         <!-- ABOUT -->
         <section id="about" class="py-20 bg-white">
             <div class="container mx-auto px-6 text-center">
-                 <h2 class="text-3xl md:text-4xl font-bold text-primary-dark mb-4">Structure & Governance</h2>
+                 <h2 class="text-3xl md:text-4xl font-bold text-primary-dark mb-4">Structure &amp; <em class="not-italic text-gold">governance</em></h2>
                  <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-8 leading-relaxed">
                      Formed as a private investment partnership comprising one General Partner and four Limited Partners, uniting aligned capital with a shared commitment to long-term compounding.
                  </p>
@@ -310,7 +315,7 @@
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12">
                 
                 <!-- Logo --><div class="col-span-2 lg:col-span-1">
-                    <h3 class="text-xl font-bold text-white mb-4">Ganetika Capital Partners</h3>
+                    <img src="/logo-stacked-white.webp" srcset="/logo-stacked-white.webp 1x, /logo-stacked-white@2x.png 2x" alt="Ganetika Capital Partners" class="h-24 w-auto mb-4" loading="lazy">
                     <p class="text-sm text-gray-400">To Own the World, Even Just a Little</p>
                 </div>
                 
@@ -351,15 +356,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // --- Hero Parallax Logic ---
-            const heroSketch = document.getElementById('hero-sketch');
-            if (heroSketch && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                window.addEventListener('scroll', () => {
-                    const scrollValue = window.scrollY;
-                    heroSketch.style.transform = `translateY(${scrollValue * 0.3}px)`;
-                });
-            }
-            
             // --- 
             // SUPABASE FETCH LOGIC
             // ---
@@ -405,12 +401,13 @@
 
                     if (data.length === 0) {
                         gridContainer.innerHTML = `
-                        <div class="bg-white rounded-lg overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition duration-200 group flex flex-col h-full col-span-1 md:col-span-2 lg:col-span-3">
-                            <div class="p-8 md:p-12 text-center flex flex-col items-center justify-center">
+                        <div class="bg-white overflow-hidden border border-rule border-t-2 border-t-gold flex flex-col md:flex-row h-full col-span-1 md:col-span-2 lg:col-span-3">
+                            <img src="/memo-preparation.webp" alt="" class="w-full md:w-2/5 h-48 md:h-auto object-cover">
+                            <div class="p-8 md:p-12 text-center md:text-left flex flex-col items-center md:items-start justify-center">
                                 <span class="text-xs text-gold font-semibold uppercase tracking-wider mb-2">Partnership Memo</span>
-                                <h3 class="text-2xl font-bold text-primary-dark mb-4 max-w-lg">Our Investment Philosophy & Ethos</h3>
+                                <h3 class="text-2xl font-bold text-primary-dark mb-4 max-w-lg">Our investment philosophy &amp; ethos</h3>
                                 <p class="text-gray-600 text-sm mb-6 max-w-md">Our public memos and insights on markets and long-term capital allocation principles are in preparation. In the meantime, explore our core values, alignment, and investment parameters.</p>
-                                <a href="/about" class="inline-flex items-center gap-1.5 py-2.5 px-6 rounded-lg bg-gold hover:bg-primary-dark text-white font-semibold text-sm transition duration-200 shadow-md">
+                                <a href="/about" class="inline-flex items-center gap-1.5 py-2.5 px-6 rounded-md bg-gold hover:bg-primary-dark text-white font-semibold text-sm transition duration-200">
                                     <span>Learn More About Our Firm</span>
                                 </a>
                             </div>
@@ -426,7 +423,7 @@
                         
                         const postCardHtml = `
                         <div class="bg-white rounded-lg overflow-hidden group">
-                            <img src="https://placehold.co/600x400/E2E8F0/1A2634?text=${escapeHtml(capitalize(firstTag))}" alt="${escapeHtml(post.title)}" class="w-full h-48 object-cover group-hover:opacity-90 transition">
+                            <img src="/insight-plate.svg" alt="" class="w-full h-48 object-cover group-hover:opacity-90 transition">
                             <div class="p-6">
                                 <p class="text-sm text-gold font-semibold mb-2">${escapeHtml(capitalize(firstTag))}</p>
                                 <h3 class="text-xl font-bold text-primary-dark mb-3">${escapeHtml(post.title)}</h3>
@@ -441,12 +438,13 @@
                  } catch (error) {
                     console.error('Error fetching insights:', error.message);
                     gridContainer.innerHTML = `
-                    <div class="bg-white rounded-lg overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition duration-200 group flex flex-col h-full col-span-1 md:col-span-2 lg:col-span-3">
-                        <div class="p-8 md:p-12 text-center flex flex-col items-center justify-center">
+                    <div class="bg-white overflow-hidden border border-rule border-t-2 border-t-gold flex flex-col md:flex-row h-full col-span-1 md:col-span-2 lg:col-span-3">
+                        <img src="/memo-preparation.webp" alt="" class="w-full md:w-2/5 h-48 md:h-auto object-cover">
+                        <div class="p-8 md:p-12 text-center md:text-left flex flex-col items-center md:items-start justify-center">
                             <span class="text-xs text-gold font-semibold uppercase tracking-wider mb-2">Partnership Memo</span>
-                            <h3 class="text-2xl font-bold text-primary-dark mb-4 max-w-lg">Our Investment Philosophy & Ethos</h3>
+                            <h3 class="text-2xl font-bold text-primary-dark mb-4 max-w-lg">Our investment philosophy &amp; ethos</h3>
                             <p class="text-gray-600 text-sm mb-6 max-w-md">Our public memos and insights on markets and long-term capital allocation principles are in preparation. In the meantime, explore our core values, alignment, and investment parameters.</p>
-                            <a href="/about" class="inline-flex items-center gap-1.5 py-2.5 px-6 rounded-lg bg-gold hover:bg-primary-dark text-white font-semibold text-sm transition duration-200 shadow-md">
+                            <a href="/about" class="inline-flex items-center gap-1.5 py-2.5 px-6 rounded-md bg-gold hover:bg-primary-dark text-white font-semibold text-sm transition duration-200">
                                 <span>Learn More About Our Firm</span>
                             </a>
                         </div>
