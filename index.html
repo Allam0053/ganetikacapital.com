@@ -37,7 +37,7 @@
     <link rel="apple-touch-icon" href="/favicon.jpg" />
 
     <!-- Optional: theme color for mobile browsers -->
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#FAF8F5" />
 
     <!-- Structured Data (JSON-LD) for SEO -->
     <script type="application/ld+json">
@@ -56,42 +56,10 @@
     </script>
 
     <style>
-        /* Custom styles to match the Oaktree aesthetic */
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #F5F2EB; /* Warm cream/ivory background */
-        }
-        h1, h2, h3, blockquote, .logo-text {
-            font-family: 'EB Garamond', serif;
-        }
         h1 { font-size: 1.25em; }
         h2 { font-size: 1.15em; }
         h3 { font-size: 1.1em; }
-        
-        /* Override white backgrounds to be gold-ish/cream paper */
-        .bg-white {
-            background-color: #FAF8F5 !important;
-        }
-        .bg-gray-50 {
-            background-color: #F5F2EB !important;
-        }
-        /* Oaktree's distinctive gold/ochre color */
-        .text-gold {
-            color: #C09553;
-        }
-        .bg-gold {
-            background-color: #C09553;
-        }
-        .border-gold {
-            border-color: #C09553;
-        }
-        /* Dark blue/charcoal for primary text and backgrounds */
-        .bg-primary-dark {
-            background-color: #1A2634;
-        }
-        .text-primary-dark {
-            color: #1A2634;
-        }
+
         /* Arrow icon for links */
         .link-arrow::after {
             content: '→';
@@ -104,19 +72,19 @@
         }
         /* Header transition */
         #main-header.scrolled {
-            background-color: white;
+            background-color: #FAF8F5;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            border-bottom: 1px solid #e5e7eb;
+            border-bottom: 1px solid #DDDAD5;
         }
         #main-header.scrolled .nav-link {
-            color: #1A2634;
+            color: #0E233D;
         }
         #main-header.scrolled .logo-text {
-            color: #1A2634;
+            color: #0E233D;
         }
         /* New abstract background style */
         .hero-abstract-bg {
-            background: linear-gradient(135deg, #1A2634 0%, #1A2634 50%, #C09553 100%); /* Blue to gold gradient */
+            background: linear-gradient(135deg, #0E233D 0%, #0E233D 50%, #C4984F 100%); /* Blue to gold gradient */
         }
         #hero-sketch {
             background-position: left center;
@@ -145,11 +113,11 @@
 
                 
                 <!-- ICONS & MOBILE --><div class="flex items-center space-x-4">
-                      <svg id="search-button" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 nav-link text-white cursor-pointer hover:text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <button id="search-button" type="button" aria-label="Search insights" aria-haspopup="dialog" aria-controls="search-modal" class="nav-link text-white hover:text-gold transition"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                     </svg>
+                     </svg></button>
                     
-                    <!-- Mobile Menu Button --><button id="mobile-menu-button" class="md:hidden nav-link text-white focus:outline-none">
+                    <!-- Mobile Menu Button --><button id="mobile-menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden nav-link text-white">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
@@ -158,20 +126,20 @@
             </div>
         </div>
         
-        <!-- Mobile Menu Panel --><div id="mobile-menu" class="max-h-0 opacity-0 overflow-hidden md:hidden bg-white text-primary-dark transition-all duration-300 ease-in-out transform origin-top scale-y-95">
+        <!-- Mobile Menu Panel --><nav id="mobile-menu" aria-label="Mobile" class="max-h-0 opacity-0 overflow-hidden md:hidden bg-white text-primary-dark transition-all duration-300 ease-in-out transform origin-top scale-y-95">
             <a href="#insights" class="block py-3 px-6 hover:bg-gray-100">Insights</a>
             <a href="#strategies" class="block py-3 px-6 hover:bg-gray-100">Strategies</a>
             <a href="/about" class="block py-3 px-6 hover:bg-gray-100">About Us</a>
             <a href="/contact" class="block py-3 px-6 hover:bg-gray-100">Contact</a>
             <a href="/portal" class="block py-3 px-6 hover:bg-gray-100">Partner Login</a>
-        </div>
+        </nav>
     </header>
 
     <main>
         
         <!-- HERO SECTION --><section class="relative h-screen min-h-[650px] py-16 overflow-hidden flex items-center justify-center text-white hero-abstract-bg px-6">
             <!-- DNA Helix Sketch Layer with Left Alignment, Parallax, Opacity, Shimmer Glow, and Fading Mask -->
-            <div id="hero-sketch" class="absolute inset-0" style="background-image: url('dna-sketch-outline.png'); background-repeat: no-repeat; background-size: cover; background-position: left center; opacity: 0.85; filter: drop-shadow(0 0 10px rgba(192, 149, 83, 0.25)); pointer-events: none; transition: transform 0.1s ease-out;"></div>
+            <div id="hero-sketch" class="absolute inset-0" style="background-image: url('/dna-sketch-outline.webp'); background-repeat: no-repeat; background-size: cover; background-position: left center; opacity: 0.85; filter: drop-shadow(0 0 10px rgba(196, 152, 79, 0.25)); pointer-events: none; transition: transform 0.1s ease-out;"></div>
             <div class="absolute inset-0 bg-slate-900/40"></div>
             
             <div class="relative z-10 text-center max-w-4xl mx-auto my-auto pt-12">
@@ -385,7 +353,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             // --- Hero Parallax Logic ---
             const heroSketch = document.getElementById('hero-sketch');
-            if (heroSketch) {
+            if (heroSketch && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
                 window.addEventListener('scroll', () => {
                     const scrollValue = window.scrollY;
                     heroSketch.style.transform = `translateY(${scrollValue * 0.3}px)`;
@@ -492,14 +460,14 @@
     </script>
 
     <!-- Search Modal Overlay -->
-    <div id="search-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-start justify-center pt-24 px-4">
+    <div id="search-modal" role="dialog" aria-modal="true" aria-label="Search insights" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-start justify-center pt-24 px-4">
         <div class="bg-white w-full max-w-xl rounded-xl shadow-2xl border border-gray-100 overflow-hidden">
             <div class="flex items-center border-b border-gray-100 px-4 py-3">
-                <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
-                <input id="search-input" type="text" placeholder="Search insights and memos..." class="w-full bg-transparent border-none outline-none focus:ring-0 pl-3 py-1 text-gray-800 placeholder-gray-400 text-sm">
-                <button id="close-search" class="text-gray-400 hover:text-gray-600 text-xs font-semibold px-2">ESC</button>
+                <input id="search-input" type="search" aria-label="Search insights and memos" placeholder="Search insights and memos..." class="w-full bg-transparent border-none outline-none focus:ring-0 pl-3 py-1 text-gray-800 placeholder-gray-400 text-sm">
+                <button id="close-search" type="button" aria-label="Close search" class="text-gray-400 hover:text-gray-600 text-xs font-semibold px-2">ESC</button>
             </div>
             <div id="search-results" class="max-h-72 overflow-y-auto p-4 empty:hidden divide-y divide-gray-50">
                 <!-- Dynamic search results lists go here -->

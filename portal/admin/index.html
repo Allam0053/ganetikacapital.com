@@ -19,30 +19,10 @@
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     
     <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #F5F2EB;
-        }
-        h1, h2, h3, blockquote, .logo-text {
-            font-family: 'EB Garamond', serif;
-        }
-        
-        .bg-white {
-            background-color: #FAF8F5 !important;
-        }
-        .bg-gray-50 {
-            background-color: #F5F2EB !important;
-        }
-        .text-gold { color: #C09553; }
-        .bg-gold { background-color: #C09553; }
-        .border-gold { border-color: #C09553; }
-        .bg-primary-dark { background-color: #1A2634; }
-        .text-primary-dark { color: #1A2634; }
-        
         #main-header {
-            background-color: white;
+            background-color: #FAF8F5;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            border-bottom: 1px solid #e5e7eb;
+            border-bottom: 1px solid #DDDAD5;
         }
 
         /* Shimmer effect for skeleton loader */
@@ -112,7 +92,7 @@
             padding: 8px 14px !important;
             border-radius: 6px !important;
             background-color: #FAF8F5 !important;
-            color: #C09553 !important;
+            color: #C4984F !important;
             border: 1px solid #EAE5DB !important;
             font-family: 'Plus Jakarta Sans', sans-serif !important;
             font-size: 12px !important;
@@ -125,7 +105,7 @@
         }
         .edit-btn:hover {
             background-color: #FAF8F5 !important;
-            border-color: #C09553 !important;
+            border-color: #C4984F !important;
         }
         .edit-btn:active {
             transform: scale(0.98) !important;
@@ -649,7 +629,7 @@
                     tr.className = "hover:bg-[#FAF8F5] transition";
                     
                     tr.innerHTML = `
-                        <td style="text-align: left; padding: 12px 16px 12px 0; font-size: 14px; font-weight: 600; color: #1A2634; min-width: 0;">
+                        <td style="text-align: left; padding: 12px 16px 12px 0; font-size: 14px; font-weight: 600; color: #0E233D; min-width: 0;">
                             <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${escapeHtml(doc.title)}">${escapeHtml(doc.title)}</div>
                             <div style="font-size: 10px; color: #9CA3AF; font-weight: normal; margin-top: 3px;">PDF • ${formatBytes(doc.file_size)}</div>
                         </td>

@@ -1,3 +1,43 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Shared brand base (Ganetika Style Guide v1.4) */
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #F1EEE8; /* Panel */
+    /* EB Garamond defaults to old-style figures */
+    font-variant-numeric: lining-nums tabular-nums;
+}
+h1, h2, h3, blockquote, .logo-text {
+    font-family: 'EB Garamond', serif;
+}
+
+/* Paper surfaces: never pure white */
+.bg-white {
+    background-color: #FAF8F5 !important; /* Cream */
+}
+.bg-gray-50 {
+    background-color: #F1EEE8 !important; /* Panel */
+}
+
+/* Visible keyboard focus */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid #C4984F;
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto !important;
+    }
+    *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}

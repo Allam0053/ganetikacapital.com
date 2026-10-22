@@ -35,39 +35,18 @@
     <link rel="apple-touch-icon" href="/favicon.jpg" />
     
     <style>
-        /* Custom styles */
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #F5F2EB; /* Warm cream/ivory background */
-        }
-        h1, h2, h3, blockquote, .logo-text {
-            font-family: 'EB Garamond', serif;
-        }
         h1 { font-size: 1.25em; }
         h2 { font-size: 1.15em; }
         h3 { font-size: 1.1em; }
-        
-        /* Override white backgrounds to be gold-ish/cream paper */
-        .bg-white {
-            background-color: #FAF8F5 !important;
-        }
-        .bg-gray-50 {
-            background-color: #F5F2EB !important;
-        }
-        .text-gold { color: #C09553; }
-        .bg-gold { background-color: #C09553; }
-        .border-gold { border-color: #C09553; }
-        .bg-primary-dark { background-color: #1A2634; }
-        .text-primary-dark { color: #1A2634; }
-        
+
         /* Header style for non-homepage */
         #main-header {
-            background-color: white;
+            background-color: #FAF8F5;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            border-bottom: 1px solid #e5e7eb;
+            border-bottom: 1px solid #DDDAD5;
         }
-        #main-header .nav-link { color: #1A2634; }
-        #main-header .logo-text { color: #1A2634; }
+        #main-header .nav-link { color: #0E233D; }
+        #main-header .logo-text { color: #0E233D; }
     </style>
 </head>
 <body class="text-gray-700">
@@ -91,11 +70,11 @@
 
                 
                 <!-- Header Controls --><div class="flex items-center space-x-4">
-                      <svg id="search-button" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 nav-link cursor-pointer hover:text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <button id="search-button" type="button" aria-label="Search insights" aria-haspopup="dialog" aria-controls="search-modal" class="nav-link hover:text-gold transition"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                     </svg>
+                     </svg></button>
                     
-                    <!-- Mobile Menu Button --><button id="mobile-menu-button" class="md:hidden text-primary-dark focus:outline-none">
+                    <!-- Mobile Menu Button --><button id="mobile-menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden text-primary-dark">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
@@ -104,13 +83,13 @@
             </div>
         </div>
         
-        <!-- Mobile Menu --><div id="mobile-menu" class="max-h-0 opacity-0 overflow-hidden md:hidden bg-white text-primary-dark transition-all duration-300 ease-in-out transform origin-top scale-y-95">
+        <!-- Mobile Menu --><nav id="mobile-menu" aria-label="Mobile" class="max-h-0 opacity-0 overflow-hidden md:hidden bg-white text-primary-dark transition-all duration-300 ease-in-out transform origin-top scale-y-95">
             <a href="/#insights" class="block py-3 px-6 hover:bg-gray-100">Insights</a>
             <a href="/#strategies" class="block py-3 px-6 hover:bg-gray-100">Strategies</a>
             <a href="/about" class="block py-3 px-6 bg-gray-100 font-semibold text-gold">About Us</a>
             <a href="/contact" class="block py-3 px-6 hover:bg-gray-100">Contact</a>
             <a href="/portal" class="block py-3 px-6 hover:bg-gray-100">Partner Login</a>
-        </div>
+        </nav>
     </header>
 
     <main>
@@ -231,9 +210,9 @@
                             <div class="hidden lg:flex flex-col items-center w-full px-2">
                                 <span class="text-[11px] font-bold text-gold uppercase tracking-wider mb-2 text-center">Pooled Capital</span>
                                 <div class="w-full flex items-center justify-center relative py-3">
-                                    <div class="h-[1.5px] w-full" style="background: linear-gradient(to right, rgba(192, 149, 83, 0) 0%, rgba(192, 149, 83, 1) 50%, rgba(192, 149, 83, 0) 100%);"></div>
+                                    <div class="h-[1.5px] w-full" style="background: linear-gradient(to right, rgba(196, 152, 79, 0) 0%, rgba(196, 152, 79, 1) 50%, rgba(196, 152, 79, 0) 100%);"></div>
                                     <div class="absolute inset-0 flex items-center justify-center">
-                                        <div class="bg-gray-50 px-2 py-0.5 rounded-full border flex items-center justify-center" style="border-color: rgba(192, 149, 83, 0.3);">
+                                        <div class="bg-gray-50 px-2 py-0.5 rounded-full border flex items-center justify-center" style="border-color: rgba(196, 152, 79, 0.3);">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gold animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                             </svg>
@@ -245,8 +224,8 @@
                             <!-- Mobile Down Arrow -->
                             <div class="lg:hidden flex flex-col items-center my-4">
                                 <span class="text-xs font-bold text-gold uppercase tracking-wider mb-2">Pooled Capital</span>
-                                <div class="h-10 w-[1.5px]" style="background: linear-gradient(to bottom, rgba(192, 149, 83, 0) 0%, rgba(192, 149, 83, 1) 50%, rgba(192, 149, 83, 0) 100%);"></div>
-                                <div class="my-1 bg-gray-50 p-1 rounded-full border flex items-center justify-center" style="border-color: rgba(192, 149, 83, 0.3);">
+                                <div class="h-10 w-[1.5px]" style="background: linear-gradient(to bottom, rgba(196, 152, 79, 0) 0%, rgba(196, 152, 79, 1) 50%, rgba(196, 152, 79, 0) 100%);"></div>
+                                <div class="my-1 bg-gray-50 p-1 rounded-full border flex items-center justify-center" style="border-color: rgba(196, 152, 79, 0.3);">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gold animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                                     </svg>
@@ -444,41 +423,41 @@
                                         <!-- 2021 -->
                                         <tr class="hover:bg-white/80 transition">
                                             <td class="py-3 px-4 font-bold text-primary-dark whitespace-nowrap">2021</td>
-                                            <td class="py-3 px-4 text-right font-mono font-bold text-primary-dark whitespace-nowrap">+38.90%<sup>†</sup></td>
-                                            <td class="py-3 px-4 text-right font-mono text-gray-400 whitespace-nowrap">—</td>
-                                            <td class="py-3 px-4 text-right font-mono font-medium text-gray-700 whitespace-nowrap">+28.70%</td>
+                                            <td class="py-3 px-4 text-right font-bold text-primary-dark whitespace-nowrap">+38.90%<sup>†</sup></td>
+                                            <td class="py-3 px-4 text-right text-gray-400 whitespace-nowrap">—</td>
+                                            <td class="py-3 px-4 text-right font-medium text-gray-700 whitespace-nowrap">+28.70%</td>
                                             <td class="py-3 px-4 text-xs text-gray-500 font-light leading-relaxed"><sup>†</sup> Portfolio A commenced on 12 Jul 2021. Its 2021 return covers 12 Jul–31 Dec 2021, while the SPXTR column shows the full calendar-year return. SPXTR over the same partial period returned +9.40%.</td>
                                         </tr>
                                         <!-- 2022 -->
                                         <tr class="hover:bg-white/80 transition">
                                             <td class="py-3 px-4 font-bold text-primary-dark whitespace-nowrap">2022</td>
-                                            <td class="py-3 px-4 text-right font-mono font-bold text-primary-dark whitespace-nowrap">-38.06%</td>
-                                            <td class="py-3 px-4 text-right font-mono text-gray-400 whitespace-nowrap">—</td>
-                                            <td class="py-3 px-4 text-right font-mono font-medium text-gray-700 whitespace-nowrap">-18.10%</td>
+                                            <td class="py-3 px-4 text-right font-bold text-primary-dark whitespace-nowrap">−38.06%</td>
+                                            <td class="py-3 px-4 text-right text-gray-400 whitespace-nowrap">—</td>
+                                            <td class="py-3 px-4 text-right font-medium text-gray-700 whitespace-nowrap">−18.10%</td>
                                             <td class="py-3 px-4 text-xs text-gray-500 font-light"></td>
                                         </tr>
                                         <!-- 2023 -->
                                         <tr class="hover:bg-white/80 transition">
                                             <td class="py-3 px-4 font-bold text-primary-dark whitespace-nowrap">2023</td>
-                                            <td class="py-3 px-4 text-right font-mono font-bold text-primary-dark whitespace-nowrap">+83.94%</td>
-                                            <td class="py-3 px-4 text-right font-mono text-gray-400 whitespace-nowrap">—</td>
-                                            <td class="py-3 px-4 text-right font-mono font-medium text-gray-700 whitespace-nowrap">+26.30%</td>
+                                            <td class="py-3 px-4 text-right font-bold text-primary-dark whitespace-nowrap">+83.94%</td>
+                                            <td class="py-3 px-4 text-right text-gray-400 whitespace-nowrap">—</td>
+                                            <td class="py-3 px-4 text-right font-medium text-gray-700 whitespace-nowrap">+26.30%</td>
                                             <td class="py-3 px-4 text-xs text-gray-500 font-light"></td>
                                         </tr>
                                         <!-- 2024 -->
                                         <tr class="hover:bg-white/80 transition">
                                             <td class="py-3 px-4 font-bold text-primary-dark whitespace-nowrap">2024</td>
-                                            <td class="py-3 px-4 text-right font-mono font-bold text-primary-dark whitespace-nowrap">+25.10%</td>
-                                            <td class="py-3 px-4 text-right font-mono font-bold text-primary-dark whitespace-nowrap">-16.26%<sup>‡</sup></td>
-                                            <td class="py-3 px-4 text-right font-mono font-medium text-gray-700 whitespace-nowrap">+25.00%</td>
+                                            <td class="py-3 px-4 text-right font-bold text-primary-dark whitespace-nowrap">+25.10%</td>
+                                            <td class="py-3 px-4 text-right font-bold text-primary-dark whitespace-nowrap">−16.26%<sup>‡</sup></td>
+                                            <td class="py-3 px-4 text-right font-medium text-gray-700 whitespace-nowrap">+25.00%</td>
                                             <td class="py-3 px-4 text-xs text-gray-500 font-light leading-relaxed"><sup>‡</sup> Portfolio B commenced on 23 Feb 2024. Its 2024 return covers 23 Feb–31 Dec 2024, while the SPXTR column shows the full calendar-year return. SPXTR over the same partial period returned +16.93%.</td>
                                         </tr>
                                         <!-- 2025 -->
                                         <tr class="hover:bg-white/80 transition">
                                             <td class="py-3 px-4 font-bold text-primary-dark whitespace-nowrap">2025</td>
-                                            <td class="py-3 px-4 text-right font-mono font-bold text-primary-dark whitespace-nowrap">+88.95%</td>
-                                            <td class="py-3 px-4 text-right font-mono font-bold text-primary-dark whitespace-nowrap">+95.96%</td>
-                                            <td class="py-3 px-4 text-right font-mono font-medium text-gray-700 whitespace-nowrap">+17.90%</td>
+                                            <td class="py-3 px-4 text-right font-bold text-primary-dark whitespace-nowrap">+88.95%</td>
+                                            <td class="py-3 px-4 text-right font-bold text-primary-dark whitespace-nowrap">+95.96%</td>
+                                            <td class="py-3 px-4 text-right font-medium text-gray-700 whitespace-nowrap">+17.90%</td>
                                             <td class="py-3 px-4 text-xs text-gray-500 font-light"></td>
                                         </tr>
                                         <!-- 2026 YTD -->
@@ -486,28 +465,28 @@
                                             <td class="py-3 px-4 font-bold text-primary-dark whitespace-nowrap">
                                                 2026 YTD <span class="text-xs font-normal text-gray-400 block sm:inline sm:ml-1">(to 31 Jul)</span>
                                             </td>
-                                            <td class="py-3 px-4 text-right font-mono font-bold text-primary-dark whitespace-nowrap">+14.40%</td>
-                                            <td class="py-3 px-4 text-right font-mono font-bold text-primary-dark whitespace-nowrap">+19.76%</td>
-                                            <td class="py-3 px-4 text-right font-mono font-medium text-gray-700 whitespace-nowrap">+10.10%</td>
+                                            <td class="py-3 px-4 text-right font-bold text-primary-dark whitespace-nowrap">+14.40%</td>
+                                            <td class="py-3 px-4 text-right font-bold text-primary-dark whitespace-nowrap">+19.76%</td>
+                                            <td class="py-3 px-4 text-right font-medium text-gray-700 whitespace-nowrap">+10.10%</td>
                                             <td class="py-3 px-4 text-xs text-gray-500 font-light leading-relaxed">Through 31 July 2026. Benchmark covers same 1 Jan–31 Jul 2026 period.</td>
                                         </tr>
                                     </tbody>
                                     <!-- Highlighted Summary Rows -->
-                                    <tfoot class="border-t-2 border-primary-dark/20 bg-[#F5F2EB] font-bold text-primary-dark">
+                                    <tfoot class="border-t-2 border-primary-dark/20 bg-[#F1EEE8] font-bold text-primary-dark">
                                         <tr class="border-b border-gray-200">
                                             <td class="py-3.5 px-4 whitespace-nowrap">Cumulative Return</td>
-                                            <td class="py-3.5 px-4 text-right font-mono text-base font-extrabold text-primary-dark whitespace-nowrap">+327.92%</td>
-                                            <td class="py-3.5 px-4 text-right font-mono text-base font-extrabold text-primary-dark whitespace-nowrap">+96.52%</td>
-                                            <td class="py-3.5 px-4 text-right font-mono text-base font-extrabold text-primary-dark whitespace-nowrap">+116.01%*</td>
+                                            <td class="py-3.5 px-4 text-right text-base font-extrabold text-primary-dark whitespace-nowrap">+327.92%</td>
+                                            <td class="py-3.5 px-4 text-right text-base font-extrabold text-primary-dark whitespace-nowrap">+96.52%</td>
+                                            <td class="py-3.5 px-4 text-right text-base font-extrabold text-primary-dark whitespace-nowrap">+116.01%*</td>
                                             <td rowspan="2" class="py-3.5 px-4 text-xs font-normal text-gray-500 leading-relaxed align-middle">
                                                 * SPXTR market reference covers 1 Jan 2021–31 Jul 2026 and therefore does not share the portfolios’ respective inception dates. See matched-period comparison below.
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="py-3.5 px-4 whitespace-nowrap">Annualised Return</td>
-                                            <td class="py-3.5 px-4 text-right font-mono text-base font-extrabold text-primary-dark whitespace-nowrap">33.35%</td>
-                                            <td class="py-3.5 px-4 text-right font-mono text-base font-extrabold text-primary-dark whitespace-nowrap">31.97%</td>
-                                            <td class="py-3.5 px-4 text-right font-mono text-base font-extrabold text-primary-dark whitespace-nowrap">14.79%*</td>
+                                            <td class="py-3.5 px-4 text-right text-base font-extrabold text-primary-dark whitespace-nowrap">33.35%</td>
+                                            <td class="py-3.5 px-4 text-right text-base font-extrabold text-primary-dark whitespace-nowrap">31.97%</td>
+                                            <td class="py-3.5 px-4 text-right text-base font-extrabold text-primary-dark whitespace-nowrap">14.79%*</td>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -535,7 +514,7 @@
                                             <span class="w-2 h-2 rounded-full bg-gold"></span>
                                             <h5 class="text-sm font-bold text-primary-dark tracking-tight">Portfolio A</h5>
                                         </div>
-                                        <span class="text-[11px] font-mono text-gray-500 bg-white px-2.5 py-0.5 rounded border border-gray-200/80 shadow-2xs">
+                                        <span class="text-[11px] text-gray-500 bg-white px-2.5 py-0.5 rounded border border-gray-200/80 shadow-2xs">
                                             12 Jul 2021 – 31 Jul 2026
                                         </span>
                                     </div>
@@ -545,7 +524,7 @@
                                         <!-- Row 1: Annualised Return -->
                                         <div class="flex items-center justify-between bg-white px-3 py-2 rounded-lg border border-gray-200/70">
                                             <span class="text-gray-500 font-medium text-[11px]">Annualised (CAGR)</span>
-                                            <div class="flex items-center space-x-2.5 font-mono">
+                                            <div class="flex items-center space-x-2.5">
                                                 <span class="font-bold text-sm text-primary-dark">33.35%</span>
                                                 <span class="text-[10px] text-gray-400 uppercase font-sans">vs</span>
                                                 <span class="text-xs text-gray-500">12.79% <span class="text-[10px] text-gray-400 font-sans">SPXTR</span></span>
@@ -555,7 +534,7 @@
                                         <!-- Row 2: Cumulative Return -->
                                         <div class="flex items-center justify-between bg-white px-3 py-2 rounded-lg border border-gray-200/70">
                                             <span class="text-gray-500 font-medium text-[11px]">Cumulative Return</span>
-                                            <div class="flex items-center space-x-2.5 font-mono">
+                                            <div class="flex items-center space-x-2.5">
                                                 <span class="font-bold text-sm text-primary-dark">+327.92%</span>
                                                 <span class="text-[10px] text-gray-400 uppercase font-sans">vs</span>
                                                 <span class="text-xs text-gray-500">+83.64% <span class="text-[10px] text-gray-400 font-sans">SPXTR</span></span>
@@ -566,7 +545,7 @@
                                     <!-- Card Footer -->
                                     <div class="mt-2.5 pt-2 border-t border-gray-200/60 flex items-center justify-between text-[10px] text-gray-400">
                                         <span>Matched window: 1,845 days (5.05 yrs)</span>
-                                        <span class="font-mono text-gray-400">ACT/365.25</span>
+                                        <span class="text-gray-400">ACT/365.25</span>
                                     </div>
                                 </div>
 
@@ -578,7 +557,7 @@
                                             <span class="w-2 h-2 rounded-full bg-gold"></span>
                                             <h5 class="text-sm font-bold text-primary-dark tracking-tight">Portfolio B</h5>
                                         </div>
-                                        <span class="text-[11px] font-mono text-gray-500 bg-white px-2.5 py-0.5 rounded border border-gray-200/80 shadow-2xs">
+                                        <span class="text-[11px] text-gray-500 bg-white px-2.5 py-0.5 rounded border border-gray-200/80 shadow-2xs">
                                             23 Feb 2024 – 31 Jul 2026
                                         </span>
                                     </div>
@@ -588,7 +567,7 @@
                                         <!-- Row 1: Annualised Return -->
                                         <div class="flex items-center justify-between bg-white px-3 py-2 rounded-lg border border-gray-200/70">
                                             <span class="text-gray-500 font-medium text-[11px]">Annualised (CAGR)</span>
-                                            <div class="flex items-center space-x-2.5 font-mono">
+                                            <div class="flex items-center space-x-2.5">
                                                 <span class="font-bold text-sm text-primary-dark">31.97%</span>
                                                 <span class="text-[10px] text-gray-400 uppercase font-sans">vs</span>
                                                 <span class="text-xs text-gray-500">18.71% <span class="text-[10px] text-gray-400 font-sans">SPXTR</span></span>
@@ -598,7 +577,7 @@
                                         <!-- Row 2: Cumulative Return -->
                                         <div class="flex items-center justify-between bg-white px-3 py-2 rounded-lg border border-gray-200/70">
                                             <span class="text-gray-500 font-medium text-[11px]">Cumulative Return</span>
-                                            <div class="flex items-center space-x-2.5 font-mono">
+                                            <div class="flex items-center space-x-2.5">
                                                 <span class="font-bold text-sm text-primary-dark">+96.52%</span>
                                                 <span class="text-[10px] text-gray-400 uppercase font-sans">vs</span>
                                                 <span class="text-xs text-gray-500">+51.82% <span class="text-[10px] text-gray-400 font-sans">SPXTR</span></span>
@@ -609,7 +588,7 @@
                                     <!-- Card Footer -->
                                     <div class="mt-2.5 pt-2 border-t border-gray-200/60 flex items-center justify-between text-[10px] text-gray-400">
                                         <span>Matched window: 889 days (2.43 yrs)</span>
-                                        <span class="font-mono text-gray-400">ACT/365.25</span>
+                                        <span class="text-gray-400">ACT/365.25</span>
                                     </div>
                                 </div>
                             </div>
@@ -712,14 +691,14 @@
 
 
     <!-- Search Modal Overlay -->
-    <div id="search-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-start justify-center pt-24 px-4">
+    <div id="search-modal" role="dialog" aria-modal="true" aria-label="Search insights" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-start justify-center pt-24 px-4">
         <div class="bg-white w-full max-w-xl rounded-xl shadow-2xl border border-gray-100 overflow-hidden">
             <div class="flex items-center border-b border-gray-100 px-4 py-3">
-                <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
-                <input id="search-input" type="text" placeholder="Search insights and memos..." class="w-full bg-transparent border-none outline-none focus:ring-0 pl-3 py-1 text-gray-800 placeholder-gray-400 text-sm">
-                <button id="close-search" class="text-gray-400 hover:text-gray-600 text-xs font-semibold px-2">ESC</button>
+                <input id="search-input" type="search" aria-label="Search insights and memos" placeholder="Search insights and memos..." class="w-full bg-transparent border-none outline-none focus:ring-0 pl-3 py-1 text-gray-800 placeholder-gray-400 text-sm">
+                <button id="close-search" type="button" aria-label="Close search" class="text-gray-400 hover:text-gray-600 text-xs font-semibold px-2">ESC</button>
             </div>
             <div id="search-results" class="max-h-72 overflow-y-auto p-4 empty:hidden divide-y divide-gray-50">
                 <!-- Dynamic search results lists go here -->

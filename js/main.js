@@ -84,26 +84,32 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileMenu = document.getElementById('mobile-menu');
     
     if (mobileMenuButton && mobileMenu) {
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+
+        // Keep collapsed links out of the tab order and announce state
+        const setMobileMenu = (open) => {
+            mobileMenu.classList.toggle('max-h-0', !open);
+            mobileMenu.classList.toggle('opacity-0', !open);
+            mobileMenu.classList.toggle('scale-y-95', !open);
+            mobileMenu.classList.toggle('max-h-96', open);
+            mobileMenu.classList.toggle('opacity-100', open);
+            mobileMenu.classList.toggle('scale-y-100', open);
+            mobileMenuButton.setAttribute('aria-expanded', String(open));
+            mobileMenuButton.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+            mobileLinks.forEach(link => {
+                if (open) link.removeAttribute('tabindex');
+                else link.setAttribute('tabindex', '-1');
+            });
+        };
+        setMobileMenu(false);
+
         mobileMenuButton.addEventListener('click', () => {
-            const isOpen = mobileMenu.classList.contains('max-h-96');
-            if (isOpen) {
-                // Close
-                mobileMenu.classList.add('max-h-0', 'opacity-0', 'scale-y-95');
-                mobileMenu.classList.remove('max-h-96', 'opacity-100', 'scale-y-100');
-            } else {
-                // Open
-                mobileMenu.classList.remove('max-h-0', 'opacity-0', 'scale-y-95');
-                mobileMenu.classList.add('max-h-96', 'opacity-100', 'scale-y-100');
-            }
+            setMobileMenu(!mobileMenu.classList.contains('max-h-96'));
         });
 
         // Close mobile drawer menu when any link is clicked
-        const mobileLinks = mobileMenu.querySelectorAll('a');
         mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('max-h-0', 'opacity-0', 'scale-y-95');
-                mobileMenu.classList.remove('max-h-96', 'opacity-100', 'scale-y-100');
-            });
+            link.addEventListener('click', () => setMobileMenu(false));
         });
     }
 
@@ -133,9 +139,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Hide Search Modal helpers
+        // Hide Search Modal helpers; return focus to the trigger
         const hideModal = () => {
             searchModal.classList.add('hidden');
+            searchButton.focus();
         };
 
         if (closeSearch) {
