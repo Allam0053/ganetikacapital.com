@@ -54,46 +54,12 @@ window.GC = (function () {
         return CARD_ART[h % CARD_ART.length];
     }
 
-    // --- Language (English / Bahasa Indonesia) ---
-    const LANG_KEY = 'gc-lang';
-    function storedLang() {
-        try { return localStorage.getItem(LANG_KEY) === 'id' ? 'id' : 'en'; } catch (e) { return 'en'; }
-    }
-    function setLang(lang) {
-        lang = lang === 'id' ? 'id' : 'en';
-        document.documentElement.lang = lang;
-        document.querySelectorAll('.lang-en').forEach(el => el.classList.toggle('hidden', lang !== 'en'));
-        document.querySelectorAll('.lang-id').forEach(el => el.classList.toggle('hidden', lang !== 'id'));
-        document.querySelectorAll('[data-set-lang]').forEach(btn => {
-            const on = btn.getAttribute('data-set-lang') === lang;
-            btn.setAttribute('aria-pressed', String(on));
-            btn.classList.toggle('lang-active', on);
-        });
-        document.querySelectorAll('[data-placeholder-id]').forEach(el => {
-            el.placeholder = lang === 'id' ? el.getAttribute('data-placeholder-id') : el.getAttribute('data-placeholder-en');
-        });
-        document.querySelectorAll('[data-label-id]').forEach(el => {
-            el.setAttribute('aria-label', lang === 'id' ? el.getAttribute('data-label-id') : el.getAttribute('data-label-en'));
-        });
-        try { localStorage.setItem(LANG_KEY, lang); } catch (e) { /* storage unavailable */ }
-        document.dispatchEvent(new CustomEvent('gc:lang', { detail: { lang } }));
-    }
-    function currentLang() {
-        return document.documentElement.lang === 'id' ? 'id' : 'en';
-    }
-
     return { SUPABASE_URL, SUPABASE_ANON_KEY, escapeHtml, capitalize, truncate,
-             ensureSupabaseLoaded, getSupabaseClient, cardArt, setLang, storedLang, currentLang };
+             ensureSupabaseLoaded, getSupabaseClient, cardArt };
 })();
 
 document.addEventListener('DOMContentLoaded', function() {
     const { getSupabaseClient, ensureSupabaseLoaded, escapeHtml, capitalize } = window.GC;
-
-    // --- Language switch ---
-    document.querySelectorAll('[data-set-lang]').forEach(btn => {
-        btn.addEventListener('click', () => window.GC.setLang(btn.getAttribute('data-set-lang')));
-    });
-    window.GC.setLang(window.GC.storedLang());
 
     // --- Header Scroll Logic ---
     const header = document.getElementById('main-header');
