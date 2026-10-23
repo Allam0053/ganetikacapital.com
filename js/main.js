@@ -1,28 +1,26 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // --- Configuration details ---
+/* Shared helpers, language switching and header behaviour.
+   Loaded on every page; page scripts use window.GC instead of redefining. */
+window.GC = (function () {
     const SUPABASE_URL = 'https://whgsolhymmnraavyqvii.supabase.co';
     const SUPABASE_ANON_KEY = 'sb_publishable_ZwPIGbPy_QVm5t31E-pC2A_qQh4EEnB';
-    let supabaseClient = null;
+    let client = null;
 
-    // Helper to escape HTML values
     function escapeHtml(string) {
-        const map = {
-            '&': '&amp;',
-            '<': '&lt;',
-            '>': '&gt;',
-            '"': '&quot;',
-            "'": '&#039;'
-        };
-        return String(string).replace(/[&<>"']/g, function(m) { return map[m]; });
+        const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+        return String(string).replace(/[&<>"']/g, function (m) { return map[m]; });
     }
 
-    // Helper to capitalize strings
     function capitalize(text) {
         if (!text) return '';
         return text.charAt(0).toUpperCase() + text.slice(1);
     }
 
-    // Dynamic Supabase SDK Loader
+    function truncate(text, length) {
+        if (text.length <= length) return text;
+        return text.substring(0, length) + '...';
+    }
+
+    // Loads the pinned Supabase SDK on pages that did not include it
     function ensureSupabaseLoaded() {
         return new Promise((resolve) => {
             if (window.supabase) {
@@ -30,23 +28,72 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             const script = document.createElement('script');
-            script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
-            script.onload = () => {
-                resolve();
-            };
+            script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0';
+            script.integrity = 'sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp';
+            script.crossOrigin = 'anonymous';
+            script.onload = () => resolve();
             document.head.appendChild(script);
         });
     }
 
-    // Initialize Supabase Client
     function getSupabaseClient() {
-        if (supabaseClient) return supabaseClient;
+        if (client) return client;
         if (window.supabase) {
-            supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-            return supabaseClient;
+            client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            return client;
         }
         return null;
     }
+
+    // Gouache plates for article cards, picked from the article id
+    const CARD_ART = ['/card-harbour.webp', '/card-terraces.webp', '/card-bridge.webp'];
+    function cardArt(id) {
+        const key = String(id == null ? '' : id);
+        let h = 0;
+        for (let i = 0; i < key.length; i++) h = (h * 31 + key.charCodeAt(i)) >>> 0;
+        return CARD_ART[h % CARD_ART.length];
+    }
+
+    // --- Language (English / Bahasa Indonesia) ---
+    const LANG_KEY = 'gc-lang';
+    function storedLang() {
+        try { return localStorage.getItem(LANG_KEY) === 'id' ? 'id' : 'en'; } catch (e) { return 'en'; }
+    }
+    function setLang(lang) {
+        lang = lang === 'id' ? 'id' : 'en';
+        document.documentElement.lang = lang;
+        document.querySelectorAll('.lang-en').forEach(el => el.classList.toggle('hidden', lang !== 'en'));
+        document.querySelectorAll('.lang-id').forEach(el => el.classList.toggle('hidden', lang !== 'id'));
+        document.querySelectorAll('[data-set-lang]').forEach(btn => {
+            const on = btn.getAttribute('data-set-lang') === lang;
+            btn.setAttribute('aria-pressed', String(on));
+            btn.classList.toggle('lang-active', on);
+        });
+        document.querySelectorAll('[data-placeholder-id]').forEach(el => {
+            el.placeholder = lang === 'id' ? el.getAttribute('data-placeholder-id') : el.getAttribute('data-placeholder-en');
+        });
+        document.querySelectorAll('[data-label-id]').forEach(el => {
+            el.setAttribute('aria-label', lang === 'id' ? el.getAttribute('data-label-id') : el.getAttribute('data-label-en'));
+        });
+        try { localStorage.setItem(LANG_KEY, lang); } catch (e) { /* storage unavailable */ }
+        document.dispatchEvent(new CustomEvent('gc:lang', { detail: { lang } }));
+    }
+    function currentLang() {
+        return document.documentElement.lang === 'id' ? 'id' : 'en';
+    }
+
+    return { SUPABASE_URL, SUPABASE_ANON_KEY, escapeHtml, capitalize, truncate,
+             ensureSupabaseLoaded, getSupabaseClient, cardArt, setLang, storedLang, currentLang };
+})();
+
+document.addEventListener('DOMContentLoaded', function() {
+    const { getSupabaseClient, ensureSupabaseLoaded, escapeHtml, capitalize } = window.GC;
+
+    // --- Language switch ---
+    document.querySelectorAll('[data-set-lang]').forEach(btn => {
+        btn.addEventListener('click', () => window.GC.setLang(btn.getAttribute('data-set-lang')));
+    });
+    window.GC.setLang(window.GC.storedLang());
 
     // --- Header Scroll Logic ---
     const header = document.getElementById('main-header');

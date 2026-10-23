@@ -15,7 +15,7 @@
     <link rel="icon" type="image/jpeg" sizes="32x32" href="/favicon.jpg" />
     <link rel="icon" type="image/x-icon" href="/favicon-2.ico" />
     
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp" crossorigin="anonymous" defer></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     
     <style>
@@ -172,6 +172,7 @@
     </style>
 </head>
 <body class="text-gray-700 min-h-[100vh] flex flex-col">
+    <a href="#main-content" class="skip-link">Skip to content</a>
 
     <!-- Header -->
     <header id="main-header" class="sticky top-0 left-0 right-0 z-50">
@@ -188,7 +189,7 @@
         </div>
     </header>
 
-    <main class="flex-grow flex items-start justify-center py-8 md:py-12 px-4 md:px-6">
+    <main id="main-content" tabindex="-1" class="flex-grow flex items-start justify-center py-8 md:py-12 px-4 md:px-6">
         
         <!-- ================= INITIAL LOADING STATE ================= -->
         <div id="auth-loading-section" class="flex flex-col items-center justify-center py-12">

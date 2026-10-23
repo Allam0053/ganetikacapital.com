@@ -23,18 +23,21 @@
     <meta property="twitter:image" content="https://ganetikacapital.com/preview.jpg">
     
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="preload" as="image" href="/hero-helix-gouache-mobile.webp" media="(max-width: 767px)">
+    <link rel="preload" as="image" href="/hero-helix-gouache.webp" media="(min-width: 768px)">
+    <link rel="preload" as="image" href="/logo-white.webp">
     <link rel="preconnect" href="https://whgsolhymmnraavyqvii.supabase.co" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
     
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp" crossorigin="anonymous" defer></script>
     <script src="/js/main.js" defer></script>
     
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/jpeg" sizes="32x32" href="/favicon.jpg" />
     <link rel="icon" type="image/x-icon" href="/favicon-2.ico" />
-    <link rel="apple-touch-icon" href="/favicon.jpg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <!-- Optional: theme color for mobile browsers -->
     <meta name="theme-color" content="#FAF8F5" />
@@ -102,9 +105,10 @@
     </style>
 </head>
 <body class="text-gray-700">
+    <a href="#main-content" class="skip-link"><span class="lang-en">Skip to content</span><span class="lang-id hidden">Lewati ke konten</span></a>
 
     
-    <!-- HEADER --><header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <!-- HEADER --><header id="main-header" class="hero-header fixed top-0 left-0 right-0 z-50 transition-all duration-300">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 
@@ -114,11 +118,11 @@
 
                 
                 <!-- DESKTOP NAVIGATION --><nav class="hidden md:flex items-center space-x-8">
-                    <a href="#insights" class="nav-link text-white font-medium hover:text-gold transition">Insights</a>
-                    <a href="#strategies" class="nav-link text-white font-medium hover:text-gold transition">Strategies</a>
-                    <a href="/about" class="nav-link text-white font-medium hover:text-gold transition">About Us</a>
-                    <a href="/contact" class="nav-link text-white font-medium hover:text-gold transition">Contact</a>
-                    <a href="/portal" class="nav-link text-white font-medium hover:text-gold transition">Partner Login</a>
+                    <a href="#insights" class="nav-link text-white font-medium hover:text-gold transition"><span class="lang-en">Insights</span><span class="lang-id hidden">Wawasan</span></a>
+                    <a href="#strategies" class="nav-link text-white font-medium hover:text-gold transition"><span class="lang-en">Strategies</span><span class="lang-id hidden">Strategi</span></a>
+                    <a href="/about" class="nav-link text-white font-medium hover:text-gold transition"><span class="lang-en">About Us</span><span class="lang-id hidden">Tentang Kami</span></a>
+                    <a href="/contact" class="nav-link text-white font-medium hover:text-gold transition"><span class="lang-en">Contact</span><span class="lang-id hidden">Kontak</span></a>
+                    <a href="/portal" class="nav-link text-white font-medium hover:text-gold transition"><span class="lang-en">Partner Login</span><span class="lang-id hidden">Masuk Mitra</span></a>
                 </nav>
 
                 
@@ -127,6 +131,11 @@
                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                      </svg></button>
                     
+                    <div class="lang-switch flex items-center text-sm font-semibold" role="group" aria-label="Language / Bahasa">
+                        <button type="button" data-set-lang="en" class="lang-btn nav-link px-1.5 py-1" aria-pressed="true" lang="en">EN</button>
+                        <span class="nav-link opacity-40" aria-hidden="true">|</span>
+                        <button type="button" data-set-lang="id" class="lang-btn nav-link px-1.5 py-1" aria-pressed="false" lang="id">ID</button>
+                    </div>
                     <!-- Mobile Menu Button --><button id="mobile-menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden nav-link text-white">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -137,15 +146,15 @@
         </div>
         
         <!-- Mobile Menu Panel --><nav id="mobile-menu" aria-label="Mobile" class="max-h-0 opacity-0 overflow-hidden md:hidden bg-white text-primary-dark transition-all duration-300 ease-in-out transform origin-top scale-y-95">
-            <a href="#insights" class="block py-3 px-6 hover:bg-gray-100">Insights</a>
-            <a href="#strategies" class="block py-3 px-6 hover:bg-gray-100">Strategies</a>
-            <a href="/about" class="block py-3 px-6 hover:bg-gray-100">About Us</a>
-            <a href="/contact" class="block py-3 px-6 hover:bg-gray-100">Contact</a>
-            <a href="/portal" class="block py-3 px-6 hover:bg-gray-100">Partner Login</a>
+            <a href="#insights" class="block py-3 px-6 hover:bg-gray-100"><span class="lang-en">Insights</span><span class="lang-id hidden">Wawasan</span></a>
+            <a href="#strategies" class="block py-3 px-6 hover:bg-gray-100"><span class="lang-en">Strategies</span><span class="lang-id hidden">Strategi</span></a>
+            <a href="/about" class="block py-3 px-6 hover:bg-gray-100"><span class="lang-en">About Us</span><span class="lang-id hidden">Tentang Kami</span></a>
+            <a href="/contact" class="block py-3 px-6 hover:bg-gray-100"><span class="lang-en">Contact</span><span class="lang-id hidden">Kontak</span></a>
+            <a href="/portal" class="block py-3 px-6 hover:bg-gray-100"><span class="lang-en">Partner Login</span><span class="lang-id hidden">Masuk Mitra</span></a>
         </nav>
     </header>
 
-    <main>
+    <main id="main-content" tabindex="-1">
         
         <!-- HERO SECTION --><section class="relative h-screen min-h-[650px] py-16 overflow-hidden flex items-center justify-center text-white bg-primary-dark px-6">
             <!-- Gouache helix at dusk (editorial gouache, Style Guide v1.4) -->
@@ -153,19 +162,19 @@
             <div class="absolute inset-0 bg-primary-dark/40 md:bg-primary-dark/30"></div>
             
             <div class="relative z-10 text-center max-w-4xl mx-auto my-auto pt-12">
-                <h1 class="text-4xl md:text-6xl font-bold leading-tight">To Own the World, <br> Even Just a Little</h1>
+                <h1 class="text-4xl md:text-6xl font-bold leading-tight"><span class="lang-en">To Own the World, <br> Even Just a Little</span><span class="lang-id hidden">Memiliki Dunia, <br> Meski Hanya Sedikit</span></h1>
                 <span class="block w-[120px] h-[3px] bg-gold mx-auto mt-8 mb-7" aria-hidden="true"></span>
                 <p class="text-base md:text-xl font-light text-gray-200 leading-relaxed max-w-2xl mx-auto">
-                    A private investment partnership allocating patient capital as long-term fractional owners of outstanding businesses across global markets.
+                    <span class="lang-en">A private investment partnership allocating patient capital as long-term fractional owners of outstanding businesses across global markets.</span><span class="lang-id hidden">Kemitraan investasi privat yang menempatkan modal sabar sebagai pemilik fraksional jangka panjang atas bisnis-bisnis unggul di pasar global.</span>
                 </p>
             </div>
         </section>
 
                 <!-- CORE PRINCIPLES --><section class="bg-primary-dark text-white py-20">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold text-center mb-4">Our core <em class="not-italic text-gold-light">principles</em></h2>
+                <h2 class="text-3xl font-bold text-center mb-4"><span class="lang-en">Our core <em class="not-italic text-gold-light">principles</em></span><span class="lang-id hidden"><em class="not-italic text-gold-light">Prinsip</em> utama kami</span></h2>
                 <p class="text-center text-base md:text-lg text-gray-300 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
-                    Instead of treating stocks as paper tickers, we see shares as fractional ownership of real businesses across geographies and industries—positioned to harvest the long-term growth of global capitalism.
+                    <span class="lang-en">Instead of treating stocks as paper tickers, we see shares as fractional ownership of real businesses across geographies and industries—positioned to harvest the long-term growth of global capitalism.</span><span class="lang-id hidden">Alih-alih memperlakukan saham sebagai kode di atas kertas, kami melihat saham sebagai kepemilikan fraksional atas bisnis nyata di berbagai wilayah dan industri—diposisikan untuk memanen pertumbuhan jangka panjang kapitalisme global.</span>
                 </p>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
                     
@@ -176,10 +185,10 @@
                             <span class="block w-10 h-px bg-gold/60 mt-4"></span>
                         </div>
                         <div class="h-16"> <!-- Fixed height container for title -->
-                            <h3 class="text-xl font-bold text-gold mb-3">Disciplined approach</h3>
+                            <h3 class="text-xl font-bold text-gold mb-3"><span class="lang-en">Disciplined approach</span><span class="lang-id hidden">Pendekatan disiplin</span></h3>
                         </div>
                         <p class="text-gray-300 text-sm">
-                            We invest with a focus on intrinsic value and a clear margin of safety. Every decision is guided by business fundamentals, sound reasoning, and an insistence on rational capital allocation.
+                            <span class="lang-en">We invest with a focus on intrinsic value and a clear margin of safety. Every decision is guided by business fundamentals, sound reasoning, and an insistence on rational capital allocation.</span><span class="lang-id hidden">Kami berinvestasi dengan fokus pada nilai intrinsik dan margin keamanan yang jelas. Setiap keputusan dipandu oleh fundamental bisnis, penalaran yang sehat, dan konsistensi pada alokasi modal yang rasional.</span>
                         </p>
                     </div>
 
@@ -190,10 +199,10 @@
                             <span class="block w-10 h-px bg-gold/60 mt-4"></span>
                         </div>
                         <div class="h-16"> <!-- Fixed height container for title -->
-                            <h3 class="text-xl font-bold text-gold mb-3">Long-term horizon</h3>
+                            <h3 class="text-xl font-bold text-gold mb-3"><span class="lang-en">Long-term horizon</span><span class="lang-id hidden">Horizon jangka panjang</span></h3>
                         </div>
                         <p class="text-gray-300 text-sm">
-                            We think like business owners, not traders. Our goal is to hold outstanding companies that can compound value for decades, allowing time and quality to do the heavy lifting.
+                            <span class="lang-en">We think like business owners, not traders. Our goal is to hold outstanding companies that can compound value for decades, allowing time and quality to do the heavy lifting.</span><span class="lang-id hidden">Kami berpikir seperti pemilik bisnis, bukan trader. Tujuan kami adalah memegang perusahaan-perusahaan unggul yang dapat menggandakan nilai selama puluhan tahun, membiarkan waktu dan kualitas bekerja keras.</span>
                         </p>
                     </div>
 
@@ -204,10 +213,10 @@
                             <span class="block w-10 h-px bg-gold/60 mt-4"></span>
                         </div>
                         <div class="h-16"> <!-- Fixed height container for title -->
-                            <h3 class="text-xl font-bold text-gold mb-3">Partnership mindset</h3>
+                            <h3 class="text-xl font-bold text-gold mb-3"><span class="lang-en">Partnership mindset</span><span class="lang-id hidden">Pola pikir kemitraan</span></h3>
                         </div>
                         <p class="text-gray-300 text-sm">
-                            We treat our partners’ capital as our own. The General Partner invests alongside the Limited Partners, ensuring alignment of interests and a shared commitment to long-term results.
+                            <span class="lang-en">We treat our partners’ capital as our own. The General Partner invests alongside the Limited Partners, ensuring alignment of interests and a shared commitment to long-term results.</span><span class="lang-id hidden">Kami memperlakukan modal mitra kami seperti modal sendiri. General Partner berinvestasi bersama para Limited Partner, memastikan keselarasan kepentingan dan komitmen bersama pada hasil jangka panjang.</span>
                         </p>
                     </div>
 
@@ -218,10 +227,10 @@
                             <span class="block w-10 h-px bg-gold/60 mt-4"></span>
                         </div>
                         <div class="h-16"> <!-- Fixed height container for title -->
-                            <h3 class="text-xl font-bold text-gold mb-3">Local and global</h3>
+                            <h3 class="text-xl font-bold text-gold mb-3"><span class="lang-en">Local and global</span><span class="lang-id hidden">Lokal dan global</span></h3>
                         </div>
                         <p class="text-gray-300 text-sm">
-                            While based in Indonesia, our search for value knows no borders. We invest where enduring businesses and sensible prices meet—whether at home or abroad.
+                            <span class="lang-en">While based in Indonesia, our search for value knows no borders. We invest where enduring businesses and sensible prices meet—whether at home or abroad.</span><span class="lang-id hidden">Meski berbasis di Indonesia, pencarian nilai kami tidak mengenal batas. Kami berinvestasi di mana bisnis yang tangguh dan harga yang wajar bertemu—baik di dalam negeri maupun di luar negeri.</span>
                         </p>
                     </div>
                 </div>
@@ -229,20 +238,40 @@
         </section>
 
         
+        <!-- PULL QUOTE -->
+        <section class="bg-gray-50 py-20" aria-label="Our approach">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-14 items-center max-w-5xl mx-auto">
+                    <figure class="md:col-span-3">
+                        <span class="block font-serif text-gold text-8xl leading-none select-none" aria-hidden="true">&ldquo;</span>
+                        <blockquote class="font-serif text-3xl md:text-5xl leading-tight text-primary-dark -mt-6">
+                            <span class="lang-en">We think like business owners, <em class="not-italic text-gold">not traders.</em></span>
+                            <span class="lang-id hidden">Kami berpikir seperti pemilik bisnis, <em class="not-italic text-gold">bukan trader.</em></span>
+                        </blockquote>
+                        <span class="block w-[120px] h-[3px] bg-gold mt-8 mb-5" aria-hidden="true"></span>
+                        <figcaption class="text-xs font-semibold uppercase tracking-[0.2em] text-gray-500">Ganetika Capital Partners</figcaption>
+                    </figure>
+                    <div class="md:col-span-2">
+                        <img src="/card-harbour.webp" alt="" loading="lazy" class="w-full aspect-[4/3] md:aspect-square object-cover object-[20%_center] border-t-2 border-gold">
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- STRATEGIES -->
         <section id="strategies" class="py-20 bg-white scroll-mt-20">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-primary-dark text-center mb-4">Our investment <em class="not-italic text-gold">focus</em></h2>
-                <p class="text-center text-lg text-gray-600 mb-12 max-w-2xl mx-auto">Concentrated capital allocation focused on business quality, moat strength, and margin of safety.</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-primary-dark text-center mb-4"><span class="lang-en">Our investment <em class="not-italic text-gold">focus</em></span><span class="lang-id hidden"><em class="not-italic text-gold">Fokus</em> investasi kami</span></h2>
+                <p class="text-center text-lg text-gray-600 mb-12 max-w-2xl mx-auto"><span class="lang-en">Concentrated capital allocation focused on business quality, moat strength, and margin of safety.</span><span class="lang-id hidden">Alokasi modal yang terkonsentrasi, berfokus pada kualitas bisnis, kekuatan parit kompetitif, dan margin keamanan.</span></p>
                 
                 <div class="grid grid-cols-1 md:grid-cols-3 max-w-5xl mx-auto border-y border-rule md:border-y-0 divide-y md:divide-y-0 md:divide-x divide-rule">
                     <!-- Pillar 1 -->
                     <div class="py-8 md:py-2 md:px-10 md:first:pl-0 md:last:pr-0 flex flex-col">
                         <div>
                             <span class="font-serif text-3xl text-gold leading-none mb-4 block">01</span>
-                            <h3 class="text-xl font-bold text-primary-dark mb-3">Exceptional businesses</h3>
+                            <h3 class="text-xl font-bold text-primary-dark mb-3"><span class="lang-en">Exceptional businesses</span><span class="lang-id hidden">Bisnis luar biasa</span></h3>
                             <p class="text-gray-600 text-sm leading-relaxed">
-                                Publicly-listed companies with enduring competitive moats, honest leadership, and proven compounding ability held for the long term.
+                                <span class="lang-en">Publicly-listed companies with enduring competitive moats, honest leadership, and proven compounding ability held for the long term.</span><span class="lang-id hidden">Perusahaan tercatat dengan parit kompetitif yang tahan lama, kepemimpinan yang jujur, dan kemampuan menggandakan nilai yang terbukti, dipegang untuk jangka panjang.</span>
                             </p>
                         </div>
                     </div>
@@ -251,9 +280,9 @@
                     <div class="py-8 md:py-2 md:px-10 md:first:pl-0 md:last:pr-0 flex flex-col">
                         <div>
                             <span class="font-serif text-3xl text-gold leading-none mb-4 block">02</span>
-                            <h3 class="text-xl font-bold text-primary-dark mb-3">Margin of safety</h3>
+                            <h3 class="text-xl font-bold text-primary-dark mb-3"><span class="lang-en">Margin of safety</span><span class="lang-id hidden">Margin keamanan</span></h3>
                             <p class="text-gray-600 text-sm leading-relaxed">
-                                We insist on buying only when the market offers shares at a significant discount to intrinsic value, protecting downside first.
+                                <span class="lang-en">We insist on buying only when the market offers shares at a significant discount to intrinsic value, protecting downside first.</span><span class="lang-id hidden">Kami hanya membeli ketika pasar menawarkan saham dengan diskon signifikan terhadap nilai intrinsik, melindungi sisi risiko terlebih dahulu.</span>
                             </p>
                         </div>
                     </div>
@@ -262,9 +291,9 @@
                     <div class="py-8 md:py-2 md:px-10 md:first:pl-0 md:last:pr-0 flex flex-col">
                         <div>
                             <span class="font-serif text-3xl text-gold leading-none mb-4 block">03</span>
-                            <h3 class="text-xl font-bold text-primary-dark mb-3">Special situations</h3>
+                            <h3 class="text-xl font-bold text-primary-dark mb-3"><span class="lang-en">Special situations</span><span class="lang-id hidden">Situasi khusus</span></h3>
                             <p class="text-gray-600 text-sm leading-relaxed">
-                                Opportunistically acquiring fair businesses at wonderful prices when extraordinary mispricings offer outsized returns.
+                                <span class="lang-en">Opportunistically acquiring fair businesses at wonderful prices when extraordinary mispricings offer outsized returns.</span><span class="lang-id hidden">Secara oportunistik mengakuisisi bisnis yang wajar pada harga yang luar biasa ketika salah penetapan harga yang ekstrem menawarkan imbal hasil besar.</span>
                             </p>
                         </div>
                     </div>
@@ -276,16 +305,16 @@
         <!-- FEATURED INSIGHTS -->
         <section id="insights" class="py-20 bg-gray-50 scroll-mt-20">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-primary-dark text-center mb-4">Featured <em class="not-italic text-gold">insights</em></h2>
-                <p class="text-center text-lg text-gray-600 mb-12 max-w-2xl mx-auto">Explore our latest thinking on markets, strategies, and the global economic landscape.</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-primary-dark text-center mb-4"><span class="lang-en">Featured <em class="not-italic text-gold">insights</em></span><span class="lang-id hidden"><em class="not-italic text-gold">Wawasan</em> pilihan</span></h2>
+                <p class="text-center text-lg text-gray-600 mb-12 max-w-2xl mx-auto"><span class="lang-en">Explore our latest thinking on markets, strategies, and the global economic landscape.</span><span class="lang-id hidden">Telusuri pemikiran terbaru kami tentang pasar, strategi, dan lanskap ekonomi global.</span></p>
                 
                 <div id="insights-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <p class="text-gray-500">Loading insights...</p>
+                    <p class="text-gray-500"><span class="lang-en">Loading insights...</span><span class="lang-id hidden">Memuat wawasan...</span></p>
                 </div>
                 
                 <div class="mt-20 text-center max-w-xl mx-auto">
-                    <h3 class="text-2xl font-bold text-primary-dark mb-3">Subscribe to our memos</h3>
-                    <p class="text-gray-600 mb-6">Receive our latest investment memos and partnership letters directly in your inbox.</p>
+                    <h3 class="text-2xl font-bold text-primary-dark mb-3"><span class="lang-en">Subscribe to our memos</span><span class="lang-id hidden">Berlangganan memo kami</span></h3>
+                    <p class="text-gray-600 mb-6"><span class="lang-en">Receive our latest investment memos and partnership letters directly in your inbox.</span><span class="lang-id hidden">Terima memo investasi dan surat kemitraan terbaru kami langsung di kotak masuk Anda.</span></p>
                     <div class="flex justify-center w-full max-w-[480px] mx-auto overflow-hidden">
                         <iframe src="https://ganetikacapital.substack.com/embed" class="w-full h-[320px]" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no" loading="lazy"></iframe>
                     </div>
@@ -297,12 +326,12 @@
         <!-- ABOUT -->
         <section id="about" class="py-20 bg-white">
             <div class="container mx-auto px-6 text-center">
-                 <h2 class="text-3xl md:text-4xl font-bold text-primary-dark mb-4">Structure &amp; <em class="not-italic text-gold">governance</em></h2>
+                 <h2 class="text-3xl md:text-4xl font-bold text-primary-dark mb-4"><span class="lang-en">Structure &amp; <em class="not-italic text-gold">governance</em></span><span class="lang-id hidden">Struktur &amp; <em class="not-italic text-gold">tata kelola</em></span></h2>
                  <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-8 leading-relaxed">
-                     Formed as a private investment partnership comprising one General Partner and four Limited Partners, uniting aligned capital with a shared commitment to long-term compounding.
+                     <span class="lang-en">Formed as a private investment partnership comprising one General Partner and four Limited Partners, uniting aligned capital with a shared commitment to long-term compounding.</span><span class="lang-id hidden">Dibentuk sebagai kemitraan investasi privat yang terdiri dari satu General Partner dan empat Limited Partner, menyatukan modal yang selaras dengan komitmen bersama pada penggandaan nilai jangka panjang.</span>
                  </p>
                  <a href="/about" class="inline-block border-2 border-gold text-gold font-semibold py-3 px-8 rounded-md hover:bg-gold hover:text-white transition duration-300">
-                    Read About Our Firm & Alignment
+                    <span class="lang-en">Read About Our Firm & Alignment</span><span class="lang-id hidden">Baca tentang firma &amp; keselarasan kami</span>
                 </a>
             </div>
         </section>
@@ -316,39 +345,36 @@
                 
                 <!-- Logo --><div class="col-span-2 lg:col-span-1">
                     <img src="/logo-stacked-white.webp" srcset="/logo-stacked-white.webp 1x, /logo-stacked-white@2x.png 2x" alt="Ganetika Capital Partners" class="h-24 w-auto mb-4" loading="lazy">
-                    <p class="text-sm text-gray-400">To Own the World, Even Just a Little</p>
+                    <p class="text-sm text-gray-400"><span class="lang-en">To Own the World, Even Just a Little</span><span class="lang-id hidden">Memiliki Dunia, Meski Hanya Sedikit</span></p>
                 </div>
                 
                 <!-- Quick Links --><div>
-                    <h4 class="font-semibold text-white mb-4 uppercase tracking-wider text-sm">Quick Links</h4>
+                    <h4 class="font-semibold text-white mb-4 uppercase tracking-wider text-sm"><span class="lang-en">Quick Links</span><span class="lang-id hidden">Tautan Cepat</span></h4>
                     <ul class="space-y-2">
-                        <li><a href="/about" class="hover:text-gold transition text-sm">About Us</a></li>
-                        <li><a href="#insights" class="hover:text-gold transition text-sm">Insights</a></li>
-                        <li><a href="/contact" class="hover:text-gold transition text-sm">Contact</a></li>
+                        <li><a href="/about" class="hover:text-gold transition text-sm"><span class="lang-en">About Us</span><span class="lang-id hidden">Tentang Kami</span></a></li>
+                        <li><a href="#insights" class="hover:text-gold transition text-sm"><span class="lang-en">Insights</span><span class="lang-id hidden">Wawasan</span></a></li>
+                        <li><a href="/contact" class="hover:text-gold transition text-sm"><span class="lang-en">Contact</span><span class="lang-id hidden">Kontak</span></a></li>
                     </ul>
                 </div>
                 
                 <!-- Legal --><div>
                      <h4 class="font-semibold text-white mb-4 uppercase tracking-wider text-sm">Legal</h4>
                     <ul class="space-y-2">
-                        <li><a href="/terms" class="hover:text-gold transition text-sm">Terms of Use</a></li>
-                        <li><a href="/privacy" class="hover:text-gold transition text-sm">Privacy Policy</a></li>
-                        <li><a href="/disclosures" class="hover:text-gold transition text-sm">Disclosures</a></li>
+                        <li><a href="/terms" class="hover:text-gold transition text-sm"><span class="lang-en">Terms of Use</span><span class="lang-id hidden">Ketentuan Penggunaan</span></a></li>
+                        <li><a href="/privacy" class="hover:text-gold transition text-sm"><span class="lang-en">Privacy Policy</span><span class="lang-id hidden">Kebijakan Privasi</span></a></li>
+                        <li><a href="/disclosures" class="hover:text-gold transition text-sm"><span class="lang-en">Disclosures</span><span class="lang-id hidden">Pengungkapan</span></a></li>
                     </ul>
                 </div>
                 
                 <!-- Access --><div>
-                    <h4 class="font-semibold text-white mb-4 uppercase tracking-wider text-sm">Access</h4>
+                    <h4 class="font-semibold text-white mb-4 uppercase tracking-wider text-sm"><span class="lang-en">Access</span><span class="lang-id hidden">Akses</span></h4>
                     <ul class="space-y-2">
-                        <li><a href="/portal" class="hover:text-gold transition text-sm">Partner Portal</a></li>
+                        <li><a href="/portal" class="hover:text-gold transition text-sm"><span class="lang-en">Partner Portal</span><span class="lang-id hidden">Portal Mitra</span></a></li>
                     </ul>
                 </div>
             </div>
             <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-sm text-gray-500 mb-4 md:mb-0">&copy; 2026 Ganetika Capital Partners. All Rights Reserved.</p>
-                
-                <!-- Social Media Icons (placeholder) --><div>
-                    <!-- Add social media icons here if needed --></div>
+                <p class="text-sm text-gray-500 mb-4 md:mb-0"><span class="lang-en">&copy; 2026 Ganetika Capital Partners. All Rights Reserved.</span><span class="lang-id hidden">&copy; 2026 Ganetika Capital Partners. Hak Cipta Dilindungi.</span></p>
             </div>
         </div>
     </footer>
@@ -356,100 +382,54 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // --- 
-            // SUPABASE FETCH LOGIC
-            // ---
-            const SUPABASE_URL = 'https://whgsolhymmnraavyqvii.supabase.co';
-            const SUPABASE_ANON_KEY = 'sb_publishable_ZwPIGbPy_QVm5t31E-pC2A_qQh4EEnB';
-            
-            const { createClient } = supabase;
-            const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            const { escapeHtml, capitalize, truncate, cardArt, getSupabaseClient } = window.GC;
 
-            function truncate(text, length) {
-                if (text.length <= length) return text;
-                return text.substring(0, length) + '...';
-            }
-            
-            function capitalize(text) {
-                if (!text) return '';
-                return text.charAt(0).toUpperCase() + text.slice(1);
-            }
+            const memoCard = () => `
+                <div class="bg-white overflow-hidden border border-rule border-t-2 border-t-gold flex flex-col md:flex-row h-full col-span-1 md:col-span-2 lg:col-span-3">
+                    <img src="/memo-preparation.webp" alt="" class="w-full md:w-2/5 h-48 md:h-auto object-cover">
+                    <div class="p-8 md:p-12 text-center md:text-left flex flex-col items-center md:items-start justify-center">
+                        <span class="text-xs text-gold font-semibold uppercase tracking-wider mb-2"><span class="lang-en">Partnership Memo</span><span class="lang-id hidden">Memo Kemitraan</span></span>
+                        <h3 class="text-2xl font-bold text-primary-dark mb-4 max-w-lg"><span class="lang-en">Our investment philosophy &amp; ethos</span><span class="lang-id hidden">Filosofi &amp; etos investasi kami</span></h3>
+                        <p class="text-gray-600 text-sm mb-6 max-w-md"><span class="lang-en">Our public memos and insights on markets and long-term capital allocation principles are in preparation. In the meantime, explore our core values, alignment, and investment parameters.</span><span class="lang-id hidden">Memo dan wawasan publik kami tentang pasar dan prinsip alokasi modal jangka panjang sedang dipersiapkan. Sementara itu, pelajari nilai-nilai inti, keselarasan, dan parameter investasi kami.</span></p>
+                        <a href="/about" class="inline-flex items-center gap-1.5 py-2.5 px-6 rounded-md bg-gold hover:bg-primary-dark text-white font-semibold text-sm transition duration-200">
+                            <span class="lang-en">Learn more about our firm</span><span class="lang-id hidden">Pelajari lebih lanjut tentang firma kami</span>
+                        </a>
+                    </div>
+                </div>`;
 
-            function escapeHtml(string) {
-                const map = {
-                    '&': '&amp;',
-                    '<': '&lt;',
-                    '>': '&gt;',
-                    '"': '&quot;',
-                    "'": '&#039;'
-                };
-                return String(string).replace(/[&<>"']/g, function(m) { return map[m]; });
-            }
+            const postCard = (post) => {
+                const firstTag = post.tag ? post.tag.split(',')[0] : 'Insight';
+                return `
+                <div class="bg-white rounded-lg overflow-hidden group">
+                    <img src="${cardArt(post.id)}" alt="" loading="lazy" class="w-full h-48 object-cover group-hover:opacity-90 transition">
+                    <div class="p-6">
+                        <p class="text-sm text-gold font-semibold mb-2">${escapeHtml(capitalize(firstTag))}</p>
+                        <h3 class="text-xl font-bold text-primary-dark mb-3">${escapeHtml(post.title)}</h3>
+                        <p class="text-gray-600 mb-4">${escapeHtml(truncate(post.content, 120))}</p>
+                        <a href="/articles/?id=${encodeURIComponent(post.id)}" class="font-semibold text-gold link-arrow"><span class="lang-en">Read more</span><span class="lang-id hidden">Baca selengkapnya</span></a>
+                    </div>
+                </div>`;
+            };
+
+            const render = (html) => {
+                document.getElementById('insights-grid').innerHTML = html;
+                window.GC.setLang(window.GC.currentLang());
+            };
 
             async function loadInsights() {
-                const gridContainer = document.getElementById('insights-grid');
-                if (!gridContainer) return;
-
+                if (!document.getElementById('insights-grid')) return;
                 try {
-                    const { data, error } = await supabaseClient
+                    const { data, error } = await getSupabaseClient()
                         .from('content')
                         .select('*')
                         .order('created_at', { ascending: false })
                         .limit(3);
 
                     if (error) throw error;
-
-                    if (data.length === 0) {
-                        gridContainer.innerHTML = `
-                        <div class="bg-white overflow-hidden border border-rule border-t-2 border-t-gold flex flex-col md:flex-row h-full col-span-1 md:col-span-2 lg:col-span-3">
-                            <img src="/memo-preparation.webp" alt="" class="w-full md:w-2/5 h-48 md:h-auto object-cover">
-                            <div class="p-8 md:p-12 text-center md:text-left flex flex-col items-center md:items-start justify-center">
-                                <span class="text-xs text-gold font-semibold uppercase tracking-wider mb-2">Partnership Memo</span>
-                                <h3 class="text-2xl font-bold text-primary-dark mb-4 max-w-lg">Our investment philosophy &amp; ethos</h3>
-                                <p class="text-gray-600 text-sm mb-6 max-w-md">Our public memos and insights on markets and long-term capital allocation principles are in preparation. In the meantime, explore our core values, alignment, and investment parameters.</p>
-                                <a href="/about" class="inline-flex items-center gap-1.5 py-2.5 px-6 rounded-md bg-gold hover:bg-primary-dark text-white font-semibold text-sm transition duration-200">
-                                    <span>Learn More About Our Firm</span>
-                                </a>
-                            </div>
-                        </div>
-                        `;
-                        return;
-                    }
-
-                    gridContainer.innerHTML = '';
-
-                    data.forEach(post => {
-                        const firstTag = post.tag ? post.tag.split(',')[0] : 'Insight';
-                        
-                        const postCardHtml = `
-                        <div class="bg-white rounded-lg overflow-hidden group">
-                            <img src="/insight-plate.svg" alt="" class="w-full h-48 object-cover group-hover:opacity-90 transition">
-                            <div class="p-6">
-                                <p class="text-sm text-gold font-semibold mb-2">${escapeHtml(capitalize(firstTag))}</p>
-                                <h3 class="text-xl font-bold text-primary-dark mb-3">${escapeHtml(post.title)}</h3>
-                                <p class="text-gray-600 mb-4">${escapeHtml(truncate(post.content, 120))}</p>
-                                <a href="/articles/?id=${post.id}" class="font-semibold text-gold link-arrow">Read More</a>
-                            </div>
-                        </div>
-                        `;
-                        gridContainer.innerHTML += postCardHtml;
-                    });
-
-                 } catch (error) {
+                    render(data.length === 0 ? memoCard() : data.map(postCard).join(''));
+                } catch (error) {
                     console.error('Error fetching insights:', error.message);
-                    gridContainer.innerHTML = `
-                    <div class="bg-white overflow-hidden border border-rule border-t-2 border-t-gold flex flex-col md:flex-row h-full col-span-1 md:col-span-2 lg:col-span-3">
-                        <img src="/memo-preparation.webp" alt="" class="w-full md:w-2/5 h-48 md:h-auto object-cover">
-                        <div class="p-8 md:p-12 text-center md:text-left flex flex-col items-center md:items-start justify-center">
-                            <span class="text-xs text-gold font-semibold uppercase tracking-wider mb-2">Partnership Memo</span>
-                            <h3 class="text-2xl font-bold text-primary-dark mb-4 max-w-lg">Our investment philosophy &amp; ethos</h3>
-                            <p class="text-gray-600 text-sm mb-6 max-w-md">Our public memos and insights on markets and long-term capital allocation principles are in preparation. In the meantime, explore our core values, alignment, and investment parameters.</p>
-                            <a href="/about" class="inline-flex items-center gap-1.5 py-2.5 px-6 rounded-md bg-gold hover:bg-primary-dark text-white font-semibold text-sm transition duration-200">
-                                <span>Learn More About Our Firm</span>
-                            </a>
-                        </div>
-                    </div>
-                    `;
+                    render(memoCard());
                 }
             }
 
@@ -464,7 +444,7 @@
                 <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
-                <input id="search-input" type="search" aria-label="Search insights and memos" placeholder="Search insights and memos..." class="w-full bg-transparent border-none outline-none focus:ring-0 pl-3 py-1 text-gray-800 placeholder-gray-400 text-sm">
+                <input id="search-input" type="search" aria-label="Search insights and memos" placeholder="Search insights and memos..." data-placeholder-en="Search insights and memos..." data-placeholder-id="Cari wawasan dan memo..." class="w-full bg-transparent border-none outline-none focus:ring-0 pl-3 py-1 text-gray-800 placeholder-gray-400 text-sm">
                 <button id="close-search" type="button" aria-label="Close search" class="text-gray-400 hover:text-gray-600 text-xs font-semibold px-2">ESC</button>
             </div>
             <div id="search-results" class="max-h-72 overflow-y-auto p-4 empty:hidden divide-y divide-gray-50">
