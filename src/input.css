@@ -1,3 +1,113 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Shared brand base (Ganetika Style Guide v1.4) */
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #F1EEE8; /* Panel */
+    /* EB Garamond defaults to old-style figures */
+    font-variant-numeric: lining-nums tabular-nums;
+}
+h1, h2, h3, blockquote, .logo-text {
+    font-family: 'EB Garamond', serif;
+}
+
+/* Paper surfaces: never pure white */
+.bg-white {
+    background-color: #FAF8F5 !important; /* Cream */
+}
+.bg-gray-50 {
+    background-color: #F1EEE8 !important; /* Panel */
+}
+
+/* Visible keyboard focus */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid #C4984F;
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto !important;
+    }
+    *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
+
+/* Skip link: first tab stop, visible only on focus */
+.skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -4rem;
+    z-index: 100;
+    padding: 0.6rem 1rem;
+    background: #0E233D;
+    color: #FAF8F5;
+    border: 1px solid #C4984F;
+    border-radius: 0.25rem;
+    font-weight: 600;
+    transition: top 0.15s;
+}
+.skip-link:focus {
+    top: 1rem;
+}
+main:focus {
+    outline: none;
+}
+
+/* Contrast (WCAG AA): the brand gold and light greys only reach 2-2.5:1 on
+   cream. Use a deeper gold and darker greys on light surfaces, and keep the
+   brand gold on Navy Deep, where it measures 6:1. */
+.text-gold,
+.hover\:text-gold:hover,
+.group:hover .group-hover\:text-gold {
+    color: #85652B;
+}
+.text-gray-400 { color: #5B6270; }
+.text-gray-500 { color: #5B6270; }
+
+.bg-primary-dark .text-gold,
+.bg-primary-dark .hover\:text-gold:hover,
+.bg-primary-dark .text-gold-light,
+footer .text-gold,
+footer .hover\:text-gold:hover,
+#main-header:not(.scrolled).hero-header .hover\:text-gold:hover {
+    color: #C4984F;
+}
+.bg-primary-dark .text-gold-light { color: #E0B96A; }
+.bg-primary-dark .text-gray-400,
+footer .text-gray-400 { color: #B6C2D2; }
+.bg-primary-dark .text-gray-500,
+footer .text-gray-500 { color: #9AA7B8; }
+.bg-primary-dark .text-gray-300 { color: #D5DDE8; }
+
+/* Text on gold fills: white on Gold is 2.6:1, Navy Deep on Gold is 6:1 */
+.bg-gold.text-white { color: #0E233D; }
+.bg-gold.text-white:hover { color: #FFFFFF; } /* hover swaps the fill to navy */
+.hover\:bg-gold:hover { color: #0E233D; }
+.bg-primary-dark.text-gold { color: #C4984F; }
+
+/* Header nav-link hover & active highlights */
+#main-header .nav-link:hover {
+    color: #85652B !important;
+}
+#main-header:not(.scrolled).hero-header .nav-link:hover {
+    color: #C4984F !important;
+}
+#main-header.scrolled .nav-link:hover {
+    color: #85652B !important;
+}
+#main-header .nav-link.text-gold {
+    color: #85652B !important;
+}
+#main-header:not(.scrolled).hero-header .nav-link.text-gold {
+    color: #C4984F !important;
+}
