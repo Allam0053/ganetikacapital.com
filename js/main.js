@@ -92,6 +92,13 @@ document.addEventListener('DOMContentLoaded', function() {
         handleScroll(); // Execute on load to set initial state
     }
 
+    // --- Logo Protection (disable dragging & right-click saving) ---
+    document.querySelectorAll('img[src*="logo"], #header-logo, .protected-logo').forEach(img => {
+        img.setAttribute('draggable', 'false');
+        img.addEventListener('contextmenu', e => e.preventDefault());
+        img.addEventListener('dragstart', e => e.preventDefault());
+    });
+
     // --- Mobile Menu Toggle Drawer Logic ---
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');

@@ -118,3 +118,12 @@ footer .text-gray-500 { color: #9AA7B8; }
 #main-header:not(.scrolled).hero-header .nav-link.text-gold {
     color: #C4984F !important;
 }
+
+/* Logo download & drag protection */
+.protected-logo,
+#header-logo,
+img[src*="logo"] {
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+}
