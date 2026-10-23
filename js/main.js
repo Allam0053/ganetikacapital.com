@@ -181,9 +181,11 @@ document.addEventListener('DOMContentLoaded', function() {
             let debounceTimer;
             searchInput.addEventListener('input', () => {
                 clearTimeout(debounceTimer);
-                const query = searchInput.value.trim();
+                const rawQuery = searchInput.value.trim();
+                // Strip PostgREST syntax delimiters (, () "\) to prevent syntax errors
+                const sanitizedQuery = rawQuery.replace(/[,()"\\]/g, " ").replace(/\s+/g, " ").trim();
                 
-                if (query.length < 2) {
+                if (sanitizedQuery.length < 2) {
                     searchResults.innerHTML = '';
                     return;
                 }
@@ -207,7 +209,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         const { data, error } = await client
                             .from('content')
                             .select('id, title, tag, created_at')
-                            .or(`title.ilike.%${query}%,content.ilike.%${query}%`)
+                            .or(`title.ilike.%${sanitizedQuery}%,content.ilike.%${sanitizedQuery}%`)
                             .order('created_at', { ascending: false })
                             .limit(5);
 
@@ -242,7 +244,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     } catch (err) {
                         console.error('Search query error:', err.message);
-                        searchResults.innerHTML = `<div class="text-sm text-red-500 py-3 text-center">Error fetching: ${err.message}</div>`;
+                        searchResults.innerHTML = `<div class="text-sm text-gray-400 py-3 text-center">No matching insights found.</div>`;
                     }
                 }, 300);
             });
