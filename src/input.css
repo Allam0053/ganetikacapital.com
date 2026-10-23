@@ -31,6 +31,13 @@ textarea:focus-visible {
     outline-offset: 2px;
 }
 
+#search-input,
+#search-input:focus,
+#search-input:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto !important;
