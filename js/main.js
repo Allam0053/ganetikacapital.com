@@ -1,28 +1,26 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // --- Configuration details ---
+/* Shared helpers, language switching and header behaviour.
+   Loaded on every page; page scripts use window.GC instead of redefining. */
+window.GC = (function () {
     const SUPABASE_URL = 'https://whgsolhymmnraavyqvii.supabase.co';
     const SUPABASE_ANON_KEY = 'sb_publishable_ZwPIGbPy_QVm5t31E-pC2A_qQh4EEnB';
-    let supabaseClient = null;
+    let client = null;
 
-    // Helper to escape HTML values
     function escapeHtml(string) {
-        const map = {
-            '&': '&amp;',
-            '<': '&lt;',
-            '>': '&gt;',
-            '"': '&quot;',
-            "'": '&#039;'
-        };
-        return String(string).replace(/[&<>"']/g, function(m) { return map[m]; });
+        const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+        return String(string).replace(/[&<>"']/g, function (m) { return map[m]; });
     }
 
-    // Helper to capitalize strings
     function capitalize(text) {
         if (!text) return '';
         return text.charAt(0).toUpperCase() + text.slice(1);
     }
 
-    // Dynamic Supabase SDK Loader
+    function truncate(text, length) {
+        if (text.length <= length) return text;
+        return text.substring(0, length) + '...';
+    }
+
+    // Loads the pinned Supabase SDK on pages that did not include it
     function ensureSupabaseLoaded() {
         return new Promise((resolve) => {
             if (window.supabase) {
@@ -30,23 +28,38 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             const script = document.createElement('script');
-            script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
-            script.onload = () => {
-                resolve();
-            };
+            script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0';
+            script.integrity = 'sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp';
+            script.crossOrigin = 'anonymous';
+            script.onload = () => resolve();
             document.head.appendChild(script);
         });
     }
 
-    // Initialize Supabase Client
     function getSupabaseClient() {
-        if (supabaseClient) return supabaseClient;
+        if (client) return client;
         if (window.supabase) {
-            supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-            return supabaseClient;
+            client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            return client;
         }
         return null;
     }
+
+    // Gouache plates for article cards, picked from the article id
+    const CARD_ART = ['/card-harbour.webp', '/card-terraces.webp', '/card-bridge.webp'];
+    function cardArt(id) {
+        const key = String(id == null ? '' : id);
+        let h = 0;
+        for (let i = 0; i < key.length; i++) h = (h * 31 + key.charCodeAt(i)) >>> 0;
+        return CARD_ART[h % CARD_ART.length];
+    }
+
+    return { SUPABASE_URL, SUPABASE_ANON_KEY, escapeHtml, capitalize, truncate,
+             ensureSupabaseLoaded, getSupabaseClient, cardArt };
+})();
+
+document.addEventListener('DOMContentLoaded', function() {
+    const { getSupabaseClient, ensureSupabaseLoaded, escapeHtml, capitalize } = window.GC;
 
     // --- Header Scroll Logic ---
     const header = document.getElementById('main-header');
@@ -84,26 +97,32 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileMenu = document.getElementById('mobile-menu');
     
     if (mobileMenuButton && mobileMenu) {
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+
+        // Keep collapsed links out of the tab order and announce state
+        const setMobileMenu = (open) => {
+            mobileMenu.classList.toggle('max-h-0', !open);
+            mobileMenu.classList.toggle('opacity-0', !open);
+            mobileMenu.classList.toggle('scale-y-95', !open);
+            mobileMenu.classList.toggle('max-h-96', open);
+            mobileMenu.classList.toggle('opacity-100', open);
+            mobileMenu.classList.toggle('scale-y-100', open);
+            mobileMenuButton.setAttribute('aria-expanded', String(open));
+            mobileMenuButton.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+            mobileLinks.forEach(link => {
+                if (open) link.removeAttribute('tabindex');
+                else link.setAttribute('tabindex', '-1');
+            });
+        };
+        setMobileMenu(false);
+
         mobileMenuButton.addEventListener('click', () => {
-            const isOpen = mobileMenu.classList.contains('max-h-96');
-            if (isOpen) {
-                // Close
-                mobileMenu.classList.add('max-h-0', 'opacity-0', 'scale-y-95');
-                mobileMenu.classList.remove('max-h-96', 'opacity-100', 'scale-y-100');
-            } else {
-                // Open
-                mobileMenu.classList.remove('max-h-0', 'opacity-0', 'scale-y-95');
-                mobileMenu.classList.add('max-h-96', 'opacity-100', 'scale-y-100');
-            }
+            setMobileMenu(!mobileMenu.classList.contains('max-h-96'));
         });
 
         // Close mobile drawer menu when any link is clicked
-        const mobileLinks = mobileMenu.querySelectorAll('a');
         mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('max-h-0', 'opacity-0', 'scale-y-95');
-                mobileMenu.classList.remove('max-h-96', 'opacity-100', 'scale-y-100');
-            });
+            link.addEventListener('click', () => setMobileMenu(false));
         });
     }
 
@@ -133,9 +152,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Hide Search Modal helpers
+        // Hide Search Modal helpers; return focus to the trigger
         const hideModal = () => {
             searchModal.classList.add('hidden');
+            searchButton.focus();
         };
 
         if (closeSearch) {
