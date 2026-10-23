@@ -101,3 +101,13 @@ footer .text-gray-500 { color: #9AA7B8; }
 .bg-gold.text-white:hover { color: #FFFFFF; } /* hover swaps the fill to navy */
 .hover\:bg-gold:hover { color: #0E233D; }
 .bg-primary-dark.text-gold { color: #C4984F; }
+
+
+/* Logo download & drag protection */
+.protected-logo,
+#header-logo,
+img[src*="logo"] {
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+}
